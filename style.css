@@ -74,7 +74,8 @@ nav a:hover, nav a.active {
    Hero Section
 ========================= */
 .hero {
-    background: #e7e1fa;
+   width: 100%; 
+   background: #e7e1fa;
     padding: 3rem 0;
     text-align: center;
 }
