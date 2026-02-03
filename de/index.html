@@ -38,12 +38,21 @@
 
 <script src="../js/include.js"></script>
 <script>
-    include("#header","../partials/header.html");
-    include("#footer","../partials/footer.html");
+include("#header","../partials/header.html");
+include("#footer","../partials/footer.html");
 
-    document.addEventListener("click", function(e) {
-        if(e.target.dataset.lang) setLang(e.target.dataset.lang);
-    });
+// Sprachwechsel-Funktion
+function setLang(lang) {
+    const supported = ["de", "en", "ru"];
+    if (!supported.includes(lang)) return;
+    localStorage.setItem("lang", lang);
+    window.location.href = "/web/" + lang + "/";
+}
+
+// Eventlistener für Klicks auf Sprachauswahl
+document.addEventListener("click", function(e) {
+    if(e.target.dataset.lang) setLang(e.target.dataset.lang);
+});
 </script>
 
 </body>
