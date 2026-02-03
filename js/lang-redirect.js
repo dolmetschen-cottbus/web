@@ -1,20 +1,24 @@
 (function () {
     const supported = ["de", "en", "ru"];
-    const storedLang = localStorage.getItem("lang");
 
-    // Basisverzeichnis der aktuellen Datei ermitteln
-    const basePath = window.location.pathname.replace(/\/[^\/]*$/, "");
+    const pathParts = window.location.pathname.split("/").filter(Boolean);
+    const currentLang = pathParts[pathParts.length - 1];
 
-    function redirect(lang) {
-        window.location.replace(`${basePath}/${lang}/`);
-    }
-
-    if (storedLang && supported.includes(storedLang)) {
-        redirect(storedLang);
+    // 1. Wenn wir bereits in einem Sprachordner sind → abbrechen
+    if (supported.includes(currentLang)) {
+        localStorage.setItem("lang", currentLang);
         return;
     }
 
-    const browserLangs = navigator.languages || [navigator.language] || ["de"];
+    // 2. LocalStorage bevorzugen
+    const storedLang = localStorage.getItem("lang");
+    if (storedLang && supported.includes(storedLang)) {
+        window.location.replace(`./${storedLang}/`);
+        return;
+    }
+
+    // 3. Browser-Sprache ermitteln
+    const browserLangs = navigator.languages || [navigator.language] || [];
     let lang = "de";
 
     for (let l of browserLangs) {
@@ -26,5 +30,5 @@
     }
 
     localStorage.setItem("lang", lang);
-    redirect(lang);
+    window.location.replace(`./${lang}/`);
 })();
