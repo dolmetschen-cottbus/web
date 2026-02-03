@@ -76,8 +76,8 @@ nav a:hover, nav a.active {
 .hero {
    width: 100%; 
    background: #e7e1fa;
-    padding: 3rem 0;
-    text-align: center;
+   padding: 3rem 0;
+   text-align: center;
 }
 
 .hero h2 {
