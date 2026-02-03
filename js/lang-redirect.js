@@ -3,7 +3,7 @@
     let storedLang = localStorage.getItem("lang");
 
     if(storedLang && supported.includes(storedLang)){
-        window.location.replace(`/${storedLang}/`);
+        window.location.replace(`/web/${storedLang}/`);
         return;
     }
 
@@ -11,9 +11,9 @@
 
     if(supported.includes(browserLang)){
         localStorage.setItem("lang", browserLang);
-        window.location.replace(`/${browserLang}/`);
+        window.location.replace(`/web/${browserLang}/`);
     } else {
         localStorage.setItem("lang", "de");
-        window.location.replace("/de/");
+        window.location.replace("/web/de/");
     }
 })();
