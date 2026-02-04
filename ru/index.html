@@ -3,57 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolmetscherin – Profil (de)</title>
+    <title>Dolmetscherin – Profil</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div id="header"></div>
-
-<main class="hero container">
-    <h2>Professionelle Dolmetscherin</h2>
-    <p>Deutsch · Englisch · Russisch</p>
-</main>
-
-<section class="services container">
-    <h3>Meine Leistungen</h3>
-    <div class="cards">
-        <div class="card">
-            <h4>Konsekutivdolmetschen</h4>
-            <p>Professionelle Übersetzung bei Meetings, Seminaren und Konferenzen.</p>
+    <header>
+        <div class="container">
+            <nav class="lang-switch">
+                <a href="../de/index.html" class="lang de">DE</a>
+                <a href="../ru/index.html" class="lang ru" aria-current="true">RU</a>
+            </nav>
+            <h1>Maria Mustermann</h1>
+            <nav>
+                <a href="../de/index.html" class="active">Home</a>
+                <a href="../de/about.html">Über mich</a>
+                <a href="../de/contact.html">Kontakt</a>
+            </nav>
         </div>
-        <div class="card">
-            <h4>Simultandolmetschen</h4>
-            <p>Live-Übersetzungen für Veranstaltungen und Online-Konferenzen.</p>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Professionelle Dolmetscherin</h2>
+            <p>Englisch | Französisch | Spanisch</p>
         </div>
-        <div class="card">
-            <h4>Schriftliche Übersetzungen</h4>
-            <p>Dokumente, Verträge und Texte präzise und zuverlässig übersetzt.</p>
+    </section>
+
+    <section class="services container">
+        <h3>Meine Leistungen</h3>
+        <div class="cards">
+            <div class="card">
+                <h4>Konsekutivdolmetschen</h4>
+                <p>Professionelle Übersetzung bei Meetings, Seminaren und Konferenzen.</p>
+            </div>
+            <div class="card">
+                <h4>Simultandolmetschen</h4>
+                <p>Live-Übersetzungen für Veranstaltungen und Online-Konferenzen.</p>
+            </div>
+            <div class="card">
+                <h4>Schriftliche Übersetzungen</h4>
+                <p>Dokumente, Verträge und Texte präzise und zuverlässig übersetzt.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<div id="footer"></div>
-
-<script src="../js/include.js"></script>
-<script>
-include("#header","../partials/header.html");
-include("#footer","../partials/footer.html");
-
-// Sprachwechsel-Funktion
-function setLang(lang) {
-    const supported = ["de", "en", "ru"];
-    if (!supported.includes(lang)) return;
-    localStorage.setItem("lang", lang);
-    window.location.href = "/web/" + lang + "/";
-}
-
-// Eventlistener für Klicks auf Sprachauswahl
-document.addEventListener("click", function(e) {
-    if(e.target.dataset.lang) setLang(e.target.dataset.lang);
-});
-</script>
-
+    <footer>
+        <div class="container">
+            <p>
+                © 2026 Maria Mustermann ·
+                <a href="../de/impressum.html">Impressum</a> ·
+                <a href="../de/datenschutz.html">Datenschutz</a>
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

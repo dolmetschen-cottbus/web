@@ -21,7 +21,7 @@ body {
 
 /* Header */
 header {
-    background: #7a66b3;
+    background: #8b74cc;
     color: white;
     padding: 1rem 0;
 }
@@ -46,7 +46,43 @@ nav a {
 nav a:hover, nav a.active {
     text-decoration: underline;
 }
+/* Language switch */
+.lang-switch {
+    font-size: 0.8rem;
+    align-items: center;
+}
 
+.lang-switch .lang {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.1s ease;
+}
+
+.lang-switch .lang::before {
+    font-size: 0.9rem;
+}
+
+.lang-switch .lang.de::before {
+    content: "🇩🇪";
+}
+
+.lang-switch .lang.ru::before {
+    content: "🇷🇺";
+}
+
+.lang-switch .lang:hover {
+    opacity: 0.85;
+}
+
+.lang-switch .lang[aria-current="true"] {
+    opacity: 1;
+    font-weight: 600;
+    cursor: default;
+}
 /* Hero Section */
 .hero {
     background: #e7e1fa;
