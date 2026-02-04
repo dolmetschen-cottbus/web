@@ -1,6 +1,4 @@
-/* =========================
-   Grundstil
-========================= */
+/* Grundstil */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,16 +12,14 @@ body {
     color: #333;
 }
 
-/* Container */
+/* Container für Breite */
 .container {
     width: 90%;
     max-width: 1000px;
     margin: auto;
 }
 
-/* =========================
-   Header
-========================= */
+/* Header */
 header {
     background: #7a66b3;
     color: white;
@@ -37,7 +33,6 @@ header h1 {
 
 nav {
     text-align: center;
-    margin-top: 0.5rem;
 }
 
 nav a {
@@ -52,32 +47,11 @@ nav a:hover, nav a.active {
     text-decoration: underline;
 }
 
-/* Sprachumschalter */
-.lang-switch {
-    text-align: center;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.lang-switch a {
-    color: white;
-    text-decoration: none;
-    margin: 0 0.3rem;
-    font-weight: 500;
-}
-
-.lang-switch a:hover {
-    text-decoration: underline;
-}
-
-/* =========================
-   Hero Section
-========================= */
+/* Hero Section */
 .hero {
-   width: 100%; 
-   background: #e7e1fa;
-   padding: 3rem 0;
-   text-align: center;
+    background: #e7e1fa;
+    padding: 3rem 0;
+    text-align: center;
 }
 
 .hero h2 {
@@ -90,9 +64,7 @@ nav a:hover, nav a.active {
     color: #555;
 }
 
-/* =========================
-   Services / Cards
-========================= */
+/* Services / Cards */
 .services {
     padding: 2rem 0;
 }
@@ -125,9 +97,7 @@ nav a:hover, nav a.active {
     margin-bottom: 0.5rem;
 }
 
-/* =========================
-   About / Contact
-========================= */
+/* About / Contact */
 .about, .contact {
     background: white;
     padding: 2rem;
@@ -136,9 +106,7 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* =========================
-   Footer
-========================= */
+/* Footer */
 footer {
     text-align: center;
     padding: 1rem 0;
@@ -146,25 +114,10 @@ footer {
     font-size: 0.9rem;
 }
 
-footer a {
-    color: #7a66b3;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* =========================
-   Responsive
-========================= */
+/* Responsive */
 @media(max-width: 600px){
     nav a {
         display: block;
         margin: 0.5rem 0;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
     }
 }
