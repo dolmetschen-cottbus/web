@@ -21,7 +21,7 @@ body {
 
 /* Header */
 header {
-    background: #8b74cc;
+    background: linear-gradient(90deg, #7360a8, #cab9fa);
     color: white;
     padding: 1rem 0;
 }
@@ -112,7 +112,7 @@ nav a:hover, nav a.active {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
@@ -120,7 +120,7 @@ nav a:hover, nav a.active {
     background: white;
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -149,7 +149,82 @@ footer {
     margin-top: 2rem;
     font-size: 0.9rem;
 }
+/* About */
+.about {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #333;
+}
 
+.about h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #222;
+}
+
+.about h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    color: #444;
+}
+
+.about p {
+    margin-bottom: 1rem;
+}
+
+.about p:first-of-type {
+    font-weight: 500;
+}
+/* Kontakt */
+.contact {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #333;
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact p {
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+}
+
+.contact-info a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact .note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
 /* Responsive */
 @media(max-width: 600px){
     nav a {
