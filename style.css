@@ -55,7 +55,7 @@ nav a:hover, nav a.active {
 .lang-switch .lang {
     text-decoration: none;
     color: inherit;
-    opacity: 0.5;
+    opacity: 0.4;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
