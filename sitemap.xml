@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Root -->
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Deutsch -->
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/de/</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/de/about.html</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/de/contact.html</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/de/datenschutz.html</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/de/impressum.html</loc>
+  </url>
+
+  <!-- Russisch -->
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/about.html</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/contact.html</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/datenschutz.html</loc>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/impressum.html</loc>
+  </url>
+
+</urlset>

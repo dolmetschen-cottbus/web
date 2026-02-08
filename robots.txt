@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dolmetschen-cottbus.github.io/web/sitemap.xml
