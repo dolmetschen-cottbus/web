@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://dolmetschen-cottbus.github.io/web/sitemap.xml
+Host: dolmetschen-cottbus.github.io
