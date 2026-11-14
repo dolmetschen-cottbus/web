@@ -1,0 +1,7 @@
+# Interne Planung – nicht veröffentlichen
+_planung/
+
+# IDE / System
+.idea/
+__pycache__/
+.DS_Store
