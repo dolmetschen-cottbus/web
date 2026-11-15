@@ -3,63 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 – Ups, da ist wohl etwas schiefgelaufen!</title>
 
-  <!-- Verhindert Indexierung -->
+  <title>Seite nicht gefunden | Elena Mieck</title>
   <meta name="robots" content="noindex, follow">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #f0f0f0;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    h1 {
-      font-size: 5rem;
-      margin: 0;
-      color: #ff6b6b;
-    }
-    h2 {
-      font-size: 1.8rem;
-      margin: 10px 0 20px;
-    }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #fff;
-      background-color: #4a90e2;
-      padding: 12px 25px;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-    a:hover {
-      background-color: #357ab8;
-    }
-    .emoji {
-      font-size: 3rem;
-      margin: 20px 0;
-    }
-  </style>
+  <!-- Absolute Pfade: GitHub Pages liefert diese Seite unter beliebigen URLs aus -->
+  <link rel="preload" href="/web/fonts/SourceSans3VF-Upright.otf.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/web/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/web/favicon.png">
 </head>
 <body>
-  <h1>404</h1>
-  <div class="emoji">🤷‍♀️💨</div>
-  <h2>Ups! Diese Seite ist wohl gerade verschwunden...</h2>
-  <p>Keine Sorge, wir bringen dich zurück auf die sichere Seite.</p>
-  <a href="/web/">Zur Startseite</a>
+  <header class="site-header">
+    <div class="container header-bar header-bar--simple">
+      <a class="brand" href="/web/de/">
+        <span class="brand-name">Elena Mieck</span>
+        <span class="brand-sub">Dolmetscherin Deutsch–Russisch in Cottbus</span>
+      </a>
+      <a class="btn btn-call" href="tel:+4917632295300">
+        <svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span class="call-text">Anrufen</span>
+        <span class="call-number">0176 32295300</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <section class="page-intro error-page">
+      <div class="container">
+        <p class="error-code" aria-hidden="true">404</p>
+        <div class="speech">
+          <p class="bubble bubble--left" lang="de">Wo ist die Seite?</p>
+          <p class="bubble bubble--right" lang="ru">Где страница?</p>
+        </div>
+        <h1>Übersetzen kann ich das – finden leider nicht.</h1>
+        <p class="subtitle">Diese Seite gibt es nicht (mehr).</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="btn-group">
+          <a class="btn" href="/web/de/">Zur Startseite</a>
+          <a class="btn btn-secondary" href="/web/de/contact.html">Kontakt</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Elena Mieck · <a href="/web/de/impressum.html">Impressum</a> · <a href="/web/de/datenschutz.html">Datenschutz</a></p>
+    </div>
+  </footer>
 </body>
 </html>
