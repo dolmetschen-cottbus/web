@@ -542,6 +542,14 @@ strong { font-weight: 650; }
     max-width: 44rem;
 }
 
+/* Einstiegstext im Seitenkopf der Zielgruppenseiten */
+.page-intro .page-lead {
+    margin: var(--sp-5) 0 0;
+    max-width: 44rem;
+    font-size: var(--fs-md);
+    color: var(--c-text);
+}
+
 /* ---------- Karten (3er-Raster) ---------- */
 .cards {
     display: grid;
@@ -656,24 +664,8 @@ strong { font-weight: 650; }
     border-radius: 1px;
 }
 
-/* Liste mit Fettdruck-Einstieg */
-.lead-list {
-    padding: 0;
-    list-style: none;
-    max-width: 48rem;
-}
-
-.lead-list li {
-    padding: var(--sp-3) 0 var(--sp-3) var(--sp-4);
-    border-left: 3px solid var(--c-border);
-    margin-top: 0;
-}
-
-.lead-list li + li {
-    margin-top: var(--sp-2);
-}
-
-.lead-list strong {
+/* Fettdruck-Einstieg in Listen (Zielgruppenseiten, Über mich) */
+.check-list strong {
     color: var(--c-primary);
 }
 
@@ -806,13 +798,64 @@ strong { font-weight: 650; }
     letter-spacing: 0.08em;
 }
 
+/* Porträt: Rahmen 4:5, Bild oben bündig; der dünne dunkle Rand im Originalbild wird abgeschnitten */
 .photo {
-    display: block;
     width: 100%;
     max-width: 16rem;
     aspect-ratio: 4 / 5;
-    object-fit: cover;
+    overflow: hidden;
     border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.photo img {
+    display: block;
+    width: calc(100% + 8px);
+    max-width: none;
+    height: calc(100% + 8px);
+    margin: -4px;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* ---------- Layout-Helfer ---------- */
+/* Foto neben Text (Über mich) */
+.media-grid {
+    display: grid;
+    gap: var(--sp-6);
+    align-items: start;
+}
+
+/* Zwei gleich breite Spalten */
+.two-col {
+    display: grid;
+    gap: var(--sp-6);
+}
+
+.two-col > * > :last-child,
+.media-grid > * > :last-child {
+    margin-bottom: 0;
+}
+
+/* Überschrift mitten in einem Bereich (nicht als erstes Element) bekommt Luft nach oben */
+.section-title:not(:first-child),
+.actions {
+    margin-top: var(--sp-6);
+}
+
+/* Abschnitte innerhalb eines Bereichs (Kontakt, Zielgruppenseiten) */
+.block + .block {
+    margin-top: var(--sp-6);
+}
+
+/* Rechtstexte (Impressum, Datenschutz) */
+.legal h2 {
+    margin: var(--sp-6) 0 var(--sp-2);
+    font-size: var(--fs-md);
+}
+
+.legal h2:first-child {
+    margin-top: 0;
 }
 
 /* ---------- Fußzeile ---------- */
@@ -850,6 +893,14 @@ strong { font-weight: 650; }
 
     .brand-sub {
         font-size: var(--fs-sm);
+    }
+
+    .media-grid {
+        grid-template-columns: 16rem 1fr;
+    }
+
+    .two-col {
+        grid-template-columns: 1fr 1fr;
     }
 
     .btn-call .call-number {
