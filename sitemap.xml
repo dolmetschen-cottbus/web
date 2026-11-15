@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Deutsch (Standard). Russische Seiten folgen mit Phase 6. -->
+  <!-- Deutsch (Standard) -->
   <url>
     <loc>https://dolmetschen-cottbus.github.io/web/de/</loc>
     <lastmod>2026-11-15</lastmod>
@@ -32,6 +32,40 @@
   </url>
   <url>
     <loc>https://dolmetschen-cottbus.github.io/web/de/datenschutz.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+
+  <!-- Russisch -->
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/wirtschaft-forschung.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/behoerden-justiz.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/technik-ausbildung.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/about.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/contact.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/impressum.html</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://dolmetschen-cottbus.github.io/web/ru/datenschutz.html</loc>
     <lastmod>2026-11-15</lastmod>
   </url>
 

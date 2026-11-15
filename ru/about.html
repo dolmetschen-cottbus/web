@@ -1,77 +1,143 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#1f2f46">
 
-  <title>Переводчик в Котбусе – Обо мне</title>
-  <meta name="description"
-        content="Профессиональный переводчик и устный переводчик в Котбусе для немецкого и русского языков. Образование, квалификация и методы работы.">
+  <title>Обо мне – Елена Мик, переводчик немецкого и русского языков в Котбусе</title>
+  <meta name="description" content="Более 20 лет опыта устного перевода, диплом переводчика, магистр межкультурной коммуникации. Елена Мик – переводчик немецкого и русского языков в Котбусе, Германия.">
 
-  <!-- Sprache der Seite -->
-  <meta http-equiv="content-language" content="ru">
-
-  <!-- Canonical -->
+  <!-- Canonical und Sprachversionen -->
   <link rel="canonical" href="https://dolmetschen-cottbus.github.io/web/ru/about.html">
-
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="ru" href="https://dolmetschen-cottbus.github.io/web/ru/about.html">
   <link rel="alternate" hreflang="de" href="https://dolmetschen-cottbus.github.io/web/de/about.html">
-  <link rel="alternate" hreflang="x-default" href="https://dolmetschen-cottbus.github.io/web/">
+  <link rel="alternate" hreflang="ru" href="https://dolmetschen-cottbus.github.io/web/ru/about.html">
+  <link rel="alternate" hreflang="x-default" href="https://dolmetschen-cottbus.github.io/web/de/about.html">
 
-  <!-- Styles -->
+  <!-- Vorschau beim Teilen (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Елена Мик – переводчик немецкого и русского языков">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:title" content="Обо мне – Елена Мик, переводчик немецкого и русского языков в Котбусе">
+  <meta property="og:description" content="Более 20 лет опыта устного перевода, диплом переводчика, магистр межкультурной коммуникации. Елена Мик – переводчик немецкого и русского языков в Котбусе, Германия.">
+  <meta property="og:url" content="https://dolmetschen-cottbus.github.io/web/ru/about.html">
+  <meta property="og:image" content="https://dolmetschen-cottbus.github.io/web/img/elena-mieck.jpg">
+  <meta property="og:image:width" content="401">
+  <meta property="og:image:height" content="602">
+  <meta property="og:image:alt" content="Портрет Елены Мик">
+
+  <link rel="preload" href="../fonts/SourceSans3-sub-Upright.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+  <script src="../season.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="lang-switch">
-                <a href="../de/index.html" class="lang de"></a>
-                <a href="../ru/index.html" class="lang ru" aria-current="true"></a>
-            </nav>
-            <h1>Елена Мик</h1>
-            <nav>
-                <a href="../ru/index.html" >Старт</a>
-                <a href="../ru/about.html" class="active">Обо мне</a>
-                <a href="../ru/contact.html">Контакт</a>
-            </nav>
-        </div>
-    </header>
+  <a class="skip-link" href="#inhalt">Перейти к содержанию</a>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Профессиональный устный и письменный переводчик</h2>
-            <p>Немецкий · Русский</p>
-        </div>
+  <!-- KOPF: auf allen Seiten identisch (nur aria-current und DE-Ziel anpassen) -->
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html">
+        <span class="brand-name">Елена Мик</span>
+        <span class="brand-sub">Переводчик немецкого и русского языков · Котбус</span>
+      </a>
+      <p class="header-claim"><strong>Немецкий и русский&nbsp;– профессионально и точно.</strong> <em>За столом переговоров, на официальных встречах и на месте.</em></p>
+      <a class="btn btn-call" href="tel:+4917632295300">
+        <svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span class="call-text">Позвонить</span>
+        <span class="call-number">+49&nbsp;176&nbsp;32295300</span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+        Меню
+      </label>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="wirtschaft-forschung.html">Бизнес и наука</a></li>
+          <li><a href="behoerden-justiz.html">Органы власти и юстиция</a></li>
+          <li><a href="technik-ausbildung.html">Техника и обучение</a></li>
+          <li><a href="about.html" aria-current="page">Обо мне</a></li>
+          <li><a href="contact.html">Контакты</a></li>
+        </ul>
+        <p class="lang-switch"><a href="../de/about.html" lang="de" hreflang="de">DE</a> | <a href="about.html" lang="ru" aria-current="true">RU</a></p>
+      </nav>
+    </div>
+  </header>
+  <!-- /KOPF -->
+
+  <main id="inhalt">
+    <section class="page-intro">
+      <div class="container">
+        <h1>Обо мне</h1>
+        <p class="subtitle">Елена Мик&nbsp;– переводчик немецкого и русского языков</p>
+      </div>
     </section>
 
-    <section class="about container">
-        <h3>Обо мне</h3>
-        <p>Мое имя - Елена. Я - получивший образование устный и письменный переводчик со специализацией в медицине, праве и технике. Моей целью является наведение языковых мостов – точно, деликатно и профессионально.</p>
-
-        <h3>Образование и квалификации</h3>
-        <p>Высшее образование по устному и письменному переводу я получила в России. Затем я окончила магистратуру в Европейском университете "Виадрина" во Франкфурте-на-Одере по специальности "Межкультурная коммуникация".</p>
-
-        <h3>Принцип работы</h3>
-        <p>Я уделяю особое внимание точности, аккуратности в терминах и конфиденциальности. Я подхожу к каждой задаче индивидуально, надежно и в соответствии с высочайшими профессиональными стандартами.</p>
+    <section class="section">
+      <div class="container">
+        <div class="media-grid">
+          <div class="photo"><img src="../img/elena-mieck.jpg" alt="Портрет Елены Мик" width="401" height="602"></div>
+          <div>
+            <p class="lead">Я выполняю устные и письменные переводы с немецкого на русский и с русского на немецкий&nbsp;– для компаний, научных организаций, государственных органов и учебных центров. Я работаю за столом переговоров, на официальных встречах и на месте у клиентов.</p>
+            <h2 class="section-title">Образование</h2>
+            <ul class="check-list">
+              <li>Высшее образование по специальности «Перевод» в России (диплом)</li>
+              <li>Магистр межкультурной коммуникации, Европейский университет Виадрина, Франкфурт-на-Одере</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-
-
-    <footer>
-        <div class="container">
-            <p>
-                © 2026 Elena Mieck ·
-                <a href="../ru/impressum.html">Impressum</a> ·
-                <a href="../ru/datenschutz.html">Datenschutz</a>
-            </p>
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="section-title">Опыт</h2>
+        <div class="experience">
+          <div class="experience-group">
+            <h3>Специализация</h3>
+            <p>Медицина · Право · Техника и машиностроение</p>
+          </div>
+          <div class="experience-group">
+            <h3>Бизнес и наука</h3>
+            <p>Водоснабжение · Договорное право · Научные проекты</p>
+          </div>
+          <div class="experience-group">
+            <h3>Органы власти и юстиция</h3>
+            <p>Федеральное ведомство · Полиция · Суд</p>
+          </div>
+          <div class="experience-group">
+            <h3>Техника и обучение</h3>
+            <p>Энергетика · Мехатроника · Учебные курсы</p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Мой подход</h2>
+        <ul class="check-list">
+          <li><strong>Подготовка:</strong> Перед каждым заданием я изучаю тему и терминологию. Новые области для меня не препятствие, а самая интересная часть работы.</li>
+          <li><strong>Точность:</strong> Перевожу полно и точно.</li>
+          <li><strong>Конфиденциальность:</strong> Всё, что я узнаю во время работы, остаётся конфиденциальным.</li>
+          <li><strong>Понимание культур:</strong> Я знаю обе культуры по собственному опыту и слежу за тем, как высказывание воспринимает собеседник.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- FUSS: auf allen Seiten identisch -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Елена Мик · <a href="impressum.html">Выходные данные</a> · <a href="datenschutz.html">Защита данных</a></p>
+    </div>
+  </footer>
+  <!-- /FUSS -->
 </body>
 </html>

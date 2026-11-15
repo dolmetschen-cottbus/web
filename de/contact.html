@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#1f2f46">
 
   <title>Kontakt – Elena Mieck, Dolmetscherin Deutsch–Russisch in Cottbus</title>
   <meta name="description" content="Dolmetscherin Deutsch–Russisch in Cottbus anfragen: Telefon 0176 32295300 oder E-Mail. Für Unternehmen, Forschung, Behörden und Bildungsträger.">
@@ -26,9 +29,11 @@
   <meta property="og:image:height" content="602">
   <meta property="og:image:alt" content="Porträt Elena Mieck">
 
-  <link rel="preload" href="../fonts/SourceSans3VF-Upright.otf.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/SourceSans3-sub-Upright.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+  <script src="../season.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -40,11 +45,11 @@
         <span class="brand-name">Elena Mieck</span>
         <span class="brand-sub">Dolmetscherin Deutsch–Russisch in Cottbus</span>
       </a>
-      <p class="header-claim"><strong>Russisch – professionell und präzise.</strong> <em>Am Verhandlungstisch, im Vernehmungsraum und vor Ort.</em></p>
+      <p class="header-claim"><strong>Russisch&nbsp;– professionell und präzise.</strong> <em>Am Verhandlungstisch, im Vernehmungsraum und vor Ort.</em></p>
       <a class="btn btn-call" href="tel:+4917632295300">
         <svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
         <span class="call-text">Anrufen</span>
-        <span class="call-number">0176 32295300</span>
+        <span class="call-number">0176&nbsp;32295300</span>
       </a>
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
       <label for="nav-toggle" class="nav-toggle-label">
@@ -78,10 +83,11 @@
       <div class="container">
         <div class="contact-box">
           <ul class="contact-details">
-            <li><strong>Telefon:</strong> <a href="tel:+4917632295300">0176 32295300</a><br><span class="note">Für kurzfristige Einsätze am besten telefonisch. Wenn ich gerade im Einsatz bin, rufe ich so schnell wie möglich zurück.</span></li>
+            <li><strong>Telefon:</strong> <a href="tel:+4917632295300">0176&nbsp;32295300</a><br><span class="note">Für kurzfristige Einsätze am besten telefonisch. Wenn ich gerade im Einsatz bin, rufe ich so schnell wie möglich zurück.</span></li>
             <li><strong>E-Mail:</strong> <a href="mailto:dolmetschen.cottbus@gmail.com?subject=Anfrage%20Dolmetschen%20%2F%20%C3%9Cbersetzung&amp;body=Guten%20Tag%20Frau%20Mieck%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Sie%20f%C3%BCr%20folgenden%20Auftrag%20anfragen%3A%0D%0A%0D%0ADatum%20und%20Uhrzeit%2C%20voraussichtliche%20Dauer%3A%20%0D%0AOrt%20%28oder%20Telefon%2FVideo%29%3A%20%0D%0AAnlass%3A%20%0D%0AFachgebiet%20und%20vorhandene%20Unterlagen%3A%20%0D%0ABei%20%C3%9Cbersetzungen%20%E2%80%93%20Art%20und%20Umfang%2C%20gew%C3%BCnschter%20Termin%3A%20%0D%0A%0D%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0D%0A">dolmetschen.cottbus@gmail.com</a></li>
             <li><strong>Büro:</strong> Sachsendorfer Straße 11, 03046 Cottbus</li>
           </ul>
+          <p class="btn-group"><a class="btn btn-secondary" href="../elena-mieck.vcf" download><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-8 1.7-8 5v1h16v-1c0-3.3-4.7-5-8-5z"/></svg> Kontakt speichern</a></p>
         </div>
       </div>
     </section>
@@ -95,7 +101,7 @@
             <ul class="check-list">
               <li>Datum und Uhrzeit, voraussichtliche Dauer</li>
               <li>Ort (oder Telefon/Video)</li>
-              <li>Anlass – z. B. Delegation, Verhandlung, Vernehmung, Gerichtstermin, Schulung</li>
+              <li>Anlass&nbsp;– z.&nbsp;B. Delegation, Verhandlung, Vernehmung, Gerichtstermin, Schulung</li>
               <li>Fachgebiet und vorhandene Unterlagen</li>
               <li>bei Übersetzungen: Art und Umfang des Textes oder der Aufnahme, gewünschter Termin</li>
             </ul>

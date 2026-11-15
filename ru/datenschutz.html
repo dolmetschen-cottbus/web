@@ -1,108 +1,121 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#1f2f46">
 
-  <title>Переводчик в Котбусе – Защита персональных данных</title>
-  <meta name="description"
-        content="Профессиональный переводчик и устный переводчик в Котбусе для немецкого и русского языков. Политика конфиденциальности.">
+  <title>Защита данных – Елена Мик, переводчик немецкого и русского языков</title>
+  <meta name="description" content="Политика защиты данных сайта Елены Мик, переводчика немецкого и русского языков в Котбусе.">
 
-  <!-- Sprache der Seite -->
-  <meta http-equiv="content-language" content="ru">
-
-  <!-- Canonical -->
+  <!-- Canonical und Sprachversionen -->
   <link rel="canonical" href="https://dolmetschen-cottbus.github.io/web/ru/datenschutz.html">
-
-  <!-- Hreflang -->
-  <link rel="alternate" hreflang="ru" href="https://dolmetschen-cottbus.github.io/web/ru/datenschutz.html">
   <link rel="alternate" hreflang="de" href="https://dolmetschen-cottbus.github.io/web/de/datenschutz.html">
-  <link rel="alternate" hreflang="x-default" href="https://dolmetschen-cottbus.github.io/web/">
+  <link rel="alternate" hreflang="ru" href="https://dolmetschen-cottbus.github.io/web/ru/datenschutz.html">
+  <link rel="alternate" hreflang="x-default" href="https://dolmetschen-cottbus.github.io/web/de/datenschutz.html">
 
-  <!-- Styles -->
+  <!-- Vorschau beim Teilen (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Елена Мик – переводчик немецкого и русского языков">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:title" content="Защита данных – Елена Мик, переводчик немецкого и русского языков">
+  <meta property="og:description" content="Политика защиты данных сайта Елены Мик, переводчика немецкого и русского языков в Котбусе.">
+  <meta property="og:url" content="https://dolmetschen-cottbus.github.io/web/ru/datenschutz.html">
+  <meta property="og:image" content="https://dolmetschen-cottbus.github.io/web/img/elena-mieck.jpg">
+  <meta property="og:image:width" content="401">
+  <meta property="og:image:height" content="602">
+  <meta property="og:image:alt" content="Портрет Елены Мик">
+
+  <link rel="preload" href="../fonts/SourceSans3-sub-Upright.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+  <script src="../season.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="lang-switch">
-                <a href="../de/index.html" class="lang de"></a>
-                <a href="../ru/index.html" class="lang ru" aria-current="true"></a>
-            </nav>
-            <h1>Елена Мик</h1>
-            <nav>
-                <a href="../ru/index.html">Старт</a>
-                <a href="../ru/about.html">Обо мне</a>
-                <a href="../ru/contact.html">Контакт</a>
-            </nav>
-        </div>
-    </header>
+  <a class="skip-link" href="#inhalt">Перейти к содержанию</a>
 
-    <section class="hero">
-        <div class="container">
-            <h2>Профессиональный устный и письменный переводчик</h2>
-            <p>Немецкий · Русский</p>
-        </div>
+  <!-- KOPF: auf allen Seiten identisch (nur aria-current und DE-Ziel anpassen) -->
+  <header class="site-header">
+    <div class="container header-bar">
+      <a class="brand" href="index.html">
+        <span class="brand-name">Елена Мик</span>
+        <span class="brand-sub">Переводчик немецкого и русского языков · Котбус</span>
+      </a>
+      <p class="header-claim"><strong>Немецкий и русский&nbsp;– профессионально и точно.</strong> <em>За столом переговоров, на официальных встречах и на месте.</em></p>
+      <a class="btn btn-call" href="tel:+4917632295300">
+        <svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span class="call-text">Позвонить</span>
+        <span class="call-number">+49&nbsp;176&nbsp;32295300</span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+        Меню
+      </label>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="wirtschaft-forschung.html">Бизнес и наука</a></li>
+          <li><a href="behoerden-justiz.html">Органы власти и юстиция</a></li>
+          <li><a href="technik-ausbildung.html">Техника и обучение</a></li>
+          <li><a href="about.html">Обо мне</a></li>
+          <li><a href="contact.html">Контакты</a></li>
+        </ul>
+        <p class="lang-switch"><a href="../de/datenschutz.html" lang="de" hreflang="de">DE</a> | <a href="datenschutz.html" lang="ru" aria-current="true">RU</a></p>
+      </nav>
+    </div>
+  </header>
+  <!-- /KOPF -->
+
+  <main id="inhalt">
+    <section class="page-intro">
+      <div class="container">
+        <h1>Политика защиты данных</h1>
+        <p class="subtitle">Защита ваших персональных данных для меня важна.</p>
+      </div>
     </section>
 
-    <section class="about container">
-        <h3>Datenschutzerklärung</h3>
+    <section class="section">
+      <div class="container">
+        <div class="prose legal">
+          <p class="note">Перевод для удобства. Юридически обязательной является <a href="../de/datenschutz.html" lang="de">немецкая версия (Datenschutzerklärung)</a>.</p>
+          <p>Этот сайт служит исключительно для информации о моей работе переводчика.</p>
 
-        <p>
-            Der Schutz Ihrer persönlichen Daten ist mir wichtig.
-            Diese Website dient ausschließlich der Information über meine
-            dolmetscherische Tätigkeit.
-        </p>
-
-        <h3>1. Verantwortliche</h3>
-        <p>
-            Elena Mieck<br>
+          <h2>1. Ответственное лицо</h2>
+          <p>
+            Елена Мик (Elena Mieck)<br>
             Sachsendorfer Straße 11<br>
-            03046 Cottbus<br>
-            E-Mail: dolmetschen-cottbus@gmx.net
-        </p>
+            03046 Cottbus, Германия<br>
+            Телефон: <a href="tel:+4917632295300">+49&nbsp;176&nbsp;32295300</a><br>
+            E-mail: <a href="mailto:dolmetschen.cottbus@gmail.com">dolmetschen.cottbus@gmail.com</a>
+          </p>
 
-        <h3>2. Hosting</h3>
-        <p>
-            Diese Website wird über <strong>GitHub Pages</strong> bereitgestellt.
-            Beim Aufruf der Seiten werden durch GitHub automatisch Informationen
-            (z. B. IP-Adresse, Datum und Uhrzeit) in Server-Logfiles erfasst.
-            Diese Daten dienen der technischen Bereitstellung und Sicherheit
-            und werden nicht von mir ausgewertet.
-        </p>
+          <h2>2. Хостинг</h2>
+          <p>Сайт размещён на <strong>GitHub Pages</strong>. При посещении страниц GitHub автоматически сохраняет информацию (например, IP-адрес, дату и время) в журналах сервера. Эти данные служат для технического обеспечения и безопасности и мной не анализируются.</p>
 
-        <h3>3. Kontaktaufnahme</h3>
-        <p>
-            Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen
-            übermittelten Daten ausschließlich zur Bearbeitung Ihrer Anfrage
-            verwendet und nicht weitergegeben.
-        </p>
+          <h2>3. Без внешних сервисов</h2>
+          <p>Сайт не использует cookie, сервисы аналитики или отслеживания и не встраивает содержимое сторонних поставщиков. Шрифт загружается непосредственно с этого сайта, а не с внешнего сервера.</p>
 
-        <h3>4. Ihre Rechte</h3>
-        <p>
-            Sie haben das Recht auf Auskunft über Ihre gespeicherten Daten,
-            deren Berichtigung oder Löschung sowie auf Einschränkung der
-            Verarbeitung.
-            Hierzu können Sie mich jederzeit per E-Mail kontaktieren.
-        </p>
-    </section>
+          <h2>4. Обращение ко мне</h2>
+          <p>Если вы связываетесь со мной по e-mail или по телефону, переданные вами данные используются исключительно для обработки вашего запроса и не передаются третьим лицам.</p>
 
-
-
-    <footer>
-        <div class="container">
-            <p>
-                © 2026 Elena Mieck ·
-                <a href="../ru/impressum.html">Impressum</a> ·
-                <a href="../ru/datenschutz.html" class="active">Datenschutz</a>
-            </p>
+          <h2>5. Ваши права</h2>
+          <p>Вы имеете право на получение информации о ваших сохранённых данных, их исправление или удаление, а также на ограничение обработки. Для этого вы можете в любое время связаться со мной по e-mail.</p>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- FUSS: auf allen Seiten identisch -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© Елена Мик · <a href="impressum.html">Выходные данные</a> · <a href="datenschutz.html" aria-current="page">Защита данных</a></p>
+    </div>
+  </footer>
+  <!-- /FUSS -->
 </body>
 </html>
