@@ -1,0 +1,2 @@
+# vCard braucht CRLF-Zeilenenden (RFC 2426) – Git soll sie nicht umwandeln
+*.vcf -text
