@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#1f2f46">
+  <meta name="theme-color" content="#111518">
 
   <title>Переводчик немецкого языка в Германии – Котбус, Берлин, Дрезден | Елена Мик</title>
   <meta name="description" content="Елена Мик – устный и письменный переводчик немецкого и русского языков в Котбусе (Германия), более 20 лет опыта. Визиты делегаций, переговоры, обучение, официальные встречи. Последовательный перевод и «нашёптывание», специализированные переводы.">
@@ -29,153 +29,288 @@
   <meta property="og:image:height" content="602">
   <meta property="og:image:alt" content="Портрет Елены Мик">
 
+  <link rel="preload" href="../fonts/Jost-sub.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/SourceSans3-sub-Upright.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+  <script src="../hero-art.js"></script>
+  <script src="../site.js" defer></script>
   <script src="../season.js" defer></script>
 </head>
-<body class="page-home">
+<body>
   <a class="skip-link" href="#inhalt">Перейти к содержанию</a>
 
-  <!-- KOPF: auf allen Seiten identisch (nur aria-current und DE-Ziel anpassen) -->
   <header class="site-header">
-    <div class="container header-bar">
+    <div class="header-bar">
       <a class="brand" href="index.html">
-        <span class="brand-name">Елена Мик</span>
-        <span class="brand-sub">Переводчик немецкого и русского языков · Котбус</span>
-      </a>
-      <p class="header-claim"><strong>Немецкий и русский&nbsp;– профессионально и точно.</strong> <em>За столом переговоров, на официальных встречах и на месте.</em></p>
-      <a class="btn btn-call" href="tel:+4917632295300">
-        <svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-        <span class="call-text">Позвонить</span>
-        <span class="call-number">+49&nbsp;176&nbsp;32295300</span>
+        <span class="monogram" aria-hidden="true">EM</span>
+        <span class="brand-text">
+          <span class="brand-name">Елена Мик</span>
+          <span class="brand-sub">Переводчик немецкого и русского языков · Котбус</span>
+        </span>
       </a>
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-        Меню
-      </label>
+      <label for="nav-toggle" class="nav-toggle-label"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="visually-hidden">Меню</span></label>
       <nav class="site-nav" aria-label="Основная навигация">
         <ul>
-          <li><a href="index.html" aria-current="page">Главная</a></li>
-          <li><a href="wirtschaft-forschung.html">Бизнес и наука</a></li>
-          <li><a href="behoerden-justiz.html">Органы власти и юстиция</a></li>
-          <li><a href="technik-ausbildung.html">Техника и обучение</a></li>
-          <li><a href="about.html">Обо мне</a></li>
-          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="#start" aria-current="true">Главная</a></li>
+          <li><a href="#leistungen">Услуги</a></li>
+          <li><a href="#ueber-mich">Обо мне</a></li>
+          <li><a href="#kontakt">Контакты</a></li>
         </ul>
-        <p class="lang-switch"><a href="../de/index.html" lang="de" hreflang="de">DE</a> | <a href="index.html" lang="ru" aria-current="true">RU</a></p>
+        <p class="lang-switch lang-switch--menu"><a href="../de/index.html" lang="de" hreflang="de">DE</a><a href="index.html" lang="ru" aria-current="true">RU</a></p>
       </nav>
+      <div class="tools">
+        <p class="lang-switch"><a href="../de/index.html" lang="de" hreflang="de">DE</a><a href="index.html" lang="ru" aria-current="true">RU</a></p>
+        <a class="btn-call" href="tel:+4917632295300" title="Позвонить: +49 176 32295300"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5H9l1.4 4.1-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.1 1.4v2.4a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span class="visually-hidden">Позвонить +49&nbsp;176&nbsp;32295300</span></a>
+      </div>
     </div>
   </header>
-  <!-- /KOPF -->
 
   <main id="inhalt">
-    <section class="hero">
-      <div class="container">
-        <h1>Елена Мик</h1>
-        <p class="hero-sub">Переводчик немецкого и русского языков в Котбусе, Германия</p>
+    <!-- HERO: bleibt wie gehabt -->
+    <section id="start" class="hero screen">
+      <div class="container hero-inner">
+        <!-- Drei Grafiken in derselben quadratischen Box: feste Reihenfolge Begrüßung → Globus → Buchstaben (hero-art.js), Klick = nächste -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="art globe">
+            <svg viewBox="0 0 360 360" focusable="false">
+              <defs>
+                <radialGradient id="m-glow"><stop offset="0" stop-color="#d8c59c" stop-opacity=".16"/><stop offset="1" stop-color="#d8c59c" stop-opacity="0"/></radialGradient>
+                <clipPath id="m-clip"><circle cx="180" cy="180" r="140"/></clipPath>
+              </defs>
+              <circle cx="180" cy="180" r="180" fill="url(#m-glow)"/>
+              <g clip-path="url(#m-clip)">
+                <ellipse class="g-line" cx="180" cy="180" rx="140" ry="26"/>
+                <ellipse class="g-line" cx="180" cy="122" rx="127" ry="22"/>
+                <ellipse class="g-line" cx="180" cy="238" rx="127" ry="22"/>
+                <ellipse class="g-line" cx="180" cy="72" rx="88" ry="14"/>
+                <ellipse class="g-line" cx="180" cy="288" rx="88" ry="14"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+              </g>
+              <circle class="g-outline" cx="180" cy="180" r="140"/>
+              <circle class="orbit" cx="180" cy="180" r="166"/>
+              <path class="g-arc" d="M148 168Q200 64 262 124" pathLength="100"/>
+              <path class="g-spark" d="M148 168Q200 64 262 124" pathLength="100"/>
+              <path class="g-spark g-spark--back" d="M262 124Q200 64 148 168" pathLength="100"/>
+              <circle class="g-ping" cx="148" cy="168" r="5"/>
+              <circle class="g-ping" cx="262" cy="124" r="5"/>
+              <circle class="g-dot" cx="148" cy="168" r="4"/>
+              <circle class="g-dot" cx="262" cy="124" r="4"/>
+              <text x="122" y="196" class="g-label">DE</text>
+              <text x="272" y="116" class="g-label">RU</text>
+            </svg>
+          </div>
+
+          <div class="art glyphs">
+            <svg viewBox="30 0 360 360" focusable="false">
+              <circle cx="210" cy="180" r="166" class="orbit"/>
+              <circle cx="210" cy="180" r="140" class="ring"/>
+              <text x="118" y="250" text-anchor="middle" class="glyph glyph--de">D</text>
+              <text x="296" y="250" text-anchor="middle" class="glyph glyph--ru">Д</text>
+              <path d="M60 282H360" class="base"/>
+              <path d="M184 180h52M226 170l10 10-10 10M194 170l-10 10 10 10" class="swap"/>
+              <text x="118" y="318" text-anchor="middle" class="cap" lang="de">Deutsch</text>
+              <text x="296" y="318" text-anchor="middle" class="cap" lang="ru">Русский</text>
+            </svg>
+          </div>
+
+          <div class="art greet">
+            <svg viewBox="0 0 360 360" focusable="false">
+              <circle cx="180" cy="180" r="166" class="orbit"/>
+              <text x="26" y="50" class="cap" lang="de">Deutsch</text>
+              <path class="bubble" d="M65 62h200a33 33 0 0 1 33 33v12a33 33 0 0 1-33 33H96l-26 22 4-22h-9a33 33 0 0 1-33-33V95a33 33 0 0 1 33-33z"/>
+              <path class="bubble bubble--ru" d="M95 202h200a33 33 0 0 1 33 33v12a33 33 0 0 1-33 33h-9l4 22-26-22H95a33 33 0 0 1-33-33v-12a33 33 0 0 1 33-33z"/>
+              <text x="334" y="326" text-anchor="end" class="cap" lang="ru">Русский</text>
+              <g class="pair pair--1">
+                <text x="56" y="110" class="say" lang="de">Guten Tag!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Добрый день!</text>
+              </g>
+              <g class="pair pair--2">
+                <text x="56" y="110" class="say" lang="de">Herzlich willkommen!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Добро пожаловать!</text>
+              </g>
+              <g class="pair pair--3">
+                <text x="56" y="110" class="say" lang="de">Vielen Dank!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Большое спасибо!</text>
+              </g>
+              <!-- Festtage (hero-art.js wählt nach Datum): Dezember, Neujahr, russisches Weihnachten am 7. Januar -->
+              <g class="pair pair--xmas">
+                <text x="56" y="110" class="say" lang="de">Frohe Weihnachten!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С наступающим!</text>
+              </g>
+              <g class="pair pair--ny">
+                <text x="56" y="110" class="say" lang="de">Frohes neues Jahr!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С Новым годом!</text>
+              </g>
+              <g class="pair pair--xmasru">
+                <text x="56" y="110" class="say" lang="de">Frohe Weihnachten!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С Рождеством!</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <h1 class="hero-name">Елена Мик <span>Переводчик немецкого и русского языков в Котбусе, Германия</span></h1>
         <p class="claim">
-          <strong class="claim-main">Немецкий и русский&nbsp;– профессионально и точно.</strong>
+          <strong class="claim-main">Немецкий и русский&nbsp;– <span class="gold">профессионально и точно.</span></strong>
           <em class="claim-sub">За столом переговоров, на официальных встречах и на месте.</em>
         </p>
         <p class="hero-text">Для компаний, научных организаций, государственных органов и учебных центров&nbsp;– в Котбусе, Берлине, Дрездене и по видеосвязи.</p>
         <p class="btn-group">
-          <a class="btn" href="tel:+4917632295300"><svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg> Позвонить +49&nbsp;176&nbsp;32295300</a>
-          <a class="btn btn-secondary" href="mailto:dolmetschen.cottbus@gmail.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%3A%20%D1%83%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%2F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%95%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%9C%D0%B8%D0%BA%21%0D%0A%0D%0A%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%3A%0D%0A%0D%0A%D0%94%D0%B0%D1%82%D0%B0%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%2C%20%D0%BF%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C%3A%20%0D%0A%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%28%D0%B8%D0%BB%D0%B8%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%2F%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%81%D0%B2%D1%8F%D0%B7%D1%8C%29%3A%20%0D%0A%D0%9F%D0%BE%D0%B2%D0%BE%D0%B4%3A%20%0D%0A%D0%A2%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%B8%D0%BC%D0%B5%D1%8E%D1%89%D0%B8%D0%B5%D1%81%D1%8F%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%3A%20%0D%0A%D0%94%D0%BB%D1%8F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0%20%E2%80%93%20%D0%B2%D0%B8%D0%B4%20%D0%B8%20%D0%BE%D0%B1%D1%8A%D1%91%D0%BC%2C%20%D0%B6%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%D1%8B%D0%B9%20%D1%81%D1%80%D0%BE%D0%BA%3A%20%0D%0A%0D%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%0D%0A"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V17h16V7.4l-8 5.3zM5.2 7 12 11.5 18.8 7z"/></svg> Запрос по E-mail</a>
+          <a class="btn" href="tel:+4917632295300"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5H9l1.4 4.1-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.1 1.4v2.4a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg> Позвонить +49&nbsp;176&nbsp;32295300</a>
+          <a class="btn btn-line" href="mailto:dolmetschen.cottbus@gmail.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%3A%20%D1%83%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%2F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%95%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%9C%D0%B8%D0%BA%21%0D%0A%0D%0A%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%3A%0D%0A%0D%0A%D0%94%D0%B0%D1%82%D0%B0%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%2C%20%D0%BF%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C%3A%20%0D%0A%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%28%D0%B8%D0%BB%D0%B8%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%2F%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%81%D0%B2%D1%8F%D0%B7%D1%8C%29%3A%20%0D%0A%D0%9F%D0%BE%D0%B2%D0%BE%D0%B4%3A%20%0D%0A%D0%A2%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%B8%D0%BC%D0%B5%D1%8E%D1%89%D0%B8%D0%B5%D1%81%D1%8F%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%3A%20%0D%0A%D0%94%D0%BB%D1%8F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0%20%E2%80%93%20%D0%B2%D0%B8%D0%B4%20%D0%B8%20%D0%BE%D0%B1%D1%8A%D1%91%D0%BC%2C%20%D0%B6%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%D1%8B%D0%B9%20%D1%81%D1%80%D0%BE%D0%BA%3A%20%0D%0A%0D%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%0D%0A"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg> Запрос по E-mail</a>
         </p>
       </div>
     </section>
 
-    <div class="section section--tight">
-      <div class="container">
-        <p class="lead">Я работаю переводчиком более 20 лет, с 2015 года&nbsp;– в Германии. Официальные беседы, сложные переговоры и специальные тексты из медицины, права и техники&nbsp;– моя повседневная работа. Этот опыт я применяю на Ваших переговорах, деловых визитах и обучающих курсах.</p>
-      </div>
-    </div>
-
-    <div class="section section--alt">
-      <div class="container cards">
-        <article class="card">
-          <h2 class="card-title">Бизнес и наука</h2>
-          <p>Вы приезжаете в Германию с делегацией, ведёте переговоры с немецкими партнёрами или участвуете в международном научном проекте? Я перевожу на встречах, экскурсиях по предприятиям, переговорах и конференциях&nbsp;– последовательно или шёпотом, а также договоры и проектную документацию.</p>
-          <a class="card-link" href="wirtschaft-forschung.html">Подробнее<span class="visually-hidden">: Бизнес и наука</span><span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-        <article class="card">
-          <h2 class="card-title">Органы власти, полиция и юстиция</h2>
-          <p>Допросы, собеседования, судебные заседания: я на связи в короткие сроки, работаю нейтрально и конфиденциально и перевожу также аудиозаписи и письменные материалы.</p>
-          <a class="card-link" href="behoerden-justiz.html">Подробнее<span class="visually-hidden">: Органы власти, полиция и юстиция</span><span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-        <article class="card">
-          <h2 class="card-title">Техника и обучение</h2>
-          <p>Курсы, тренинги, инструктажи на оборудовании&nbsp;– в том числе многодневные. Перед каждым проектом я целенаправленно изучаю Вашу тематику.</p>
-          <a class="card-link" href="technik-ausbildung.html">Подробнее<span class="visually-hidden">: Техника и обучение</span><span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-      </div>
-    </div>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Из моей практики</h2>
-        <ul class="check-list">
-          <li>Многодневные визиты делегаций в рамках международных научных проектов</li>
-          <li>Телефонные конференции и перевод договоров для компаний с партнёрами в Восточной Европе</li>
-          <li>Многодневные курсы для учебных групп</li>
-        </ul>
-        <div class="experience">
-          <div class="experience-group">
-            <h3>Специализация</h3>
-            <p>Медицина · Право · Техника и машиностроение</p>
-          </div>
-          <div class="experience-group">
-            <h3>Бизнес и наука</h3>
-            <p>Водоснабжение · Договорное право · Научные проекты</p>
-          </div>
-          <div class="experience-group">
-            <h3>Органы власти и юстиция</h3>
-            <p>Федеральное ведомство · Полиция · Суд</p>
-          </div>
-          <div class="experience-group">
-            <h3>Техника и обучение</h3>
-            <p>Энергетика · Мехатроника · Учебные курсы</p>
-          </div>
+    <!-- LEISTUNGEN: Fakten + drei Zielgruppen -->
+    <section id="leistungen" class="screen screen--services" aria-labelledby="leistungen-title">
+      <div class="facts">
+        <div class="container facts-grid">
+          <p class="fact"><span class="fact-big">20+</span><span class="fact-text">лет опыта работы переводчиком</span></p>
+          <p class="fact"><span class="fact-big">10+</span><span class="fact-text">лет работаю как независимый переводчик</span></p>
+          <p class="fact"><span class="fact-big">3</span><span class="fact-text">направления: медицина, право, техника и машиностроение</span></p>
+          <p class="fact"><span class="fact-big">На месте</span><span class="fact-text">в Котбусе, Берлине и Дрездене&nbsp;– по телефону и видеосвязи по всей Германии</span></p>
         </div>
       </div>
+      <div class="container screen-body">
+        <h2 id="leistungen-title" class="section-title section-title--center">Чем я могу помочь</h2>
+        <div class="cards">
+          <article class="card">
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2V7M3 12.5h18M10.5 12.5v2h3v-2"/></svg></span>
+            <h3 class="card-title">Бизнес и наука</h3>
+            <p class="card-lead">Ваши партнёры говорят по-немецки. Я помогу Вам понять друг друга.</p>
+            <ul class="tags"><li>Делегации</li><li>Переговоры</li><li>Конференции</li><li>Договоры</li></ul>
+            <a class="card-link" href="wirtschaft-forschung.html">Подробнее<span class="visually-hidden">: Бизнес и наука</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v16M8 20h8M5 7.5h14M12 4.5l-7 3M12 4.5l7 3"/><path d="M5 7.5 2.5 14a3 3 0 0 0 5 0zM19 7.5 16.5 14a3 3 0 0 0 5 0z"/></svg></span>
+            <h3 class="card-title">Органы власти, полиция и юстиция</h3>
+            <p class="card-lead">Нейтрально, конфиденциально и в короткие сроки.</p>
+            <ul class="tags"><li>Допросы</li><li>Собеседования</li><li>Судебные заседания</li><li>Аудиозаписи</li></ul>
+            <a class="card-link" href="behoerden-justiz.html">Подробнее<span class="visually-hidden">: Органы власти, полиция и юстиция</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v2.6M12 18.9v2.6M21.5 12h-2.6M5.1 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1 5.3 5.3"/><circle cx="12" cy="12" r="6.5"/></svg></span>
+            <h3 class="card-title">Техника и обучение</h3>
+            <p class="card-lead">Чтобы знания дошли до слушателей&nbsp;– и у оборудования тоже.</p>
+            <ul class="tags"><li>Курсы</li><li>Тренинги</li><li>Инструктажи</li><li>Технические переводы</li></ul>
+            <a class="card-link" href="technik-ausbildung.html">Подробнее<span class="visually-hidden">: Техника и обучение</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <p class="modes">Последовательный перевод <span aria-hidden="true">·</span> Перевод методом нашёптывания <span aria-hidden="true">·</span> Перевод по телефону и видеосвязи <span aria-hidden="true">·</span> Письменный перевод</p>
+      </div>
     </section>
 
-    <section class="section section--alt">
-      <div class="container">
-        <h2 class="section-title">Почему я</h2>
-        <ul class="check-list">
-          <li>Высшее образование по специальности «Перевод и переводоведение» (диплом, Россия), магистр межкультурной коммуникации (Европейский университет Виадрина, Германия)</li>
-          <li>Широкий профиль&nbsp;– от медицинских заключений и судебных материалов до инструктажа на оборудовании</li>
-          <li>Опыт многодневных заданий и сложных ситуаций общения</li>
-          <li>Работаю в Котбусе и окрестностях, при крупных заказах также в Берлине и Дрездене</li>
+    <!-- ÜBER MICH: Porträt im Kreis mit umlaufendem Punkt -->
+    <section id="ueber-mich" class="screen screen--alt" aria-labelledby="ueber-mich-title">
+      <div class="container screen-body">
+        <div class="about-grid">
+          <figure class="portrait">
+            <span class="portrait-orbit" aria-hidden="true"></span>
+            <span class="portrait-frame"><img src="../img/elena-mieck.jpg" width="401" height="602" alt="Портрет Елены Мик" loading="lazy"></span>
+          </figure>
+          <div class="about-text">
+            <p class="eyebrow">Обо мне</p>
+            <h2 id="ueber-mich-title" class="about-name">Елена Мик</h2>
+            <p class="subtitle">Переводчик немецкого и русского языков</p>
+            <p class="about-lead">Я выполняю устные и письменные переводы с немецкого на русский и с русского на немецкий&nbsp;– для компаний, научных организаций, государственных органов и учебных центров. Я работаю за столом переговоров, на официальных встречах и на месте у клиентов.</p>
+            <div class="about-cols">
+              <div>
+                <h3 class="label">Образование</h3>
+                <ul class="edu">
+                  <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v4.5c3.3 2.7 8.7 2.7 12 0V11M22 9v5.5"/></svg><span>Высшее образование по специальности «Перевод и переводоведение» в России (диплом)</span></li>
+                  <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 8h8M8 11.5h5"/></svg><span>Магистр межкультурной коммуникации, Европейский университет Виадрина, Франкфурт-на-Одере</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="label">Опыт</h3>
+                <ul class="tags tags--about">
+                  <li>Медицина</li><li>Право</li><li>Техника и машиностроение</li>
+                  <li>Водоснабжение</li><li>Договорное право</li><li>Научные проекты</li>
+                  <li>Федеральное ведомство</li><li>Полиция</li><li>Суд</li>
+                  <li>Энергетика</li><li>Мехатроника</li><li>Учебные курсы</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="label label--center">Мой подход</h3>
+        <ul class="principles principles--row">
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 8h8M8 11.5h5"/></svg><span><strong>Подготовка</strong> Перед каждым заданием я изучаю тему и терминологию. Новые области для меня&nbsp;– не препятствие, а самая интересная часть работы.</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><span><strong>Точность</strong> Перевожу полно и точно.</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg><span><strong>Конфиденциальность</strong> Всё, что я узнаю во время работы, остаётся конфиденциальным.</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 5h11a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H9l-3.5 3v-3h-2A1.5 1.5 0 0 1 2 12.5v-6A1.5 1.5 0 0 1 3.5 5z"/><path d="M16 9h4.5A1.5 1.5 0 0 1 22 10.5v6a1.5 1.5 0 0 1-1.5 1.5h-1.5v3l-3.5-3H11a1.5 1.5 0 0 1-1.5-1.5V16"/></svg><span><strong>Понимание культур</strong> Я знаю обе культуры по собственному опыту и слежу за тем, как высказывание воспринимает собеседник.</span></li>
         </ul>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="contact-box">
-          <h2 class="section-title">Контакты</h2>
-          <p>Позвоните или напишите мне&nbsp;– лучше сразу с датой, местом, продолжительностью и поводом.</p>
-          <ul class="contact-details">
-            <li><strong>Телефон:</strong> <a href="tel:+4917632295300">+49&nbsp;176&nbsp;32295300</a></li>
-            <li><strong>E-mail:</strong> <a href="mailto:dolmetschen.cottbus@gmail.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%3A%20%D1%83%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%2F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%95%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%9C%D0%B8%D0%BA%21%0D%0A%0D%0A%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%3A%0D%0A%0D%0A%D0%94%D0%B0%D1%82%D0%B0%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%2C%20%D0%BF%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C%3A%20%0D%0A%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%28%D0%B8%D0%BB%D0%B8%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%2F%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%81%D0%B2%D1%8F%D0%B7%D1%8C%29%3A%20%0D%0A%D0%9F%D0%BE%D0%B2%D0%BE%D0%B4%3A%20%0D%0A%D0%A2%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%B8%D0%BC%D0%B5%D1%8E%D1%89%D0%B8%D0%B5%D1%81%D1%8F%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%3A%20%0D%0A%D0%94%D0%BB%D1%8F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0%20%E2%80%93%20%D0%B2%D0%B8%D0%B4%20%D0%B8%20%D0%BE%D0%B1%D1%8A%D1%91%D0%BC%2C%20%D0%B6%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%D1%8B%D0%B9%20%D1%81%D1%80%D0%BE%D0%BA%3A%20%0D%0A%0D%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%0D%0A">dolmetschen.cottbus@gmail.com</a></li>
-          </ul>
+    <!-- KONTAKT: minimalistischer Aufruf, darunter Ablauf und Einsatzgebiet -->
+    <section id="kontakt" class="screen screen--contact" aria-labelledby="kontakt-title">
+      <div class="container screen-body">
+        <h2 id="kontakt-title" class="section-title section-title--center">Свяжитесь со мной.</h2>
+        <ul class="contact-cards">
+          <li>
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5H9l1.4 4.1-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.1 1.4v2.4a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span>
+            <strong>Телефон</strong>
+            <a class="big" href="tel:+4917632295300">+49&nbsp;176&nbsp;32295300</a>
+            <span class="hint">Срочные заказы&nbsp;– лучше по телефону. Если я в этот момент работаю, перезвоню как можно скорее.</span>
+          </li>
+          <li>
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <strong>E-mail</strong>
+            <a class="big big--mail" href="mailto:dolmetschen.cottbus@gmail.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%3A%20%D1%83%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%2F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4&amp;body=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%95%D0%BB%D0%B5%D0%BD%D0%B0%20%D0%9C%D0%B8%D0%BA%21%0D%0A%0D%0A%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%3A%0D%0A%0D%0A%D0%94%D0%B0%D1%82%D0%B0%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%2C%20%D0%BF%D1%80%D0%BE%D0%B4%D0%BE%D0%BB%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D1%8C%3A%20%0D%0A%D0%9C%D0%B5%D1%81%D1%82%D0%BE%20%28%D0%B8%D0%BB%D0%B8%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%2F%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE%D1%81%D0%B2%D1%8F%D0%B7%D1%8C%29%3A%20%0D%0A%D0%9F%D0%BE%D0%B2%D0%BE%D0%B4%3A%20%0D%0A%D0%A2%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%B8%D0%BC%D0%B5%D1%8E%D1%89%D0%B8%D0%B5%D1%81%D1%8F%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%3A%20%0D%0A%D0%94%D0%BB%D1%8F%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0%20%E2%80%93%20%D0%B2%D0%B8%D0%B4%20%D0%B8%20%D0%BE%D0%B1%D1%8A%D1%91%D0%BC%2C%20%D0%B6%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%D1%8B%D0%B9%20%D1%81%D1%80%D0%BE%D0%BA%3A%20%0D%0A%0D%0A%D0%A1%20%D1%83%D0%B2%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC%0D%0A">dolmetschen.cottbus@gmail.com</a>
+          </li>
+          <li>
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s7-6.2 7-11.5a7 7 0 0 0-14 0c0 5.3 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <strong>Офис</strong>
+            <span class="big">Sachsendorfer Straße 11<br>03046 Cottbus, Германия</span>
+          </li>
+        </ul>
+        <p class="btn-group"><a class="btn btn-line" href="../elena-mieck.vcf" download><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg> Сохранить контакт</a></p>
+
+        <div class="contact-grid">
+          <div>
+            <h3 class="label">В три шага</h3>
+            <ol class="steps">
+              <li><strong>Запрос</strong> Позвоните или напишите мне&nbsp;– лучше сразу с датой, местом, продолжительностью и поводом.</li>
+              <li><strong>Подготовка</strong> Вы получите предложение. Материалы, презентации и терминология помогут мне подготовиться.</li>
+              <li><strong>Понимание</strong> Я перевожу на месте, по телефону или по видеосвязи&nbsp;– последовательно или шёпотом.</li>
+            </ol>
+          </div>
+          <dl class="facts-list">
+            <div><dt>Устный перевод</dt><dd>Последовательный перевод · Перевод методом нашёптывания · Перевод по телефону и видеосвязи</dd></div>
+            <div><dt>Письменный перевод</dt><dd>Техническая документация · Инструкции по эксплуатации · Договоры · Проектная документация · Учебные материалы</dd></div>
+            <div><dt>Регион работы</dt><dd>Котбус и окрестности. При крупных заказах также Берлин и Дрезден. Перевод по телефону и видеосвязи, а также письменные переводы по всей Германии.</dd></div>
+          </dl>
+        </div>
+
+        <div class="notes">
           <p class="note">Я работаю для компаний, научных организаций, государственных органов и учебных центров. Переводы официальных документов для частных лиц я не выполняю.</p>
+          <p class="note">Ваши данные я сохраняю в тайне и не передаю третьим лицам.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FUSS: auf allen Seiten identisch -->
   <footer class="site-footer">
     <div class="container">
       <p>© Елена Мик · <a href="impressum.html">Выходные данные</a> · <a href="datenschutz.html">Защита данных</a></p>
     </div>
   </footer>
-  <!-- /FUSS -->
 </body>
 </html>

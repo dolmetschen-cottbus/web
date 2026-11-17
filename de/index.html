@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-/pds1N6nTkNo6YWMcxV6iwtc9VRZakTbvL0s37kfgjg='; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#1f2f46">
+  <meta name="theme-color" content="#111518">
 
   <title>Dolmetscherin Russisch in Cottbus – Wirtschaft, Behörden, Technik | Elena Mieck</title>
   <meta name="description" content="Elena Mieck, Dolmetscherin Deutsch–Russisch in Cottbus und der Lausitz, über 20 Jahre Erfahrung. Delegationen, Verhandlungen, Vernehmungen, Gericht, Schulungen. Konsekutiv- und Flüsterdolmetschen, Fachübersetzungen.">
@@ -60,153 +60,288 @@
   }
   </script>
 
+  <link rel="preload" href="../fonts/Jost-sub.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/SourceSans3-sub-Upright.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon.png">
+  <script src="../hero-art.js"></script>
+  <script src="../site.js" defer></script>
   <script src="../season.js" defer></script>
 </head>
-<body class="page-home">
+<body>
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
-  <!-- KOPF: auf allen Seiten identisch (nur aria-current und RU-Ziel anpassen) -->
   <header class="site-header">
-    <div class="container header-bar">
+    <div class="header-bar">
       <a class="brand" href="index.html">
-        <span class="brand-name">Elena Mieck</span>
-        <span class="brand-sub">Dolmetscherin Deutsch–Russisch in Cottbus</span>
-      </a>
-      <p class="header-claim"><strong>Russisch&nbsp;– professionell und präzise.</strong> <em>Am Verhandlungstisch, im Vernehmungsraum und vor Ort.</em></p>
-      <a class="btn btn-call" href="tel:+4917632295300">
-        <svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-        <span class="call-text">Anrufen</span>
-        <span class="call-number">0176&nbsp;32295300</span>
+        <span class="monogram" aria-hidden="true">EM</span>
+        <span class="brand-text">
+          <span class="brand-name">Elena Mieck</span>
+          <span class="brand-sub">Dolmetscherin Deutsch–Russisch in Cottbus</span>
+        </span>
       </a>
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-        Menü
-      </label>
+      <label for="nav-toggle" class="nav-toggle-label"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h10"/></svg><span class="visually-hidden">Menü</span></label>
       <nav class="site-nav" aria-label="Hauptnavigation">
         <ul>
-          <li><a href="index.html" aria-current="page">Start</a></li>
-          <li><a href="wirtschaft-forschung.html">Wirtschaft &amp; Forschung</a></li>
-          <li><a href="behoerden-justiz.html">Behörden &amp; Justiz</a></li>
-          <li><a href="technik-ausbildung.html">Technik &amp; Ausbildung</a></li>
-          <li><a href="about.html">Über mich</a></li>
-          <li><a href="contact.html">Kontakt</a></li>
+          <li><a href="#start" aria-current="true">Start</a></li>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#ueber-mich">Über mich</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
         </ul>
-        <p class="lang-switch"><a href="index.html" lang="de" aria-current="true">DE</a> | <a href="../ru/index.html" lang="ru" hreflang="ru">RU</a></p>
+        <p class="lang-switch lang-switch--menu"><a href="index.html" lang="de" aria-current="true">DE</a><a href="../ru/index.html" lang="ru" hreflang="ru">RU</a></p>
       </nav>
+      <div class="tools">
+        <p class="lang-switch"><a href="index.html" lang="de" aria-current="true">DE</a><a href="../ru/index.html" lang="ru" hreflang="ru">RU</a></p>
+        <a class="btn-call" href="tel:+4917632295300" title="Anrufen: 0176 32295300"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5H9l1.4 4.1-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.1 1.4v2.4a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span class="visually-hidden">Anrufen 0176&nbsp;32295300</span></a>
+      </div>
     </div>
   </header>
-  <!-- /KOPF -->
 
   <main id="inhalt">
-    <section class="hero">
-      <div class="container">
-        <h1>Elena Mieck</h1>
-        <p class="hero-sub">Dolmetscherin Deutsch–Russisch in Cottbus</p>
+    <!-- HERO: bleibt wie gehabt -->
+    <section id="start" class="hero screen">
+      <div class="container hero-inner">
+        <!-- Drei Grafiken in derselben quadratischen Box: feste Reihenfolge Begrüßung → Globus → Buchstaben (hero-art.js), Klick = nächste -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="art globe">
+            <svg viewBox="0 0 360 360" focusable="false">
+              <defs>
+                <radialGradient id="m-glow"><stop offset="0" stop-color="#d8c59c" stop-opacity=".16"/><stop offset="1" stop-color="#d8c59c" stop-opacity="0"/></radialGradient>
+                <clipPath id="m-clip"><circle cx="180" cy="180" r="140"/></clipPath>
+              </defs>
+              <circle cx="180" cy="180" r="180" fill="url(#m-glow)"/>
+              <g clip-path="url(#m-clip)">
+                <ellipse class="g-line" cx="180" cy="180" rx="140" ry="26"/>
+                <ellipse class="g-line" cx="180" cy="122" rx="127" ry="22"/>
+                <ellipse class="g-line" cx="180" cy="238" rx="127" ry="22"/>
+                <ellipse class="g-line" cx="180" cy="72" rx="88" ry="14"/>
+                <ellipse class="g-line" cx="180" cy="288" rx="88" ry="14"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+                <ellipse class="g-mer" cx="180" cy="180" rx="140" ry="140"/>
+              </g>
+              <circle class="g-outline" cx="180" cy="180" r="140"/>
+              <circle class="orbit" cx="180" cy="180" r="166"/>
+              <path class="g-arc" d="M148 168Q200 64 262 124" pathLength="100"/>
+              <path class="g-spark" d="M148 168Q200 64 262 124" pathLength="100"/>
+              <path class="g-spark g-spark--back" d="M262 124Q200 64 148 168" pathLength="100"/>
+              <circle class="g-ping" cx="148" cy="168" r="5"/>
+              <circle class="g-ping" cx="262" cy="124" r="5"/>
+              <circle class="g-dot" cx="148" cy="168" r="4"/>
+              <circle class="g-dot" cx="262" cy="124" r="4"/>
+              <text x="122" y="196" class="g-label">DE</text>
+              <text x="272" y="116" class="g-label">RU</text>
+            </svg>
+          </div>
+
+          <div class="art glyphs">
+            <svg viewBox="30 0 360 360" focusable="false">
+              <circle cx="210" cy="180" r="166" class="orbit"/>
+              <circle cx="210" cy="180" r="140" class="ring"/>
+              <text x="118" y="250" text-anchor="middle" class="glyph glyph--de">D</text>
+              <text x="296" y="250" text-anchor="middle" class="glyph glyph--ru">Д</text>
+              <path d="M60 282H360" class="base"/>
+              <path d="M184 180h52M226 170l10 10-10 10M194 170l-10 10 10 10" class="swap"/>
+              <text x="118" y="318" text-anchor="middle" class="cap">Deutsch</text>
+              <text x="296" y="318" text-anchor="middle" class="cap" lang="ru">Русский</text>
+            </svg>
+          </div>
+
+          <div class="art greet">
+            <svg viewBox="0 0 360 360" focusable="false">
+              <circle cx="180" cy="180" r="166" class="orbit"/>
+              <text x="26" y="50" class="cap">Deutsch</text>
+              <path class="bubble" d="M65 62h200a33 33 0 0 1 33 33v12a33 33 0 0 1-33 33H96l-26 22 4-22h-9a33 33 0 0 1-33-33V95a33 33 0 0 1 33-33z"/>
+              <path class="bubble bubble--ru" d="M95 202h200a33 33 0 0 1 33 33v12a33 33 0 0 1-33 33h-9l4 22-26-22H95a33 33 0 0 1-33-33v-12a33 33 0 0 1 33-33z"/>
+              <text x="334" y="326" text-anchor="end" class="cap" lang="ru">Русский</text>
+              <g class="pair pair--1">
+                <text x="56" y="110" class="say">Guten Tag!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Добрый день!</text>
+              </g>
+              <g class="pair pair--2">
+                <text x="56" y="110" class="say">Herzlich willkommen!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Добро пожаловать!</text>
+              </g>
+              <g class="pair pair--3">
+                <text x="56" y="110" class="say">Vielen Dank!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Большое спасибо!</text>
+              </g>
+              <!-- Festtage (hero-art.js wählt nach Datum): Dezember, Neujahr, russisches Weihnachten am 7. Januar -->
+              <g class="pair pair--xmas">
+                <text x="56" y="110" class="say">Frohe Weihnachten!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С наступающим!</text>
+              </g>
+              <g class="pair pair--ny">
+                <text x="56" y="110" class="say">Frohes neues Jahr!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С Новым годом!</text>
+              </g>
+              <g class="pair pair--xmasru">
+                <text x="56" y="110" class="say">Frohe Weihnachten!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С Рождеством!</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <h1 class="hero-name">Elena Mieck <span>Dolmetscherin Deutsch–Russisch in Cottbus</span></h1>
         <p class="claim">
-          <strong class="claim-main">Russisch&nbsp;– professionell und präzise.</strong>
+          <strong class="claim-main">Russisch&nbsp;– professionell und <span class="gold">präzise.</span></strong>
           <em class="claim-sub">Am Verhandlungstisch, im Vernehmungsraum und vor Ort.</em>
         </p>
         <p class="hero-text">Für Unternehmen, Forschung, Behörden und technische Ausbildung&nbsp;– in der Lausitz und darüber hinaus.</p>
         <p class="btn-group">
-          <a class="btn" href="tel:+4917632295300"><svg class="icon-phone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg> Anrufen 0176&nbsp;32295300</a>
-          <a class="btn btn-secondary" href="mailto:dolmetschen.cottbus@gmail.com?subject=Anfrage%20Dolmetschen%20%2F%20%C3%9Cbersetzung&amp;body=Guten%20Tag%20Frau%20Mieck%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Sie%20f%C3%BCr%20folgenden%20Auftrag%20anfragen%3A%0D%0A%0D%0ADatum%20und%20Uhrzeit%2C%20voraussichtliche%20Dauer%3A%20%0D%0AOrt%20%28oder%20Telefon%2FVideo%29%3A%20%0D%0AAnlass%3A%20%0D%0AFachgebiet%20und%20vorhandene%20Unterlagen%3A%20%0D%0ABei%20%C3%9Cbersetzungen%20%E2%80%93%20Art%20und%20Umfang%2C%20gew%C3%BCnschter%20Termin%3A%20%0D%0A%0D%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0D%0A"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.4V17h16V7.4l-8 5.3zM5.2 7 12 11.5 18.8 7z"/></svg> Anfrage per E-Mail</a>
+          <a class="btn" href="tel:+4917632295300"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5H9l1.4 4.1-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.1 1.4v2.4a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg> Anrufen 0176&nbsp;32295300</a>
+          <a class="btn btn-line" href="mailto:dolmetschen.cottbus@gmail.com?subject=Anfrage%20Dolmetschen%20%2F%20%C3%9Cbersetzung&amp;body=Guten%20Tag%20Frau%20Mieck%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Sie%20f%C3%BCr%20folgenden%20Auftrag%20anfragen%3A%0D%0A%0D%0ADatum%20und%20Uhrzeit%2C%20voraussichtliche%20Dauer%3A%20%0D%0AOrt%20%28oder%20Telefon%2FVideo%29%3A%20%0D%0AAnlass%3A%20%0D%0AFachgebiet%20und%20vorhandene%20Unterlagen%3A%20%0D%0ABei%20%C3%9Cbersetzungen%20%E2%80%93%20Art%20und%20Umfang%2C%20gew%C3%BCnschter%20Termin%3A%20%0D%0A%0D%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0D%0A"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg> Anfrage per E-Mail</a>
         </p>
       </div>
     </section>
 
-    <div class="section section--tight">
-      <div class="container">
-        <p class="lead">Ich dolmetsche seit über 20 Jahren, seit 2015 freiberuflich in Deutschland. Anhörungen, schwierige Gespräche und Fachtexte aus Medizin, Recht und Technik gehören zu meinem Alltag. Diese Erfahrung bringe ich in Ihre Verhandlung, Ihre Vernehmung oder Ihren Lehrgang mit.</p>
-      </div>
-    </div>
-
-    <div class="section section--alt">
-      <div class="container cards">
-        <article class="card">
-          <h2 class="card-title">Wirtschaft &amp; Forschung</h2>
-          <p>Sie empfangen eine Delegation, verhandeln mit Partnern aus Osteuropa oder Zentralasien oder starten ein internationales Forschungsprojekt? Ich dolmetsche bei Besuchen, Werksführungen, Verhandlungen und Fachtagungen&nbsp;– konsekutiv oder flüsternd&nbsp;– und übersetze Verträge und Projektunterlagen.</p>
-          <a class="card-link" href="wirtschaft-forschung.html">Mehr erfahren<span class="visually-hidden"> über Wirtschaft &amp; Forschung</span><span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-        <article class="card">
-          <h2 class="card-title">Behörden, Polizei &amp; Justiz</h2>
-          <p>Vernehmungen, Anhörungen, Gerichtstermine: Ich bin kurzfristig erreichbar, arbeite neutral und vertraulich und übersetze auch Audioaufnahmen und Schriftmaterial.</p>
-          <a class="card-link" href="behoerden-justiz.html">Mehr erfahren<span class="visually-hidden"> über Behörden, Polizei &amp; Justiz</span><span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-        <article class="card">
-          <h2 class="card-title">Technik &amp; Ausbildung</h2>
-          <p>Lehrgänge, Schulungen, Einweisungen an Maschinen&nbsp;– auch über mehrere Tage. Ich arbeite mich vorher gezielt in Ihr Fachgebiet ein.</p>
-          <a class="card-link" href="technik-ausbildung.html">Mehr erfahren<span class="visually-hidden"> über Technik &amp; Ausbildung</span><span class="arrow" aria-hidden="true">→</span></a>
-        </article>
-      </div>
-    </div>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Aus meiner Praxis</h2>
-        <ul class="check-list">
-          <li>Mehrtägige Delegationsbesuche im Rahmen internationaler Forschungsprojekte</li>
-          <li>Telefonkonferenzen und Vertragsübersetzungen für Unternehmen mit Geschäftspartnern in Osteuropa</li>
-          <li>Mehrtägige Lehrgänge für Ausbildungsgruppen</li>
-        </ul>
-        <div class="experience">
-          <div class="experience-group">
-            <h3>Fachgebiete</h3>
-            <p>Medizin · Recht · Technik und Maschinenbau</p>
-          </div>
-          <div class="experience-group">
-            <h3>Wirtschaft &amp; Forschung</h3>
-            <p>Wasserversorgung · Vertragswesen · Forschungsprojekte</p>
-          </div>
-          <div class="experience-group">
-            <h3>Behörden &amp; Justiz</h3>
-            <p>Bundesbehörde · Polizei · Gericht</p>
-          </div>
-          <div class="experience-group">
-            <h3>Technik &amp; Ausbildung</h3>
-            <p>Energietechnik · Mechatronik · Lehrgänge</p>
-          </div>
+    <!-- LEISTUNGEN: Fakten + drei Zielgruppen -->
+    <section id="leistungen" class="screen screen--services" aria-labelledby="leistungen-title">
+      <div class="facts">
+        <div class="container facts-grid">
+          <p class="fact"><span class="fact-big">20+</span><span class="fact-text">Jahre Erfahrung als Dolmetscherin</span></p>
+          <p class="fact"><span class="fact-big">10+</span><span class="fact-text">Jahre freiberuflich tätig</span></p>
+          <p class="fact"><span class="fact-big">3</span><span class="fact-text">Fachgebiete: Medizin, Recht, Technik und Maschinenbau</span></p>
+          <p class="fact"><span class="fact-big">Vor Ort</span><span class="fact-text">in Cottbus, Berlin und Dresden&nbsp;– per Telefon und Video deutschlandweit</span></p>
         </div>
       </div>
+      <div class="container screen-body">
+        <h2 id="leistungen-title" class="section-title section-title--center">Wofür Sie mich buchen</h2>
+        <div class="cards">
+          <article class="card">
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2V7M3 12.5h18M10.5 12.5v2h3v-2"/></svg></span>
+            <h3 class="card-title">Wirtschaft &amp; Forschung</h3>
+            <p class="card-lead">Ihre Partner sprechen Russisch. Ich sorge dafür, dass Sie sich verstehen.</p>
+            <ul class="tags"><li>Delegationen</li><li>Verhandlungen</li><li>Fachtagungen</li><li>Verträge</li></ul>
+            <a class="card-link" href="wirtschaft-forschung.html">Mehr erfahren<span class="visually-hidden"> über Wirtschaft &amp; Forschung</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v16M8 20h8M5 7.5h14M12 4.5l-7 3M12 4.5l7 3"/><path d="M5 7.5 2.5 14a3 3 0 0 0 5 0zM19 7.5 16.5 14a3 3 0 0 0 5 0z"/></svg></span>
+            <h3 class="card-title">Behörden, Polizei &amp; Justiz</h3>
+            <p class="card-lead">Neutral, vertraulich und kurzfristig erreichbar.</p>
+            <ul class="tags"><li>Vernehmungen</li><li>Anhörungen</li><li>Gerichtstermine</li><li>Audioaufnahmen</li></ul>
+            <a class="card-link" href="behoerden-justiz.html">Mehr erfahren<span class="visually-hidden"> über Behörden, Polizei &amp; Justiz</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v2.6M12 18.9v2.6M21.5 12h-2.6M5.1 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1 5.3 5.3"/><circle cx="12" cy="12" r="6.5"/></svg></span>
+            <h3 class="card-title">Technik &amp; Ausbildung</h3>
+            <p class="card-lead">Damit Fachwissen ankommt&nbsp;– auch an der Maschine.</p>
+            <ul class="tags"><li>Lehrgänge</li><li>Schulungen</li><li>Unterweisungen</li><li>Technische Übersetzungen</li></ul>
+            <a class="card-link" href="technik-ausbildung.html">Mehr erfahren<span class="visually-hidden"> über Technik &amp; Ausbildung</span><span class="arrow" aria-hidden="true">→</span></a>
+          </article>
+        </div>
+        <p class="modes">Konsekutivdolmetschen <span aria-hidden="true">·</span> Flüsterdolmetschen <span aria-hidden="true">·</span> Telefon- und Videodolmetschen <span aria-hidden="true">·</span> Fachübersetzungen</p>
+      </div>
     </section>
 
-    <section class="section section--alt">
-      <div class="container">
-        <h2 class="section-title">Warum mit mir</h2>
-        <ul class="check-list">
-          <li>Studium Dolmetschen und Übersetzen (Diplom), Master Interkulturelle Kommunikation (Europa-Universität Viadrina)</li>
-          <li>Fachlich breit aufgestellt&nbsp;– von medizinischen Befunden über Gerichtsakten bis zur Maschineneinweisung</li>
-          <li>Erfahrung mit mehrtägigen Einsätzen und belastenden Gesprächssituationen</li>
-          <li>Vor Ort in Cottbus und Umgebung, bei größeren Aufträgen auch in Berlin und Dresden</li>
+    <!-- ÜBER MICH: Porträt im Kreis mit umlaufendem Punkt -->
+    <section id="ueber-mich" class="screen screen--alt" aria-labelledby="ueber-mich-title">
+      <div class="container screen-body">
+        <div class="about-grid">
+          <figure class="portrait">
+            <span class="portrait-orbit" aria-hidden="true"></span>
+            <span class="portrait-frame"><img src="../img/elena-mieck.jpg" width="401" height="602" alt="Porträt Elena Mieck" loading="lazy"></span>
+          </figure>
+          <div class="about-text">
+            <p class="eyebrow">Über mich</p>
+            <h2 id="ueber-mich-title" class="about-name">Elena Mieck</h2>
+            <p class="subtitle">Dolmetscherin Deutsch–Russisch</p>
+            <p class="about-lead">Ich dolmetsche und übersetze zwischen Deutsch und Russisch&nbsp;– für Unternehmen, Forschungseinrichtungen, Behörden und Bildungsträger. Ich arbeite am Verhandlungstisch genauso wie im Vernehmungsraum oder vor Ort bei meinen Kunden.</p>
+            <div class="about-cols">
+              <div>
+                <h3 class="label">Ausbildung</h3>
+                <ul class="edu">
+                  <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v4.5c3.3 2.7 8.7 2.7 12 0V11M22 9v5.5"/></svg><span>Studium Dolmetschen und Übersetzen in Russland (Diplom)</span></li>
+                  <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 8h8M8 11.5h5"/></svg><span>Master Interkulturelle Kommunikation, Europa-Universität Viadrina, Frankfurt&nbsp;(Oder)</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="label">Erfahrung</h3>
+                <ul class="tags tags--about">
+                  <li>Medizin</li><li>Recht</li><li>Technik und Maschinenbau</li>
+                  <li>Wasserversorgung</li><li>Vertragswesen</li><li>Forschungsprojekte</li>
+                  <li>Bundesbehörde</li><li>Polizei</li><li>Gericht</li>
+                  <li>Energietechnik</li><li>Mechatronik</li><li>Lehrgänge</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="label label--center">Arbeitsweise</h3>
+        <ul class="principles principles--row">
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 8h8M8 11.5h5"/></svg><span><strong>Vorbereitung</strong> Ich arbeite mich vor jedem Einsatz in Thema und Fachsprache ein. Neue Fachgebiete sind für mich keine Hürde, sondern der spannende Teil der Arbeit.</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><span><strong>Genauigkeit</strong> Ich übertrage vollständig und präzise.</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg><span><strong>Vertraulichkeit</strong> Alles, was ich im Einsatz erfahre, behandle ich vertraulich.</span></li>
+          <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 5h11a1.5 1.5 0 0 1 1.5 1.5v6a1.5 1.5 0 0 1-1.5 1.5H9l-3.5 3v-3h-2A1.5 1.5 0 0 1 2 12.5v-6A1.5 1.5 0 0 1 3.5 5z"/><path d="M16 9h4.5A1.5 1.5 0 0 1 22 10.5v6a1.5 1.5 0 0 1-1.5 1.5h-1.5v3l-3.5-3H11a1.5 1.5 0 0 1-1.5-1.5V16"/></svg><span><strong>Kulturelles Verständnis</strong> Ich kenne beide Kulturen aus eigener Erfahrung und achte darauf, wie eine Aussage beim Gegenüber ankommt.</span></li>
         </ul>
       </div>
     </section>
 
-    <section class="section section--tight">
-      <div class="container">
-        <div class="contact-box">
-          <h2 class="section-title">Kontakt</h2>
-          <p>Rufen Sie mich an oder schreiben Sie mir&nbsp;– am besten gleich mit Datum, Ort, Dauer und Anlass.</p>
-          <ul class="contact-details">
-            <li><strong>Telefon:</strong> <a href="tel:+4917632295300">0176&nbsp;32295300</a></li>
-            <li><strong>E-Mail:</strong> <a href="mailto:dolmetschen.cottbus@gmail.com?subject=Anfrage%20Dolmetschen%20%2F%20%C3%9Cbersetzung&amp;body=Guten%20Tag%20Frau%20Mieck%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Sie%20f%C3%BCr%20folgenden%20Auftrag%20anfragen%3A%0D%0A%0D%0ADatum%20und%20Uhrzeit%2C%20voraussichtliche%20Dauer%3A%20%0D%0AOrt%20%28oder%20Telefon%2FVideo%29%3A%20%0D%0AAnlass%3A%20%0D%0AFachgebiet%20und%20vorhandene%20Unterlagen%3A%20%0D%0ABei%20%C3%9Cbersetzungen%20%E2%80%93%20Art%20und%20Umfang%2C%20gew%C3%BCnschter%20Termin%3A%20%0D%0A%0D%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0D%0A">dolmetschen.cottbus@gmail.com</a></li>
-          </ul>
+    <!-- KONTAKT: minimalistischer Aufruf, darunter Ablauf und Einsatzgebiet -->
+    <section id="kontakt" class="screen screen--contact" aria-labelledby="kontakt-title">
+      <div class="container screen-body">
+        <h2 id="kontakt-title" class="section-title section-title--center">Sprechen Sie mich an.</h2>
+        <ul class="contact-cards">
+          <li>
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.6 3.5H9l1.4 4.1-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.1 1.4v2.4a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></span>
+            <strong>Telefon</strong>
+            <a class="big" href="tel:+4917632295300">0176&nbsp;32295300</a>
+            <span class="hint">Für kurzfristige Einsätze am besten telefonisch. Wenn ich gerade im Einsatz bin, rufe ich so schnell wie möglich zurück.</span>
+          </li>
+          <li>
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <strong>E-Mail</strong>
+            <a class="big big--mail" href="mailto:dolmetschen.cottbus@gmail.com?subject=Anfrage%20Dolmetschen%20%2F%20%C3%9Cbersetzung&amp;body=Guten%20Tag%20Frau%20Mieck%2C%0D%0A%0D%0Aich%20m%C3%B6chte%20Sie%20f%C3%BCr%20folgenden%20Auftrag%20anfragen%3A%0D%0A%0D%0ADatum%20und%20Uhrzeit%2C%20voraussichtliche%20Dauer%3A%20%0D%0AOrt%20%28oder%20Telefon%2FVideo%29%3A%20%0D%0AAnlass%3A%20%0D%0AFachgebiet%20und%20vorhandene%20Unterlagen%3A%20%0D%0ABei%20%C3%9Cbersetzungen%20%E2%80%93%20Art%20und%20Umfang%2C%20gew%C3%BCnschter%20Termin%3A%20%0D%0A%0D%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%0D%0A">dolmetschen.cottbus@gmail.com</a>
+          </li>
+          <li>
+            <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s7-6.2 7-11.5a7 7 0 0 0-14 0c0 5.3 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <strong>Büro</strong>
+            <span class="big">Sachsendorfer Straße 11<br>03046 Cottbus</span>
+          </li>
+        </ul>
+        <p class="btn-group"><a class="btn btn-line" href="../elena-mieck.vcf" download><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></svg> Kontakt speichern</a></p>
+
+        <div class="contact-grid">
+          <div>
+            <h3 class="label">In drei Schritten</h3>
+            <ol class="steps">
+              <li><strong>Anfragen</strong> Rufen Sie an oder schreiben Sie mir&nbsp;– am besten gleich mit Datum, Ort, Dauer und Anlass.</li>
+              <li><strong>Vorbereiten</strong> Sie erhalten ein Angebot. Unterlagen, Präsentationen und Fachbegriffe helfen mir bei der Vorbereitung.</li>
+              <li><strong>Verstehen</strong> Ich dolmetsche vor Ort, per Telefon oder Video&nbsp;– konsekutiv oder flüsternd.</li>
+            </ol>
+          </div>
+          <dl class="facts-list">
+            <div><dt>Dolmetscharten</dt><dd>Konsekutivdolmetschen · Flüsterdolmetschen · Telefon- und Videodolmetschen</dd></div>
+            <div><dt>Fachübersetzungen</dt><dd>Technische Dokumentation · Bedienungsanleitungen · Verträge · Projektunterlagen · Schulungsunterlagen</dd></div>
+            <div><dt>Einsatzgebiet</dt><dd>Cottbus und Umgebung. Bei größeren Aufträgen auch Berlin und Dresden. Telefon- und Videodolmetschen sowie Übersetzungen deutschlandweit.</dd></div>
+          </dl>
+        </div>
+
+        <div class="notes">
           <p class="note">Ich arbeite für Unternehmen, Forschungseinrichtungen, Behörden und Bildungsträger. Urkundenübersetzungen für Privatpersonen biete ich nicht an.</p>
+          <p class="note">Ihre Angaben behandle ich vertraulich und gebe sie nicht weiter.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FUSS: auf allen Seiten identisch -->
   <footer class="site-footer">
     <div class="container">
       <p>© Elena Mieck · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
     </div>
   </footer>
-  <!-- /FUSS -->
 </body>
 </html>
