@@ -1,5 +1,5 @@
-/* Entwurf N – „Globus oder Buchstaben“ (Basis M)
-   Aufbau und Kopf von G, Schiefer-Hintergrund mit Körnung und Linien-Globus von L, Champagner-Akzent */
+/* Entwurf N – Startseite neu (Basis M: Kopf und Aufbau von G, Globus und Schiefer von L)
+   Schwebende Glas-Kopfleiste · drei Hero-Grafiken in gleicher Box · kompakter Inhalt */
 
 @font-face {
     font-family: "Jost";
@@ -39,12 +39,13 @@
     --font: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
     --font-display: "Jost", "Segoe UI", system-ui, sans-serif;
     --container: 72rem;
+    --header-width: 80rem;
     --gutter: 1.25rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Feine Körnung über der ganzen Seite (aus Entwurf L) */
+/* Feine Körnung über der ganzen Seite */
 body::before {
     content: "";
     position: fixed; inset: 0; z-index: 100;
@@ -53,7 +54,7 @@ body::before {
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 6rem; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 6.5rem; scroll-behavior: smooth; }
 
 body {
     margin: 0;
@@ -73,7 +74,7 @@ h1, h2, h3 {
     text-wrap: balance;
 }
 
-p, ul { margin: 0 0 1rem; }
+p, ul, ol { margin: 0 0 1rem; }
 p, li { text-wrap: pretty; }
 
 a { color: var(--gold); text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
@@ -92,7 +93,7 @@ strong { font-weight: 600; }
 }
 
 .skip-link {
-    position: absolute; left: 1rem; top: -100px; z-index: 100;
+    position: absolute; left: 1rem; top: -100px; z-index: 101;
     padding: 0.5rem 1rem; background: var(--gold); color: var(--on-gold); font-weight: 600;
 }
 .skip-link:focus { top: 0.5rem; }
@@ -120,32 +121,13 @@ strong { font-weight: 600; }
 
 .btn-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin: 0; }
 
-/* ---------- Kopf: durchsichtig, beim Scrollen Glas ----------
-   Mobil: Marke | DE/RU + Telefon | Menü
-   Desktop: Marke | Navigation in der Mitte | DE/RU + Telefon */
+/* ==========================================================================
+   Kopf: schwebende Glas-Leiste, etwas breiter als der Inhalt
+   Mobil: Marke | DE/RU + Telefon | Menü – Desktop: Marke | Menü (Mitte) | DE/RU + Telefon
+   ========================================================================== */
 .site-header {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(17, 21, 24, 0.9);
-    border-bottom: 1px solid var(--line);
-}
-
-@supports (animation-timeline: scroll()) {
-    .site-header {
-        background: rgba(17, 21, 24, 0);
-        border-bottom-color: transparent;
-        animation: glass linear both;
-        animation-timeline: scroll(root);
-        animation-range: 0 120px;
-    }
-
-    @keyframes glass {
-        to {
-            background: rgba(17, 21, 24, 0.82);
-            border-bottom-color: var(--line);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-        }
-    }
+    padding: 0.75rem 0.75rem 0;
 }
 
 .header-bar {
@@ -154,8 +136,25 @@ strong { font-weight: 600; }
     grid-template-areas: "brand tools toggle" "nav nav nav";
     align-items: center;
     gap: 0 0.6rem;
-    max-width: 84rem;
-    padding-block: 0.9rem;
+    max-width: var(--header-width);
+    margin-inline: auto;
+    padding: 0.7rem 0.7rem 0.7rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+        rgba(13, 17, 20, 0.66);
+    box-shadow:
+        0 12px 40px -12px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+}
+
+/* Ohne Glas-Unterstützung: fast deckend */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .header-bar { background: rgba(13, 17, 20, 0.96); }
 }
 
 .brand {
@@ -169,11 +168,11 @@ strong { font-weight: 600; }
 
 .monogram {
     display: grid; place-items: center; flex: none;
-    width: 2.6rem; height: 2.6rem;
+    width: 2.75rem; height: 2.75rem;
     border: 1px solid var(--gold); border-radius: 50%;
     font-family: var(--font-display); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em;
     color: var(--gold);
-    transition: background-color .3s, color .3s;
+    transition: background-color .3s;
 }
 
 .brand:hover .monogram { background: rgba(216, 197, 156, 0.1); }
@@ -191,13 +190,12 @@ strong { font-weight: 600; }
 .lang-switch a:hover { color: var(--heading); }
 .lang-switch a[aria-current="true"] { color: var(--gold); }
 
-.tools .lang-switch { display: none; padding-right: 0.9rem; border-right: 1px solid var(--line); }
-.lang-switch--menu { margin-top: 1rem; }
+.tools .lang-switch { display: none; padding-right: 0.9rem; border-right: 1px solid rgba(255, 255, 255, 0.12); }
+.lang-switch--menu { margin-top: 1rem; padding-left: 0.25rem; }
 
-/* Telefon im Kopf: nur Symbol, rund wie das Monogramm */
 .btn-call {
     display: grid; place-items: center; flex: none;
-    width: 2.6rem; height: 2.6rem;
+    width: 2.75rem; height: 2.75rem;
     border: 1px solid var(--gold); border-radius: 50%;
     color: var(--gold); text-decoration: none;
     transition: background-color .3s, color .3s;
@@ -220,8 +218,8 @@ strong { font-weight: 600; }
 .nav-toggle-label {
     grid-area: toggle;
     display: grid; place-items: center;
-    width: 2.6rem; height: 2.6rem;
-    border: 1px solid var(--line); border-radius: 50%;
+    width: 2.75rem; height: 2.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 50%;
     cursor: pointer;
     transition: border-color .2s, color .2s;
 }
@@ -229,43 +227,77 @@ strong { font-weight: 600; }
 .nav-toggle:focus-visible + .nav-toggle-label { outline: 2px solid var(--gold); outline-offset: 3px; }
 .nav-toggle:checked + .nav-toggle-label { border-color: var(--gold); color: var(--gold); }
 
-.site-nav { grid-area: nav; display: none; padding: 1rem 0 0.5rem; }
+.site-nav { grid-area: nav; display: none; padding: 0.75rem 0.25rem 0.25rem; }
 .nav-toggle:checked ~ .site-nav { display: block; }
 
 .site-nav ul { margin: 0; padding: 0; list-style: none; }
 
 .site-nav ul a {
-    display: block; padding: 0.7rem 0;
-    border-bottom: 1px solid var(--line);
+    display: block; padding: 0.7rem 0.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text); text-decoration: none;
     transition: color .2s;
 }
 
-.site-nav ul a:hover, .site-nav ul a[aria-current="page"] { color: var(--gold); }
+.site-nav ul li:last-child a { border-bottom: 0; }
+.site-nav ul a:hover, .site-nav ul a[aria-current] { color: var(--gold); }
 
-/* Ab 30em ist im Kopf Platz für DE/RU, im Menü wird es dann nicht mehr gebraucht */
 @media (min-width: 30em) {
     .tools .lang-switch { display: flex; }
     .lang-switch--menu { display: none; }
 }
 
-/* ---------- Hero ---------- */
+/* ==========================================================================
+   Hero (bleibt wie gehabt)
+   ========================================================================== */
 .hero {
     position: relative;
-    padding: 3rem 0 4.5rem;
+    padding: 2.5rem 0 4.5rem;
     text-align: center;
     background: radial-gradient(40rem 22rem at 50% 20%, rgba(216, 197, 156, 0.08), transparent 70%);
 }
 
 .hero-inner { display: flex; flex-direction: column; align-items: center; }
 
-/* Linien-Globus (aus Entwurf L): Meridiane drehen sich, Lichtpunkt läuft von DE nach RU */
-.globe { width: min(20rem, 78%); margin-bottom: 1.75rem; }
-.globe svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* Drei Grafiken teilen sich exakt dieselbe quadratische Box – beim Wechsel springt nichts */
+.hero-art {
+    position: relative;
+    width: min(20rem, 78%);
+    aspect-ratio: 1;
+    margin-bottom: 1.75rem;
+}
 
+.art { position: absolute; inset: 0; display: none; animation: art-in .7s ease both; }
+.art svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+/* Ohne JavaScript: Begrüßung. Mit hero-art.js: data-art bestimmt die Grafik */
+html:not([data-art]) .greet,
+[data-art="greet"] .greet,
+[data-art="globe"] .globe,
+[data-art="glyph"] .glyphs { display: block; }
+
+@keyframes art-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+
+/* Easter Egg: Klick springt zur nächsten Grafik (nur mit hero-art.js) */
+[data-art] .hero-art {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    transition: transform .4s ease;
+}
+
+[data-art] .hero-art:hover { transform: scale(1.03); }
+[data-art] .hero-art:active { transform: scale(0.97); }
+
+/* Gemeinsamer Außenring aller drei Grafiken */
+.orbit { fill: none; stroke: var(--gold); stroke-opacity: 0.3; stroke-width: 0.7; stroke-dasharray: 2 6; transform-box: fill-box; transform-origin: center; animation: orbit 90s linear infinite; }
+.cap { font-family: var(--font); font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--muted); }
+
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+/* --- Grafik 1: Linien-Globus, Lichtpunkte DE ⇄ RU --- */
 .g-line { fill: none; stroke: var(--gold); stroke-opacity: 0.2; stroke-width: 1; }
 .g-outline { fill: none; stroke: var(--gold); stroke-opacity: 0.6; stroke-width: 1.1; }
-.g-orbit { fill: none; stroke: var(--gold); stroke-opacity: 0.3; stroke-width: 0.7; stroke-dasharray: 2 6; transform-origin: 180px 180px; animation: orbit 90s linear infinite; }
 
 .g-mer {
     fill: none; stroke: var(--gold); stroke-opacity: 0.22; stroke-width: 1;
@@ -280,11 +312,10 @@ strong { font-weight: 600; }
 .g-mer:nth-of-type(11) { animation-delay: -15s; }
 
 @keyframes spin { from { transform: scaleX(1); } to { transform: scaleX(-1); } }
-@keyframes orbit { to { transform: rotate(360deg); } }
 
 .g-arc { fill: none; stroke: var(--gold); stroke-opacity: 0.6; stroke-width: 1.3; stroke-dasharray: 1.5 2.5; }
-.g-spark--back { stroke: var(--gold); }
 .g-spark { fill: none; stroke: #ffffff; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 8 200; stroke-dashoffset: 8; animation: travel 3.5s ease-in-out infinite; }
+.g-spark--back { stroke: var(--gold); }
 
 @keyframes travel {
     0% { stroke-dashoffset: 8; opacity: 0; }
@@ -300,16 +331,10 @@ strong { font-weight: 600; }
     60%, 100% { transform: scale(3.2); opacity: 0; }
 }
 
-/* Buchstaben „D ⇄ Д“ (aus Entwurf K): schreiben sich beim Laden selbst */
-.glyphs { display: none; width: min(20rem, 78%); margin-bottom: 1.75rem; }
-.glyphs svg { display: block; width: 100%; height: auto; overflow: visible; }
+.g-label { font-family: var(--font-display); font-size: 17px; font-weight: 400; letter-spacing: 0.14em; fill: var(--heading); }
 
-/* Zufallswahl aus hero-art.js; ohne JavaScript bleibt es beim Globus */
-[data-art="glyph"] .globe { display: none; }
-[data-art="glyph"] .glyphs { display: block; }
-
+/* --- Grafik 2: Buchstaben „D ⇄ Д“ schreiben sich selbst --- */
 .ring { fill: none; stroke: var(--gold); stroke-opacity: 0.35; stroke-width: 1; }
-.ring--dash { stroke-dasharray: 2 7; transform-origin: 210px 180px; animation: orbit 80s linear infinite; }
 
 .glyph {
     font-family: var(--font-display);
@@ -327,13 +352,44 @@ strong { font-weight: 600; }
 
 .base { stroke: var(--gold); stroke-opacity: 0.5; stroke-width: 1; }
 .swap { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0; animation: fade 1s ease 3s forwards; }
-.cap { font-family: var(--font); font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--muted); }
 
 @keyframes write { to { stroke-dashoffset: 0; } }
 @keyframes hover-y { 50% { transform: translateY(-6px); } }
 @keyframes fade { to { opacity: 1; } }
 
-.g-label { font-family: var(--font-display); font-size: 17px; font-weight: 400; letter-spacing: 0.14em; fill: var(--heading); }
+/* --- Grafik 3: Begrüßung – Deutsch wird getippt, Russisch antwortet --- */
+.bubble { fill: rgba(245, 245, 242, 0.03); stroke: var(--heading); stroke-opacity: 0.5; stroke-width: 1.2; }
+.bubble--ru { fill: rgba(216, 197, 156, 0.06); stroke: var(--gold); stroke-opacity: 0.8; }
+
+.say { font-family: var(--font-display); font-size: 22px; font-weight: 400; fill: var(--heading); }
+.say--ru { fill: var(--gold); }
+
+/* Je Auftritt ein Wortpaar (data-pair aus hero-art.js, ohne JS das erste) */
+.pair { display: none; }
+.pair:first-of-type { display: inline; }
+[data-pair="2"] .pair:first-of-type, [data-pair="3"] .pair:first-of-type { display: none; }
+[data-pair="2"] .pair:nth-of-type(2), [data-pair="3"] .pair:nth-of-type(3) { display: inline; }
+
+/* Deutsch tippt, drei Punkte, Russisch antwortet – dann bleibt das Paar stehen */
+.pair .say { clip-path: inset(0 100% 0 0); animation: type-de 5s steps(14, end) forwards; }
+.pair .say--ru { animation-name: type-ru; }
+.pair .dots { opacity: 0; fill: var(--gold); animation: dots 5s forwards; }
+
+@keyframes type-de {
+    0%, 3% { clip-path: inset(0 100% 0 0); }
+    25%, 100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes dots {
+    0%, 27% { opacity: 0; }
+    30%, 42% { opacity: 1; }
+    45%, 100% { opacity: 0; }
+}
+
+@keyframes type-ru {
+    0%, 45% { clip-path: inset(0 100% 0 0); }
+    67%, 100% { clip-path: inset(0 0 0 0); }
+}
 
 .hero-name {
     margin-bottom: 1.5rem;
@@ -367,14 +423,15 @@ strong { font-weight: 600; }
 
 .hero-text { max-width: 36rem; margin-bottom: 2rem; }
 
-/* ---------- Bereiche ---------- */
+/* ==========================================================================
+   Inhalt
+   ========================================================================== */
 .section { padding-block: 4rem; }
 .section--alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
-.section--lead { padding-block: 0 1rem; }
 
 .section-title {
     position: relative;
-    font-size: clamp(1.9rem, 1.4rem + 2vw, 2.8rem);
+    font-size: clamp(1.8rem, 1.4rem + 1.8vw, 2.6rem);
     padding-bottom: 1rem;
     margin-bottom: 2rem;
 }
@@ -389,19 +446,31 @@ strong { font-weight: 600; }
 .section-title--center { text-align: center; }
 .section-title--center::after { left: 50%; transform: translateX(-50%); }
 
-.lead {
-    max-width: 50rem; margin: 0 auto;
-    padding-top: 3rem;
-    border-top: 1px solid var(--line);
-    text-align: center;
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.7rem);
-    font-weight: 300;
-    line-height: 1.55;
-    color: var(--heading);
+/* ---------- Auf einen Blick: vier Fakten in einer Zeile ---------- */
+.facts { border-block: 1px solid var(--line); background: rgba(255, 255, 255, 0.012); }
+
+.facts-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+
+.fact {
+    display: flex; flex-direction: column; gap: 0.35rem;
+    margin: 0;
+    padding: 1.75rem 1rem 1.75rem 0;
 }
 
-/* ---------- Karten: offen, durch feine Linien getrennt ---------- */
+.fact:nth-child(even) { padding-left: 1.25rem; border-left: 1px solid var(--line); }
+.fact:nth-child(n+3) { border-top: 1px solid var(--line); }
+
+.fact-big {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.7rem);
+    font-weight: 200;
+    line-height: 1;
+    color: var(--gold);
+}
+
+.fact-text { font-size: 0.95rem; line-height: 1.45; color: var(--muted); }
+
+/* ---------- Leistungen: drei offene Spalten ---------- */
 .cards { display: grid; }
 
 .card {
@@ -415,60 +484,101 @@ strong { font-weight: 600; }
 
 .card-icon {
     display: grid; place-items: center;
-    width: 3.4rem; height: 3.4rem; margin-bottom: 1.4rem;
+    width: 3.4rem; height: 3.4rem; margin-bottom: 1.25rem;
     border: 1px solid var(--gold); border-radius: 50%;
     color: var(--gold);
     transition: background-color .4s, color .4s;
 }
 
 .card-icon .i { width: 1.5rem; height: 1.5rem; }
-
 .card:hover .card-icon { background: var(--gold); color: var(--on-gold); }
 
-.card-title { font-size: 1.5rem; font-weight: 400; margin-bottom: 0.75rem; }
-.card p { flex: 1; color: var(--text); }
+.card-title { margin-bottom: 0.6rem; font-family: var(--font); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
 
-.card-link { align-self: flex-start; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; text-decoration: none; }
+.card-lead {
+    flex: 1;
+    margin-bottom: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--heading);
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0 0 1.5rem; list-style: none; }
+
+.tags li {
+    margin: 0;
+    padding: 0.2rem 0.75rem;
+    border: 1px solid var(--line); border-radius: 999px;
+    font-size: 0.88rem; color: var(--text);
+    transition: border-color .3s;
+}
+
+.card:hover .tags li { border-color: rgba(216, 197, 156, 0.35); }
+
+.card-link { align-self: flex-start; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; text-decoration: none; }
 .card-link::after { content: ""; position: absolute; inset: 0; }
 .card-link:focus-visible { outline: none; }
 .card:has(.card-link:focus-visible) { outline: 2px solid var(--gold); outline-offset: 4px; }
 .card-link .arrow { display: inline-block; margin-left: 0.4rem; transition: transform .3s; }
 .card:hover .card-link .arrow { transform: translateX(6px); }
 
-/* ---------- Praxis ---------- */
-.practice { display: grid; gap: 2.5rem; }
-
-.check-list { padding: 0; margin: 0; list-style: none; }
-.check-list li { position: relative; padding-left: 1.75rem; font-size: 1.1rem; }
-.check-list li + li { margin-top: 1rem; }
-
-.check-list li::before {
-    content: "";
-    position: absolute; left: 0.2rem; top: 0.6em;
-    width: 0.5rem; height: 0.5rem;
-    border: 1px solid var(--gold);
-    transform: rotate(45deg);
+.modes {
+    margin: 2.5rem auto 0;
+    max-width: 52rem;
+    text-align: center;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
 }
 
-.experience { display: grid; gap: 0; border: 1px solid var(--line); }
+.modes span { margin-inline: 0.5rem; color: var(--gold); }
 
-.exp { padding: 1.5rem; }
-.exp + .exp { border-top: 1px solid var(--line); }
+/* ---------- So arbeite ich + In drei Schritten ---------- */
+.split { display: grid; gap: 3.5rem; }
 
-.exp h3 { margin-bottom: 0.4rem; font-family: var(--font); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
-.exp p { margin: 0; font-family: var(--font-display); font-size: 1.2rem; font-weight: 300; color: var(--heading); line-height: 1.4; }
+.principles { display: grid; gap: 1.5rem; padding: 0; margin: 0; list-style: none; }
+.principles li { display: flex; gap: 1rem; align-items: flex-start; }
+.principles .i { width: 1.9rem; height: 1.9rem; color: var(--gold); margin-top: 0.15rem; }
+.principles strong { display: block; font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--heading); }
 
-/* ---------- Warum ---------- */
-.why { display: grid; gap: 2rem; padding: 0; margin: 0; list-style: none; }
+.steps { position: relative; padding: 0; margin: 0; list-style: none; counter-reset: step; }
 
-.why li { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
-.why .i { width: 2.4rem; height: 2.4rem; color: var(--gold); }
+/* senkrechte Linie verbindet die Schritte */
+.steps::before {
+    content: "";
+    position: absolute; left: 1.2rem; top: 1.2rem; bottom: 1.2rem;
+    width: 1px;
+    background: linear-gradient(var(--gold), rgba(216, 197, 156, 0.1));
+}
+
+.steps li {
+    position: relative;
+    counter-increment: step;
+    padding-left: 3.75rem;
+    min-height: 2.4rem;
+}
+
+.steps li + li { margin-top: 1.75rem; }
+
+.steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 0;
+    display: grid; place-items: center;
+    width: 2.4rem; height: 2.4rem;
+    border: 1px solid var(--gold); border-radius: 50%;
+    background: var(--bg-alt);
+    font-family: var(--font-display); font-size: 1rem; color: var(--gold);
+}
+
+.steps strong { display: block; font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--heading); }
 
 /* ---------- Kontakt ---------- */
 .contact-box {
     padding: 3rem 1.5rem;
     text-align: center;
     border: 1px solid var(--line);
+    border-radius: 1.5rem;
     background: radial-gradient(30rem 14rem at 50% 0%, rgba(216, 197, 156, 0.09), transparent 70%);
 }
 
@@ -489,6 +599,8 @@ strong { font-weight: 600; }
 
 .contact-details a:hover { color: var(--gold); }
 
+.contact-box .btn-group { margin-bottom: 2rem; }
+
 .note { font-size: 0.95rem; font-style: italic; color: var(--muted); max-width: 44rem; margin: 0 auto; }
 
 /* ---------- Fuß ---------- */
@@ -497,57 +609,47 @@ strong { font-weight: 600; }
 .site-footer a { color: var(--muted); }
 .site-footer a:hover { color: var(--gold); }
 
-/* ---------- Ab Tablet ---------- */
+/* ==========================================================================
+   Ab Tablet (40em)
+   ========================================================================== */
 @media (min-width: 40em) {
     :root { --gutter: 2.5rem; }
 
-    .hero { padding: 4.5rem 0 6rem; }
-    .section { padding-block: 6rem; }
+    .site-header { padding: 1rem 1rem 0; }
+    .header-bar { padding: 0.8rem 0.8rem 0.8rem 1rem; border-radius: 999px; }
 
-    .experience { grid-template-columns: repeat(2, 1fr); }
-    .exp + .exp { border-top: 0; }
-    .exp:nth-child(n+3) { border-top: 1px solid var(--line); }
-    .exp:nth-child(even) { border-left: 1px solid var(--line); }
-
-    .why { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+    .hero { padding: 3.5rem 0 6rem; }
+    .section { padding-block: 5.5rem; }
     .contact-box { padding: 4.5rem 3rem; }
 }
 
-/* ---------- Ab Desktop: Inhalte ---------- */
-@media (min-width: 64em) {
-    .cards { grid-template-columns: repeat(3, 1fr); }
-
-    .card { padding: 0.5rem 2.25rem 0.5rem; border-top: 0; }
-    .card:first-child { padding-left: 0; }
-    .card:last-child { padding-right: 0; border-bottom: 0; }
-    .card + .card { border-left: 1px solid var(--line); }
-
-    .practice { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-
-    .why { grid-template-columns: repeat(4, 1fr); gap: 2.5rem; }
+/* Offenes Menü: Leiste nicht mehr ganz rund, sonst wirkt das Panel gequetscht */
+@media (min-width: 40em) and (max-width: 59.99em) {
+    .header-bar:has(.nav-toggle:checked) { border-radius: 1.75rem; }
 }
 
-/* ---------- Ab 82em (1312px): Navigation in der Mitte, einzeilig ---------- */
-@media (min-width: 82em) {
+/* ==========================================================================
+   Ab 60em (960px): Navigation (4 Punkte) in der Mitte, einzeilig
+   ========================================================================== */
+@media (min-width: 60em) {
     .header-bar {
         grid-template-columns: 1fr auto 1fr;
         grid-template-areas: "brand nav tools";
         column-gap: 2rem;
-        padding-block: 1.25rem;
+        padding: 0.85rem 0.85rem 0.85rem 1.1rem;
     }
 
-    .brand-sub { display: none; }
     .tools { justify-self: end; }
     .nav-toggle, .nav-toggle-label { display: none; }
 
     .site-nav, .nav-toggle:checked ~ .site-nav { display: block; padding: 0; }
 
-    .site-nav ul { display: flex; gap: 1.5rem; }
+    .site-nav ul { display: flex; gap: 2rem; }
 
     .site-nav ul a {
         position: relative;
         padding: 0.3rem 0; border: 0;
-        font-size: 0.95rem; letter-spacing: 0.03em; white-space: nowrap;
+        font-size: 0.98rem; letter-spacing: 0.03em; white-space: nowrap;
     }
 
     .site-nav ul a::after {
@@ -556,20 +658,462 @@ strong { font-weight: 600; }
         transition: left .35s ease, right .35s ease;
     }
 
-    .site-nav ul a:hover::after, .site-nav ul a[aria-current="page"]::after { left: 0; right: 0; }
-
-    .globe, .glyphs { width: 22rem; }
+    .site-nav ul a:hover::after, .site-nav ul a[aria-current]::after { left: 0; right: 0; }
 }
 
-@media (min-width: 82em) and (max-width: 90em) {
-    .site-nav ul { gap: 1.2rem; }
-    .header-bar { column-gap: 1.5rem; }
+/* Schmaler Desktop: Untertitel der Marke weglassen */
+@media (min-width: 60em) and (max-width: 72em) {
+    .brand-sub { display: none; }
 }
 
+/* ==========================================================================
+   Ab 64em: Inhalte mehrspaltig
+   ========================================================================== */
+@media (min-width: 64em) {
+    .facts-grid { grid-template-columns: repeat(4, 1fr); }
+    .fact, .fact:nth-child(even) { padding: 2rem 1.5rem; border-top: 0; border-left: 1px solid var(--line); }
+    .fact:first-child { padding-left: 0; border-left: 0; }
+    .fact:last-child { padding-right: 0; }
+
+    .cards { grid-template-columns: repeat(3, 1fr); }
+    .card { padding: 0.5rem 2.25rem; border-top: 0; }
+    .card:first-child { padding-left: 0; }
+    .card:last-child { padding-right: 0; border-bottom: 0; }
+    .card + .card { border-left: 1px solid var(--line); }
+
+    .split { grid-template-columns: 1fr 1fr; gap: 5rem; }
+
+    .hero-art { width: 22rem; }
+}
+
+/* ==========================================================================
+   Unterseiten
+   ========================================================================== */
+
+/* Seitenkopf: zentriert wie der Hero, aber kompakter */
+.page-hero {
+    padding: 3rem 0 3.5rem;
+    text-align: center;
+    background: radial-gradient(36rem 18rem at 50% 10%, rgba(216, 197, 156, 0.08), transparent 70%);
+}
+
+.page-hero-inner { display: flex; flex-direction: column; align-items: center; }
+
+.page-hero h1 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(2.2rem, 1.3rem + 3.6vw, 3.8rem);
+    font-weight: 200;
+    letter-spacing: -0.015em;
+}
+
+.page-icon {
+    display: grid; place-items: center;
+    width: 4.25rem; height: 4.25rem; margin-bottom: 1.5rem;
+    border: 1px solid var(--gold); border-radius: 50%;
+    color: var(--gold);
+    box-shadow: 0 0 0 10px rgba(216, 197, 156, 0.05);
+}
+
+.page-icon .i { width: 1.9rem; height: 1.9rem; }
+
+.eyebrow {
+    margin-bottom: 1rem;
+    font-size: 0.8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.3em;
+    color: var(--gold);
+}
+
+.subtitle {
+    max-width: 44rem;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1rem + 0.8vw, 1.55rem);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.page-lead { max-width: 44rem; margin: 1.75rem 0 0; color: var(--text); }
+
+.section--flush { padding-top: 0; }
+.section--notes { padding-block: 0 4rem; text-align: center; }
+.section--notes .note + .note { margin-top: 0.5rem; }
+
+/* Leistungen als Raster mit feinen Linien, nummeriert */
+.offer {
+    display: grid;
+    padding: 0; margin: 0; list-style: none;
+    border-top: 1px solid var(--line);
+    counter-reset: offer;
+}
+
+.offer li {
+    counter-increment: offer;
+    position: relative;
+    margin: 0;
+    padding: 1.6rem 0 1.6rem 3.25rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.offer li::before {
+    content: counter(offer, decimal-leading-zero);
+    position: absolute; left: 0; top: 1.75rem;
+    font-family: var(--font-display); font-size: 0.9rem; letter-spacing: 0.08em;
+    color: var(--gold);
+}
+
+.offer strong { display: block; margin-bottom: 0.25rem; font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--heading); }
+.offer span { color: var(--muted); }
+
+/* Für wen + Liste mit Goldrauten */
+.for-whom {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--heading);
+}
+
+.check-list { padding: 0; margin: 0; list-style: none; }
+.check-list li { position: relative; padding-left: 1.75rem; }
+.check-list li + li { margin-top: 1.1rem; }
+
+.check-list li::before {
+    content: "";
+    position: absolute; left: 0.2rem; top: 0.62em;
+    width: 0.5rem; height: 0.5rem;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+}
+
+.check-list strong { display: block; font-family: var(--font-display); font-size: 1.15rem; font-weight: 400; color: var(--heading); }
+.check-list--plain li + li { margin-top: 0.8rem; }
+
+/* Abschluss jeder Unterseite */
+.cta-band { border-top: 1px solid var(--line); background: radial-gradient(30rem 14rem at 50% 100%, rgba(216, 197, 156, 0.08), transparent 70%); }
+.cta { text-align: center; }
+.cta-title { margin-bottom: 1.75rem; font-size: clamp(1.9rem, 1.4rem + 2vw, 2.8rem); font-weight: 200; }
+.more { margin: 2rem 0 0; font-size: 0.95rem; color: var(--muted); }
+.more a { margin-inline: 0.25rem; }
+.more span { color: var(--line); }
+
+/* Über mich */
+.edu { display: grid; gap: 1.25rem; padding: 0; margin: 0; list-style: none; }
+.edu li { display: flex; gap: 1rem; align-items: flex-start; }
+.edu .i { width: 1.9rem; height: 1.9rem; color: var(--gold); margin-top: 0.1rem; }
+
+.experience { display: grid; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+.exp { padding: 1.5rem; }
+.exp + .exp { border-top: 1px solid var(--line); }
+.exp h3 { margin-bottom: 0.4rem; font-family: var(--font); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
+.exp p { margin: 0; font-family: var(--font-display); font-size: 1.2rem; font-weight: 300; color: var(--heading); line-height: 1.4; }
+
+.principles--grid { max-width: 60rem; margin-inline: auto; }
+
+/* Kontakt */
+.contact-cards { display: grid; gap: 1rem; padding: 0; margin: 0 0 2rem; list-style: none; }
+
+.contact-cards li {
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    margin: 0;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border: 1px solid var(--line); border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent);
+}
+
+.contact-cards .card-icon { margin-bottom: 0.75rem; }
+.contact-cards strong { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); }
+
+.contact-cards .big {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 1rem + 0.8vw, 1.45rem);
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--heading);
+    text-decoration-color: var(--gold);
+    overflow-wrap: anywhere;
+}
+
+.contact-cards a.big:hover { color: var(--gold); }
+
+/* E-Mail-Adresse nicht umbrechen: Schrift wächst mit der Säulenbreite, bleibt aber in der Säule */
+.contact-cards .big--mail {
+    font-size: clamp(1rem, 0.35rem + 1.2vw, 1.2rem);
+    white-space: nowrap;
+    overflow-wrap: normal;
+}
+.contact-cards .hint { margin-top: 0.5rem; font-size: 0.92rem; color: var(--muted); }
+
+.facts-list { display: grid; gap: 1.75rem; margin: 0; }
+.facts-list dt { margin-bottom: 0.3rem; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
+.facts-list dd { margin: 0; font-family: var(--font-display); font-size: 1.15rem; font-weight: 300; line-height: 1.5; color: var(--heading); }
+
+/* Rechtstexte */
+.legal { max-width: 44rem; margin-inline: auto; }
+.legal h2 { margin: 2.25rem 0 0.6rem; font-size: 1.3rem; font-weight: 400; }
+.legal h2:first-child { margin-top: 0; }
+
+@media (min-width: 40em) {
+    .page-hero { padding: 4rem 0 4.5rem; }
+    .offer { grid-template-columns: repeat(2, 1fr); column-gap: 3rem; }
+    .experience { grid-template-columns: repeat(2, 1fr); }
+    .exp + .exp { border-top: 0; }
+    .exp:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .exp:nth-child(even) { border-left: 1px solid var(--line); }
+    .principles--grid { grid-template-columns: repeat(2, 1fr); column-gap: 3rem; }
+}
+
+@media (min-width: 64em) {
+    .offer { grid-template-columns: repeat(3, 1fr); }
+    .experience { grid-template-columns: repeat(4, 1fr); }
+    .exp:nth-child(n+3) { border-top: 0; }
+    .exp + .exp { border-left: 1px solid var(--line); }
+    .contact-cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ==========================================================================
+   One-Pager: Start · Leistungen · Über mich · Kontakt als „Bildschirme“
+   ========================================================================== */
+.screen { position: relative; padding-block: 4rem; }
+.screen--alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
+.screen--services { padding-top: 0; }
+.screen--services .screen-body { padding-top: 3.5rem; }
+
+/* Kleine Überschrift in Gold, Großbuchstaben */
+.label {
+    margin: 0 0 1.1rem;
+    font-family: var(--font);
+    font-size: 0.8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.24em;
+    line-height: 1.4;
+    color: var(--gold);
+}
+
+.label--center { text-align: center; }
+
+/* ---------- Über mich ---------- */
+.about-grid { display: grid; gap: 2.5rem; align-items: center; margin-bottom: 3.5rem; }
+
+/* Porträt im Kreis – gleiche Formensprache wie Globus, Monogramm und Icons:
+   goldene Linie, gestrichelter Ring mit langsam umlaufendem Lichtpunkt */
+.portrait {
+    position: relative;
+    width: min(15rem, 66vw);
+    aspect-ratio: 1;
+    margin: 1.25rem auto;
+}
+
+.portrait-frame {
+    position: absolute; inset: 0;
+    overflow: hidden;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgba(216, 197, 156, 0.05), 0 30px 60px -30px rgba(216, 197, 156, 0.35);
+}
+
+.portrait-frame img {
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 18%;
+    transform: scale(1.06);
+    filter: saturate(0.85) contrast(1.03);
+}
+
+.portrait-orbit {
+    position: absolute; inset: -1.1rem;
+    border: 1px dashed rgba(216, 197, 156, 0.35);
+    border-radius: 50%;
+    animation: orbit 40s linear infinite;
+}
+
+.portrait-orbit::after {
+    content: "";
+    position: absolute; top: -4px; left: 50%;
+    width: 8px; height: 8px; margin-left: -4px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px 2px rgba(216, 197, 156, 0.6);
+}
+
+.about-text { text-align: center; }
+.about-text .subtitle { margin-inline: auto; }
+
+.about-name {
+    margin-bottom: 0.5rem;
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.4rem);
+    font-weight: 200;
+    letter-spacing: -0.01em;
+}
+
+.about-lead { max-width: 40rem; margin: 1.5rem auto 2.25rem; }
+
+.about-cols { display: grid; gap: 2rem; text-align: left; }
+
+.experience { margin-bottom: 3.5rem; }
+.exp h4 { margin: 0 0 0.4rem; font-family: var(--font); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.18em; color: var(--gold); }
+
+.principles--row li { flex-direction: column; gap: 0.75rem; }
+
+/* ---------- Kontakt ---------- */
+.cta-hint { max-width: 36rem; margin: -0.5rem auto 1.75rem; color: var(--muted); }
+
+.contact-line {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 0.5rem 1.75rem;
+    margin: 1.75rem 0 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.contact-line a { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; }
+.contact-line a:hover { text-decoration: underline; }
+
+.contact-grid {
+    display: grid; gap: 3rem;
+    margin-top: 3.5rem; padding-top: 3rem;
+    border-top: 1px solid var(--line);
+}
+
+.screen--contact .steps li::before { background: var(--bg); }
+
+.notes { margin-top: 3rem; text-align: center; }
+.notes .note + .note { margin-top: 0.5rem; }
+
+@media (min-width: 40em) {
+    .about-cols { grid-template-columns: 1fr 1fr; }
+    .principles--row { grid-template-columns: repeat(2, 1fr); column-gap: 2.5rem; }
+}
+
+@media (min-width: 64em) {
+    .about-grid { grid-template-columns: 19rem 1fr; gap: 4.5rem; }
+    .portrait { width: 17rem; margin: 1.25rem; }
+    .about-text { text-align: left; }
+    .about-text .subtitle, .about-lead { margin-inline: 0; }
+
+    .principles--row { grid-template-columns: repeat(4, 1fr); }
+
+    .contact-grid { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}
+
+/* Am Desktop rasten die Bildschirme beim Scrollen sanft ein (nicht am Handy, nicht bei niedrigen Fenstern) */
+@media (min-width: 64em) and (min-height: 40em) {
+    html { scroll-padding-top: 5.75rem; scroll-snap-type: y proximity; }
+
+    .screen {
+        display: flex; flex-direction: column; justify-content: center;
+        min-height: calc(100svh - 5.75rem);
+        scroll-snap-align: start;
+    }
+}
+
+/* Über mich: Erfahrung als Stichwort-Pillen */
+.tags--about { margin: 0; }
+.tags--about li { font-size: 0.85rem; }
+
+/* ---------- Bewegung reduzieren ---------- */
 @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .glyph { stroke-dashoffset: 0; }
     .swap { opacity: 1; }
     .g-spark, .g-ping { display: none; }
-    .site-header { background: rgba(17, 21, 24, 0.92) !important; border-bottom-color: var(--line) !important; }
+    .pair .dots { display: none; }
+    .pair .say { clip-path: none; }
+}
+
+/* ==========================================================================
+   404-Seite: Sprechblasen „Wo ist die Seite?“ – „Где страница?“
+   ========================================================================== */
+.error-hero .eyebrow { margin-bottom: 0.5rem; }
+.error-art { width: min(17rem, 72%); margin-bottom: 1.25rem; }
+.error-hero h1 { font-size: clamp(1.9rem, 1.2rem + 2.8vw, 3rem); }
+.error-hero .btn-group { margin-top: 2rem; }
+.error-hero .note { margin-top: 1.75rem; }
+
+/* ==========================================================================
+   Druckansicht: weiß, schwarz, ohne Animationen und Bedienelemente
+   ========================================================================== */
+@media print {
+    @page { margin: 18mm 16mm; }
+
+    :root {
+        --bg: #fff; --bg-alt: #fff; --line: #999;
+        --text: #000; --muted: #333; --heading: #000;
+        --gold: #000; --gold-hover: #000; --on-gold: #fff;
+    }
+
+    html { scroll-snap-type: none !important; }
+    body { background: #fff; color: #000; font-size: 11pt; line-height: 1.5; }
+
+    *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
+
+    body::before,
+    .skip-link, .nav-toggle, .nav-toggle-label, .site-nav, .tools,
+    .hero-art, .btn-group, .card-link, .card-icon, .page-icon,
+    .portrait-orbit, .more { display: none !important; }
+
+    /* Kopf: nur Marke mit Untertitel */
+    .site-header { position: static; padding: 0; }
+
+    .header-bar {
+        display: block;
+        padding: 0 0 4mm;
+        background: none !important;
+        border: 0; border-bottom: 1px solid #000; border-radius: 0;
+        -webkit-backdrop-filter: none; backdrop-filter: none;
+    }
+
+    .brand-sub { display: block !important; }
+    .monogram { border-color: #000; color: #000; }
+
+    /* Bereiche untereinander, ohne Bildschirmhöhe und Hintergründe */
+    .hero, .page-hero, .screen, .section, .facts, .cta-band, .screen--alt, .section--alt {
+        display: block !important;
+        min-height: 0 !important;
+        padding-block: 6mm !important;
+        background: none !important;
+        border: 0 !important;
+    }
+
+    .hero, .page-hero { text-align: left; }
+    .hero-inner, .page-hero-inner { display: block; }
+    .claim-main { font-size: 24pt; font-weight: 300; }
+    .claim-sub, .subtitle { font-size: 13pt; }
+    .section-title { font-size: 16pt; }
+    .section-title::after { background: #000; }
+
+    .fact-big { color: #000; font-size: 18pt; }
+    .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .fact { padding: 0 3mm 0 0 !important; border: 0 !important; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+    .card { padding: 0 !important; border: 0 !important; }
+    .card-lead { font-size: 12pt; }
+    .tags li { border-color: #999; }
+
+    .about-grid { grid-template-columns: 38mm 1fr; gap: 8mm; align-items: start; }
+    .portrait { width: 38mm; margin: 0; }
+    .portrait-frame { border-color: #000; }
+    .about-text, .about-text .subtitle, .about-lead { text-align: left; margin-inline: 0; }
+
+    .contact-cards { grid-template-columns: repeat(3, 1fr); }
+    .contact-cards li { padding: 4mm; border-color: #999; background: none; }
+    .contact-cards .big { font-size: 12pt; }
+
+    .steps::before { background: #000; }
+    .steps li::before { background: #fff; border-color: #000; color: #000; }
+
+    .card, .exp, .offer li, .contact-cards li, .principles li, .steps li, .facts-list > div, li { break-inside: avoid; }
+    h1, h2, h3, h4, .label { break-after: avoid; }
+
+    /* Begrüßung (404) und Texte nicht abschneiden */
+    .pair .say { clip-path: none !important; }
+
+    a { color: #000; text-decoration: none; }
+
+    /* Externe Adressen ausschreiben */
+    main a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
+
+    .site-footer { border-top: 1px solid #000; text-align: left; }
 }
