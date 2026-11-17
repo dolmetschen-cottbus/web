@@ -1,3 +1,5 @@
+Copyright 2020 The Jost Project Authors (https://github.com/indestructible-type/Jost) – Datei Jost-sub.woff2 (Teilmenge).
+
 Copyright 2010-2024 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'. All Rights Reserved. Source is a trademark of Adobe in the United States and/or other countries.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
