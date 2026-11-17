@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="hero-art.js"></script>
   <script src="site.js" defer></script>
+  <script src="season.js" defer></script>
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 </head>
 <body>
@@ -104,20 +105,36 @@
               <path class="bubble" d="M65 62h200a33 33 0 0 1 33 33v12a33 33 0 0 1-33 33H96l-26 22 4-22h-9a33 33 0 0 1-33-33V95a33 33 0 0 1 33-33z"/>
               <path class="bubble bubble--ru" d="M95 202h200a33 33 0 0 1 33 33v12a33 33 0 0 1-33 33h-9l4 22-26-22H95a33 33 0 0 1-33-33v-12a33 33 0 0 1 33-33z"/>
               <text x="334" y="326" text-anchor="end" class="cap" lang="ru">Русский</text>
-              <g class="pair">
+              <g class="pair pair--1">
                 <text x="56" y="110" class="say">Guten Tag!</text>
                 <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
                 <text x="86" y="250" class="say say--ru" lang="ru">Добрый день!</text>
               </g>
-              <g class="pair">
+              <g class="pair pair--2">
                 <text x="56" y="110" class="say">Herzlich willkommen!</text>
                 <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
                 <text x="86" y="250" class="say say--ru" lang="ru">Добро пожаловать!</text>
               </g>
-              <g class="pair">
+              <g class="pair pair--3">
                 <text x="56" y="110" class="say">Vielen Dank!</text>
                 <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
                 <text x="86" y="250" class="say say--ru" lang="ru">Большое спасибо!</text>
+              </g>
+              <!-- Festtage (hero-art.js wählt nach Datum): Dezember, Neujahr, russisches Weihnachten am 7. Januar -->
+              <g class="pair pair--xmas">
+                <text x="56" y="110" class="say">Frohe Weihnachten!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С наступающим!</text>
+              </g>
+              <g class="pair pair--ny">
+                <text x="56" y="110" class="say">Frohes neues Jahr!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С Новым годом!</text>
+              </g>
+              <g class="pair pair--xmasru">
+                <text x="56" y="110" class="say">Frohe Weihnachten!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">С Рождеством!</text>
               </g>
             </svg>
           </div>

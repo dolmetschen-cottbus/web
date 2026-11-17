@@ -366,9 +366,13 @@ html:not([data-art]) .greet,
 
 /* Je Auftritt ein Wortpaar (data-pair aus hero-art.js, ohne JS das erste) */
 .pair { display: none; }
-.pair:first-of-type { display: inline; }
-[data-pair="2"] .pair:first-of-type, [data-pair="3"] .pair:first-of-type { display: none; }
-[data-pair="2"] .pair:nth-of-type(2), [data-pair="3"] .pair:nth-of-type(3) { display: inline; }
+html:not([data-pair]) .pair--1,
+[data-pair="1"] .pair--1,
+[data-pair="2"] .pair--2,
+[data-pair="3"] .pair--3,
+[data-pair="xmas"] .pair--xmas,
+[data-pair="ny"] .pair--ny,
+[data-pair="xmasru"] .pair--xmasru { display: inline; }
 
 /* Deutsch tippt, drei Punkte, Russisch antwortet – dann bleibt das Paar stehen */
 .pair .say { clip-path: inset(0 100% 0 0); animation: type-de 5s steps(14, end) forwards; }
@@ -1116,4 +1120,61 @@ html:not([data-art]) .greet,
     main a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
 
     .site-footer { border-top: 1px solid #000; text-align: left; }
+}
+
+/* ==========================================================================
+   Winter-Easter-Egg (Dezember/Januar, season.js): fünf feine Eiskristalle
+   schweben sehr langsam über die ganze Seite – unter der Kopfleiste, nicht klickbar
+   ========================================================================== */
+.snow {
+    position: fixed; inset: 0;
+    z-index: 45;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.snow i {
+    position: absolute;
+    top: -6vh;
+    width: 14px; height: 14px;
+    opacity: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23efe6d0' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M12 2v20M3.3 7l17.4 10M3.3 17l17.4-10M9.7 3.9 12 6.2l2.3-2.3M9.7 20.1 12 17.8l2.3 2.3M3.6 10.4l3.1.8-.8 3.1M20.4 13.6l-3.1-.8.8-3.1M3.6 13.6l3.1-.8-.8-3.1M20.4 10.4l-3.1.8.8 3.1'/%3E%3C/svg%3E") no-repeat center / contain;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.35));
+    animation: snow-fall 28s linear infinite;
+}
+
+.snow i:nth-child(1) { left: 7%;  width: 12px; height: 12px; animation-duration: 30s; animation-delay: -3s; }
+.snow i:nth-child(2) { left: 26%; width: 16px; height: 16px; animation-duration: 25s; animation-delay: -15s; }
+.snow i:nth-child(3) { left: 51%; width: 10px; height: 10px; animation-duration: 34s; animation-delay: -24s; }
+.snow i:nth-child(4) { left: 72%; width: 14px; height: 14px; animation-duration: 27s; animation-delay: -9s; }
+.snow i:nth-child(5) { left: 91%; width: 11px; height: 11px; animation-duration: 22s; animation-delay: -18s; }
+
+@keyframes snow-fall {
+    0%   { transform: translate3d(0, 0, 0) rotate(0deg);       opacity: 0; }
+    10%  { opacity: 0.55; }
+    50%  { transform: translate3d(28px, 55vh, 0) rotate(120deg); }
+    90%  { opacity: 0.45; }
+    100% { transform: translate3d(-12px, 112vh, 0) rotate(240deg); opacity: 0; }
+}
+
+/* Goldkristall am Monogramm, funkelt sacht */
+[data-season="winter"] .monogram { position: relative; }
+
+[data-season="winter"] .monogram::after {
+    content: "";
+    position: absolute; top: -6px; right: -6px;
+    width: 14px; height: 14px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d8c59c' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M12 2v20M3.3 7l17.4 10M3.3 17l17.4-10M9.7 3.9 12 6.2l2.3-2.3M9.7 20.1 12 17.8l2.3 2.3'/%3E%3C/svg%3E") no-repeat center / contain;
+    filter: drop-shadow(0 0 4px rgba(216, 197, 156, 0.7));
+    animation: twinkle 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.6; transform: rotate(0deg) scale(0.9); }
+    50%      { opacity: 1;   transform: rotate(30deg) scale(1.05); }
+}
+
+@media print {
+    .snow, [data-season="winter"] .monogram::after { display: none !important; }
 }
