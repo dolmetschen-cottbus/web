@@ -1,0 +1,17 @@
+{
+  "name": "Elena Mieck – Dolmetscherin Deutsch–Russisch",
+  "short_name": "Elena Mieck",
+  "description": "Dolmetschen und Übersetzen Deutsch–Russisch in Cottbus",
+  "lang": "de",
+  "start_url": "./de/",
+  "scope": "./",
+  "display": "minimal-ui",
+  "background_color": "#111518",
+  "theme_color": "#111518",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

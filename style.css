@@ -1508,3 +1508,72 @@ html:not([data-pair]) .pair--1,
 @media print {
     .egg-hunt, .egg-toast, [data-season="easter"] .monogram::after { display: none !important; }
 }
+
+/* ==========================================================================
+   Helfer: Sprachhinweis, Kopier-Bestätigung, Textauswahl, Scrollleiste (site.js)
+   ========================================================================== */
+
+::selection { background: rgba(216, 197, 156, 0.85); color: var(--on-gold); }
+
+html { scrollbar-color: #3a434b var(--bg); }
+
+/* Glas-Pille unten links: „Сайт есть и на русском языке →“ */
+.lang-hint {
+    position: fixed; left: 1rem; bottom: 1rem; z-index: 60;
+    display: flex; align-items: center; gap: 0.25rem;
+    max-width: calc(100% - 2rem);
+    padding: 0.35rem 0.35rem 0.35rem 0.45rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+        rgba(13, 17, 20, 0.78);
+    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .4s ease, transform .4s ease;
+}
+.lang-hint.is-on { opacity: 1; transform: none; }
+
+.lang-hint a {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.25rem 0.5rem 0.25rem 0;
+    color: var(--heading); text-decoration: none; font-size: 0.95rem;
+}
+.lang-hint a:hover { color: var(--gold); }
+.lang-hint-flag {
+    display: inline-grid; place-items: center;
+    width: 2rem; height: 2rem; border-radius: 50%;
+    font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.06em;
+    color: var(--on-gold); background: var(--gold);
+}
+.lang-hint-close {
+    display: grid; place-items: center;
+    width: 2rem; height: 2rem; padding: 0;
+    border: 0; border-radius: 50%;
+    font-size: 1.3rem; line-height: 1;
+    color: var(--muted); background: none; cursor: pointer;
+}
+.lang-hint-close:hover { color: var(--heading); background: rgba(255, 255, 255, 0.08); }
+
+/* „Adresse kopiert ✓“ */
+.copy-toast {
+    position: fixed; left: 50%; bottom: 1.5rem; z-index: 72;
+    margin: 0; padding: 0.6rem 1.2rem;
+    color: var(--on-gold); font-weight: 600; white-space: nowrap;
+    border-radius: 999px; background: var(--gold);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+    opacity: 0; transform: translate(-50%, 12px);
+    transition: opacity .3s ease, transform .3s ease;
+    pointer-events: none;
+}
+.copy-toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+    .lang-hint, .copy-toast { transition: none; }
+}
+
+@media print {
+    .lang-hint, .copy-toast { display: none !important; }
+}
