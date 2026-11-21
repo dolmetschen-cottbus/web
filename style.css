@@ -1993,3 +1993,15 @@ html { scrollbar-color: #3a434b var(--bg); }
 @media print {
     [data-season="womensday"] .monogram::after { display: none !important; }
 }
+
+/* ==========================================================================
+   Dolmetsch-Modus (site.js): Überschriften drehen sich wie Karten in die andere Sprache
+   ========================================================================== */
+.dm-flip { animation: dm-flip .46s ease-in-out; }
+
+@keyframes dm-flip {
+    0%   { transform: perspective(600px) rotateX(0deg); }
+    49%  { transform: perspective(600px) rotateX(90deg); }
+    51%  { transform: perspective(600px) rotateX(-90deg); }
+    100% { transform: perspective(600px) rotateX(0deg); }
+}
