@@ -1678,6 +1678,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 
 /* ---------- Silvester-Feuerwerk im Startbereich ---------- */
 .fireworks { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.fireworks--click { position: fixed; z-index: 45; }                  /* Klick-Raketen: über dem Inhalt, unter der Kopfleiste */
 [data-season="winter"] .hero-inner { position: relative; z-index: 1; }
 
 .fw-rocket {

@@ -1,7 +1,8 @@
 /* Saisonale Easter Eggs. Setzt data-season am <html>-Element; Aussehen und Bewegung kommen aus style.css.
    - Winter (Dezember, Januar): sieben feine Eiskristalle schweben über die Seite, gläserne Eiszapfen
      hängen an der Kopfleiste. Am 24.–26.12., 31.12. und 1.1. setzt Hover dem Porträt eine Weihnachtsmütze auf;
-     an Silvester/Neujahr steigt Goldfeuerwerk im Startbereich.   Test: ?winter, ?silvester
+     an Silvester/Neujahr Goldfeuerwerk statt Schnee: von selbst im Startbereich, dazu eine Rakete bei jedem
+     Klick in den Hintergrund.   Test: ?winter, ?silvester
    - Halloween (25. Oktober – 1. November): Spinnennetz oben rechts, mit Fäden an der schwebenden
      Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab; Hover über Lenas Foto
      macht daraus „Grusel-Lena“ (Mondlicht, Hexenhut, Fledermäuse); Fledermäuse auch am Monogramm.   Test: ?halloween
@@ -120,17 +121,21 @@
   }
 
   function winter() {
-    var snow = document.createElement("div");
-    snow.className = "snow";
-    snow.setAttribute("aria-hidden", "true");
-    for (var i = 0; i < 7; i++) { snow.appendChild(document.createElement("i")); }
-    document.body.appendChild(snow);
+    /* Silvester und Neujahr (31.12., 1.1.): Feuerwerk statt Schnee */
+    var newYear = (m === 11 && d === 31) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q);
+    if (!newYear) {
+      var snow = document.createElement("div");
+      snow.className = "snow";
+      snow.setAttribute("aria-hidden", "true");
+      for (var i = 0; i < 7; i++) { snow.appendChild(document.createElement("i")); }
+      document.body.appendChild(snow);
+    }
 
     icicles();
     /* Weihnachtsfeiertage (24.–26.12.) sowie Silvester und Neujahr: Mütze beim Hover über dem Porträt */
     if ((m === 11 && ((d >= 24 && d <= 26) || d === 31)) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q) || /[?&]winter\b/.test(q)) { xmasHat(); }
     /* Silvester und Neujahr: Goldfeuerwerk im Startbereich */
-    if ((m === 11 && d === 31) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q)) { fireworks(); }
+    if (newYear) { fireworks(); }
   }
 
   /* ---------- Eiszapfen aus Glas an der Unterkante der Kopfleiste ----------
@@ -262,22 +267,8 @@
 
   /* ---------- Silvester: Goldraketen links und rechts im Startbereich (nicht hinter dem Text) ---------- */
   function fireworks() {
-    var hero = document.querySelector(".hero");
-    if (!hero) { return; }
-    var layer = document.createElement("div");
-    layer.className = "fireworks";
-    layer.setAttribute("aria-hidden", "true");
-    hero.insertBefore(layer, hero.firstChild);
-    var visible = true;
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(hero);
-    }
-
-    function burst() {
-      var W = hero.clientWidth, H = hero.clientHeight;
-      var side = Math.random() < 0.5;
-      var x = W * (side ? 0.06 + Math.random() * 0.2 : 0.74 + Math.random() * 0.2);
-      var y = Math.min(H * 0.5, 420) * (0.25 + Math.random() * 0.6);
+    /* eine Rakete steigt zum Punkt (x, y) im Container auf und zerplatzt dort in Goldfunken */
+    function burst(layer, x, y) {
       var rise = 140 + Math.random() * 90;
       var rocket = document.createElement("i");
       rocket.className = "fw-rocket";
@@ -302,11 +293,42 @@
       layer.appendChild(rocket);
     }
 
+    /* Klick in den Hintergrund (nicht auf Links, Knöpfe, Grafiken mit eigener Klick-Funktion):
+       eine Rakete steigt genau dorthin auf – auf allen Seiten */
+    var sky = document.createElement("div");
+    sky.className = "fireworks fireworks--click";
+    sky.setAttribute("aria-hidden", "true");
+    document.body.appendChild(sky);
+    var SKIP = "a, button, input, select, textarea, label, summary, [role='button'], [tabindex], " +
+               ".hero-art, .portrait, .header-bar, .lang-hint, .egg-hunt";
+    document.addEventListener("click", function (e) {
+      if (e.button !== 0 || (e.target.closest && e.target.closest(SKIP))) { return; }
+      var sel = window.getSelection && window.getSelection();
+      if (sel && String(sel).length) { return; }                  /* Text markiert: kein Feuerwerk */
+      burst(sky, e.clientX, e.clientY);
+    });
+
+    /* von selbst: links und rechts im Startbereich, nicht hinter dem Text */
+    var hero = document.querySelector(".hero");
+    if (!hero) { return; }
+    var layer = document.createElement("div");
+    layer.className = "fireworks";
+    layer.setAttribute("aria-hidden", "true");
+    hero.insertBefore(layer, hero.firstChild);
+    var visible = true;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(hero);
+    }
+    function auto() {
+      var W = hero.clientWidth, H = hero.clientHeight, side = Math.random() < 0.5;
+      burst(layer, W * (side ? 0.06 + Math.random() * 0.2 : 0.74 + Math.random() * 0.2),
+                   Math.min(H * 0.5, 420) * (0.25 + Math.random() * 0.6));
+    }
     function loop() {
       setTimeout(loop, 1600 + Math.random() * 1800);
       if (!visible || document.hidden) { return; }
-      burst();
-      if (Math.random() < 0.25) { setTimeout(burst, 350); }
+      auto();
+      if (Math.random() < 0.25) { setTimeout(auto, 350); }
     }
     setTimeout(loop, 1200);
   }
