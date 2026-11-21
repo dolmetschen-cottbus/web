@@ -1,5 +1,7 @@
 /* Saisonale Easter Eggs. Setzt data-season am <html>-Element; Aussehen und Bewegung kommen aus style.css.
-   - Winter (Dezember, Januar): fünf feine Eiskristalle schweben über die Seite.   Test: ?winter
+   - Winter (Dezember, Januar): sieben feine Eiskristalle schweben über die Seite, gläserne Eiszapfen
+     hängen an der Kopfleiste. Am 24.–26.12., 31.12. und 1.1. setzt Hover dem Porträt eine Weihnachtsmütze auf;
+     an Silvester/Neujahr steigt Goldfeuerwerk im Startbereich.   Test: ?winter, ?silvester
    - Halloween (25. Oktober – 1. November): Spinnennetz oben rechts, mit Fäden an der schwebenden
      Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab.   Test: ?halloween
    - Ostern (Palmsonntag bis Ostermontag, westliches UND orthodoxes Datum): Gold-Ei am Monogramm und
@@ -37,7 +39,7 @@
   var q = location.search;
   var season = null;
   if (/[?&]halloween\b/.test(q)) { season = "halloween"; }
-  else if (/[?&]winter\b/.test(q)) { season = "winter"; }
+  else if (/[?&](winter|silvester)\b/.test(q)) { season = "winter"; }
   else if (/[?&]ostern\b/.test(q)) { season = "easter"; }
   else if (m === 11 || m === 0) { season = "winter"; }
   else if ((m === 9 && d >= 25) || (m === 10 && d === 1)) { season = "halloween"; }
@@ -117,8 +119,192 @@
     var snow = document.createElement("div");
     snow.className = "snow";
     snow.setAttribute("aria-hidden", "true");
-    for (var i = 0; i < 5; i++) { snow.appendChild(document.createElement("i")); }
+    for (var i = 0; i < 7; i++) { snow.appendChild(document.createElement("i")); }
     document.body.appendChild(snow);
+
+    icicles();
+    /* Weihnachtsfeiertage (24.–26.12.) sowie Silvester und Neujahr: Mütze beim Hover über dem Porträt */
+    if ((m === 11 && ((d >= 24 && d <= 26) || d === 31)) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q) || /[?&]winter\b/.test(q)) { xmasHat(); }
+    /* Silvester und Neujahr: Goldfeuerwerk im Startbereich */
+    if ((m === 11 && d === 31) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q)) { fireworks(); }
+  }
+
+  /* ---------- Eiszapfen aus Glas an der Unterkante der Kopfleiste ----------
+     Sie hängen in einem eigenen Container im .site-header (nicht in der Leiste selbst – deren
+     backdrop-filter würde sonst den Blur der Zapfen schlucken). Jedes Mal etwas anders gewachsen;
+     ab und zu löst sich ein Tropfen. */
+  function icicles() {
+    var head = document.querySelector(".site-header"), bar = document.querySelector(".header-bar");
+    if (!head || !bar) { return; }
+    var box = document.createElement("div");
+    box.className = "icicles";
+    box.setAttribute("aria-hidden", "true");
+    head.appendChild(box);
+
+    /* Wenige, unregelmäßig verteilte Zapfen wie an einer Dachrinne: ein langer „Hauptzapfen“,
+       einige mittlere und kurze (Längen stark gestreut, meist kurz), manche mit ein, zwei kleinen
+       Nachbarn. Mindestlänge 9 px, damit nichts wie ein Krümel wirkt. Große Lücken bleiben frei. */
+    var list = [], k, rnd = Math.random;
+    var BW = Math.max(200, bar.getBoundingClientRect().width * 0.92);   /* nutzbare Länge in px (ungefähr) */
+    function add(px, h) {
+      var w = Math.max(5, Math.min(15, h * (0.22 + rnd() * 0.12)));
+      list.push({
+        f: Math.max(0, Math.min(1, px / BW)),                     /* Position entlang der geraden Unterkante */
+        w: w, h: h,
+        bend: (rnd() - 0.5) * w * 0.5,                            /* leicht schief gewachsen */
+        rip: 0.05 + rnd() * 0.08, ph: rnd() * 6, waves: 2 + rnd() * 2
+      });
+    }
+    var main = Math.max(3, Math.min(8, Math.round(BW / 190))), spots = [], tries = 0;
+    while (spots.length < main && tries++ < 400) {                 /* zufällige Stellen mit Mindestabstand */
+      var px = rnd() * BW, ok = true;
+      for (k = 0; k < spots.length; k++) { if (Math.abs(spots[k] - px) < 55) { ok = false; break; } }
+      if (ok) { spots.push(px); }
+    }
+    var hero = Math.floor(rnd() * spots.length);
+    for (k = 0; k < spots.length; k++) {
+      var h = k === hero ? 46 + rnd() * 16                        /* ein richtig langer */
+                         : 16 + 30 * Math.pow(rnd(), 2.2);         /* sonst meist kurz, selten mittel */
+      add(spots[k], h);
+      var r = rnd();
+      if (r < 0.45) {                                              /* kleiner Nachbar */
+        var side = rnd() < 0.5 ? -1 : 1;
+        add(spots[k] + side * (h * 0.14 + 5 + rnd() * 6), 10 + rnd() * Math.min(8, h * 0.3));
+        if (r < 0.15) { add(spots[k] - side * (h * 0.14 + 4 + rnd() * 5), 9 + rnd() * 5); }
+      }
+    }
+
+    /* Umriss als Polygon in Pixeln: oben volle Breite, verjüngt sich mit kleinen Wellen zur runden Spitze */
+    function outline(z) {
+      var right = [], left = [], s, steps = 14;
+      for (s = 0; s <= steps; s++) {
+        var t = s / steps;
+        var hw = (z.w / 2) * Math.pow(1 - t, 0.8) * (1 + z.rip * Math.sin(t * Math.PI * z.waves + z.ph));
+        hw = Math.max(hw, t > 0.97 ? 0.6 : 1.1);
+        var cx = z.w / 2 + z.bend * t * t, y = t * z.h;
+        right.push((cx + hw).toFixed(1) + "px " + y.toFixed(1) + "px");
+        left.unshift((cx - hw).toFixed(1) + "px " + y.toFixed(1) + "px");
+      }
+      return "polygon(" + right.concat(left).join(",") + ")";
+    }
+
+    var els = [];
+    for (k = 0; k < list.length; k++) {
+      var el = document.createElement("i");
+      el.className = "icicle";
+      el.style.width = list[k].w.toFixed(1) + "px";
+      el.style.height = list[k].h.toFixed(1) + "px";
+      el.style.clipPath = outline(list[k]);
+      box.appendChild(el);
+      els.push(el);
+    }
+
+    var span = 0, start = 0;
+    function layout() {
+      var r = bar.getBoundingClientRect(), hr = head.getBoundingClientRect();
+      var rad = Math.min(parseFloat(window.getComputedStyle(bar).borderBottomLeftRadius) || 0, r.height / 2);
+      start = rad + 8;
+      span = Math.max(0, r.width - 2 * start);
+      box.style.left = (r.left - hr.left).toFixed(1) + "px";
+      box.style.top = (r.bottom - hr.top - 1).toFixed(1) + "px";
+      box.style.width = r.width.toFixed(1) + "px";
+      for (var j = 0; j < els.length; j++) {
+        els[j].style.left = (start + list[j].f * span - list[j].w / 2).toFixed(1) + "px";
+      }
+    }
+    layout();
+    if ("ResizeObserver" in window) { new ResizeObserver(layout).observe(bar); }
+    window.addEventListener("resize", layout);
+
+    /* Tropfen: alle 5–12 s an der Spitze eines längeren Zapfens */
+    function drip() {
+      setTimeout(drip, 5000 + Math.random() * 7000);
+      if (document.hidden) { return; }
+      var cand = [], j;
+      for (j = 0; j < list.length; j++) { if (list[j].h > 16) { cand.push(j); } }
+      if (!cand.length) { return; }
+      j = cand[Math.floor(Math.random() * cand.length)];
+      var z = list[j], drop = document.createElement("i");
+      drop.className = "icicle-drop";
+      drop.style.left = (start + z.f * span - z.w / 2 + z.w / 2 + z.bend - 1.5).toFixed(1) + "px";
+      drop.style.top = (z.h - 3).toFixed(1) + "px";
+      drop.addEventListener("animationend", function () { drop.remove(); });
+      box.appendChild(drop);
+    }
+    setTimeout(drip, 2500 + Math.random() * 3000);
+  }
+
+  /* ---------- Weihnachtsmütze: rutscht beim Hover (Handy: Antippen) aufs Porträt ---------- */
+  function xmasHat() {
+    var p = document.querySelector(".portrait");
+    if (!p) { return; }
+    var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "xmas-hat");
+    svg.setAttribute("viewBox", "0 0 200 140");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    svg.innerHTML =
+      '<path class="xh-body" d="M28 106C40 58 78 22 128 16C160 12 186 30 192 64C178 48 162 42 150 48C158 66 166 86 172 106Z"/>' +
+      '<path class="xh-shine" d="M52 92C62 62 86 38 118 30"/>' +
+      '<path class="xh-shade" d="M150 48C162 42 178 48 192 64C180 58 164 56 153 62Z"/>' +
+      '<path class="xh-brim" d="M22 104C70 92 130 92 178 104C190 107 190 128 176 129C130 118 70 118 24 129C10 128 10 107 22 104Z"/>' +
+      '<path class="xh-fluff" d="M34 112c4-3 9-3 13 0M66 107c4-3 9-3 13 0M100 106c4-3 9-3 13 0M134 108c4-3 9-3 13 0M160 113c3-2 7-2 10 0"/>' +
+      '<circle class="xh-bob" cx="192" cy="70" r="14"/>';
+    p.appendChild(svg);
+    if (!(window.matchMedia && window.matchMedia("(hover: hover)").matches)) {
+      p.addEventListener("click", function () { p.classList.toggle("is-hat"); });
+    }
+  }
+
+  /* ---------- Silvester: Goldraketen links und rechts im Startbereich (nicht hinter dem Text) ---------- */
+  function fireworks() {
+    var hero = document.querySelector(".hero");
+    if (!hero) { return; }
+    var layer = document.createElement("div");
+    layer.className = "fireworks";
+    layer.setAttribute("aria-hidden", "true");
+    hero.insertBefore(layer, hero.firstChild);
+    var visible = true;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(hero);
+    }
+
+    function burst() {
+      var W = hero.clientWidth, H = hero.clientHeight;
+      var side = Math.random() < 0.5;
+      var x = W * (side ? 0.06 + Math.random() * 0.2 : 0.74 + Math.random() * 0.2);
+      var y = Math.min(H * 0.5, 420) * (0.25 + Math.random() * 0.6);
+      var rise = 140 + Math.random() * 90;
+      var rocket = document.createElement("i");
+      rocket.className = "fw-rocket";
+      rocket.style.left = x.toFixed(0) + "px";
+      rocket.style.top = y.toFixed(0) + "px";
+      rocket.style.setProperty("--rise", rise.toFixed(0) + "px");
+      rocket.addEventListener("animationend", function () {
+        rocket.remove();
+        var count = 14 + Math.floor(Math.random() * 6), R = 45 + Math.random() * 35;
+        for (var s = 0; s < count; s++) {
+          var a = (s / count) * 2 * Math.PI + Math.random() * 0.2, rr = R * (0.75 + Math.random() * 0.35);
+          var sp = document.createElement("i");
+          sp.className = "fw-spark";
+          sp.style.left = x.toFixed(0) + "px";
+          sp.style.top = y.toFixed(0) + "px";
+          sp.style.setProperty("--dx", (Math.cos(a) * rr).toFixed(1) + "px");
+          sp.style.setProperty("--dy", (Math.sin(a) * rr).toFixed(1) + "px");
+          sp.addEventListener("animationend", function () { this.remove(); });
+          layer.appendChild(sp);
+        }
+      });
+      layer.appendChild(rocket);
+    }
+
+    function loop() {
+      setTimeout(loop, 1600 + Math.random() * 1800);
+      if (!visible || document.hidden) { return; }
+      burst();
+      if (Math.random() < 0.25) { setTimeout(burst, 350); }
+    }
+    setTimeout(loop, 1200);
   }
 
   function halloween() {
