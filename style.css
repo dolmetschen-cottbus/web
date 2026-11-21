@@ -1402,3 +1402,118 @@ html:not([data-pair]) .pair--1,
 @media print {
     .hw-web, .hw-drop, .hw-crawler { display: none !important; }
 }
+
+/* ==========================================================================
+   Oster-Easter-Egg (Palmsonntag bis Ostermontag, westlich und orthodox)
+   Zarenei + Ostergruß: hero-art.js · Gold-Ei am Monogramm + Eiersuche: season.js
+   ========================================================================== */
+
+/* ---------- Zarenei als vierte Hero-Grafik ---------- */
+[data-art="egg"] .egg { display: block; }
+[data-pair="easter"] .pair--easter,
+[data-pair="easterru"] .pair--easterru { display: inline; }
+
+.egg-fill    { fill: var(--bg); }
+.egg-outline { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 100; stroke-dashoffset: 100;
+               animation: write 2.4s ease-out forwards; }
+.egg-lattice { fill: none; stroke: var(--gold); stroke-width: 0.7; stroke-opacity: 0.32; opacity: 0;
+               animation: fade 1s ease 1.6s forwards; }
+.egg-band    { fill: none; stroke: var(--gold); stroke-width: 1.1; opacity: 0; animation: fade .8s ease 2.1s forwards; }
+.egg-pearl   { fill: var(--gold); opacity: 0; animation: fade .6s ease 2.5s forwards; }
+.egg-finial  { fill: none; stroke: var(--gold); stroke-width: 1.2; opacity: 0; animation: fade .6s ease 2.3s forwards; }
+.egg-finial-line { fill: none; stroke: var(--gold); stroke-width: 1.2; stroke-linecap: round; opacity: 0; animation: fade .6s ease 2.3s forwards; }
+.egg-stand path { fill: none; stroke: var(--gold); stroke-width: 1.2; stroke-linecap: round; }
+.egg-stand   { opacity: 0; animation: fade 1s ease .4s forwards; }
+
+/* Deckel klappt um das rechte Scharnier auf, innen leuchtet das Monogramm */
+.egg-lid {
+    transform-box: view-box;
+    transform-origin: 275px 205px;
+    animation: egg-open 1.8s cubic-bezier(.3, .7, .3, 1) 4s forwards;
+}
+
+@keyframes egg-open { to { transform: rotate(34deg); } }
+
+.egg-inner { opacity: 0; animation: fade 1.4s ease 4.6s forwards; }
+.egg-mono  { font-family: var(--font-display); font-size: 40px; font-weight: 300; letter-spacing: 0.14em; fill: var(--gold); }
+
+/* ---------- Gold-Ei am Monogramm, funkelt sacht ---------- */
+[data-season="easter"] .monogram { position: relative; }
+
+[data-season="easter"] .monogram::after {
+    content: "";
+    position: absolute; top: -7px; right: -5px;
+    width: 12px; height: 15px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28' fill='none' stroke='%23d8c59c' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M12 2C17 2 20 10 20 16 20 22 16.4 26 12 26S4 22 4 16C4 10 7 2 12 2Z'/%3E%3Cpath d='M4.6 14.5H19.4M8 14.5l2 4 2-4 2 4 2-4'/%3E%3C/svg%3E") no-repeat center / contain;
+    filter: drop-shadow(0 0 4px rgba(216, 197, 156, 0.7));
+    animation: twinkle 5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ---------- Eiersuche ---------- */
+.egg-hunt {
+    display: inline-grid; place-items: center;
+    width: 22px; height: 26px;
+    padding: 0; margin: 0;
+    border: 0; background: none;
+    color: var(--gold);
+    opacity: 0.5;
+    cursor: pointer;
+    z-index: 5;
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+.egg-hunt svg { width: 100%; height: 100%; overflow: visible; }
+.egg-hunt-shell { fill: transparent; stroke: currentColor; stroke-width: 1.6; transition: fill .4s ease; }
+.egg-hunt-deco  { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+
+.egg-hunt:hover, .egg-hunt:focus-visible { opacity: 1; transform: rotate(-12deg) scale(1.15); }
+
+.egg-hunt.is-found { opacity: 1; cursor: default; animation: egg-found .6s ease; }
+.egg-hunt.is-found .egg-hunt-shell { fill: rgba(216, 197, 156, 0.85); }
+.egg-hunt.is-found .egg-hunt-deco  { stroke: var(--on-gold); }
+
+@keyframes egg-found {
+    40% { transform: scale(1.5) rotate(10deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+.egg-hunt--corner { position: absolute; }
+.egg-hunt--tl { left: 0.4rem;  top: 0.3rem; }
+.egg-hunt--tr { right: 0.4rem; top: 0.3rem; }
+.egg-hunt--bl { left: 0.4rem;  bottom: 0.3rem; }
+.egg-hunt--br { right: 0.4rem; bottom: 0.3rem; }
+.egg-hunt--inline { margin-left: 0.6rem; vertical-align: -6px; }
+
+/* Gruß, wenn alle Eier gefunden sind */
+.egg-toast {
+    position: fixed; left: 50%; bottom: 1.5rem;
+    z-index: 70;
+    display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+    padding: 1rem 1.75rem;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--heading);
+    border: 1px solid rgba(216, 197, 156, 0.45);
+    border-radius: 1.25rem;
+    background: rgba(13, 17, 20, 0.85);
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    animation: toast-in .5s ease;
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.egg-toast strong { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; color: var(--gold); }
+.egg-toast.is-out { opacity: 0; transform: translate(-50%, 12px); }
+
+@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 16px); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .egg-outline { stroke-dashoffset: 0; }
+    .egg-lattice, .egg-band, .egg-pearl, .egg-finial, .egg-finial-line, .egg-stand { opacity: 1; }
+}
+
+@media print {
+    .egg-hunt, .egg-toast, [data-season="easter"] .monogram::after { display: none !important; }
+}

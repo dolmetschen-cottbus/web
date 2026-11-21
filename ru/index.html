@@ -212,6 +212,40 @@
             </svg>
           </div>
 
+
+          <div class="art egg">
+            <svg viewBox="0 0 360 360" focusable="false">
+              <defs>
+                <clipPath id="egg-top"><path d="M85 205C85 160 115 60 180 60C245 60 275 160 275 205Z"/></clipPath>
+                <clipPath id="egg-bot"><path d="M85 205C85 265 128 310 180 310C232 310 275 265 275 205Z"/></clipPath>
+                <radialGradient id="egg-glow"><stop offset="0" stop-color="#d8c59c" stop-opacity=".55"/><stop offset="1" stop-color="#d8c59c" stop-opacity="0"/></radialGradient>
+              </defs>
+              <circle cx="180" cy="180" r="166" class="orbit"/>
+              <g class="egg-stand">
+                <path d="M150 336Q180 318 210 336M180 310V322M138 342H222"/>
+              </g>
+              <g class="egg-inner">
+                <circle cx="180" cy="175" r="70" fill="url(#egg-glow)"/>
+                <text x="180" y="192" text-anchor="middle" class="egg-mono">EM</text>
+              </g>
+              <g class="egg-bottom">
+                <path class="egg-fill" d="M85 205C85 265 128 310 180 310C232 310 275 265 275 205Z"/>
+                <path class="egg-lattice" clip-path="url(#egg-bot)" d="M-200 50L70 320M70 50L-200 320M-180 50L90 320M90 50L-180 320M-160 50L110 320M110 50L-160 320M-140 50L130 320M130 50L-140 320M-120 50L150 320M150 50L-120 320M-100 50L170 320M170 50L-100 320M-80 50L190 320M190 50L-80 320M-60 50L210 320M210 50L-60 320M-40 50L230 320M230 50L-40 320M-20 50L250 320M250 50L-20 320M0 50L270 320M270 50L0 320M20 50L290 320M290 50L20 320M40 50L310 320M310 50L40 320M60 50L330 320M330 50L60 320M80 50L350 320M350 50L80 320M100 50L370 320M370 50L100 320M120 50L390 320M390 50L120 320M140 50L410 320M410 50L140 320M160 50L430 320M430 50L160 320M180 50L450 320M450 50L180 320M200 50L470 320M470 50L200 320M220 50L490 320M490 50L220 320M240 50L510 320M510 50L240 320M260 50L530 320M530 50L260 320M280 50L550 320M550 50L280 320"/>
+                <path class="egg-outline" pathLength="100" d="M85 205C85 265 128 310 180 310C232 310 275 265 275 205Z"/>
+                <path class="egg-band" d="M86 213H274"/>
+                <circle class="egg-pearl" cx="94" cy="213" r="2.4"/><circle class="egg-pearl" cx="105" cy="213" r="2.4"/><circle class="egg-pearl" cx="116" cy="213" r="2.4"/><circle class="egg-pearl" cx="127" cy="213" r="2.4"/><circle class="egg-pearl" cx="138" cy="213" r="2.4"/><circle class="egg-pearl" cx="149" cy="213" r="2.4"/><circle class="egg-pearl" cx="160" cy="213" r="2.4"/><circle class="egg-pearl" cx="171" cy="213" r="2.4"/><circle class="egg-pearl" cx="182" cy="213" r="2.4"/><circle class="egg-pearl" cx="193" cy="213" r="2.4"/><circle class="egg-pearl" cx="204" cy="213" r="2.4"/><circle class="egg-pearl" cx="215" cy="213" r="2.4"/><circle class="egg-pearl" cx="226" cy="213" r="2.4"/><circle class="egg-pearl" cx="237" cy="213" r="2.4"/><circle class="egg-pearl" cx="248" cy="213" r="2.4"/><circle class="egg-pearl" cx="259" cy="213" r="2.4"/>
+              </g>
+              <g class="egg-lid">
+                <path class="egg-fill" d="M85 205C85 160 115 60 180 60C245 60 275 160 275 205Z"/>
+                <path class="egg-lattice" clip-path="url(#egg-top)" d="M-200 50L70 320M70 50L-200 320M-180 50L90 320M90 50L-180 320M-160 50L110 320M110 50L-160 320M-140 50L130 320M130 50L-140 320M-120 50L150 320M150 50L-120 320M-100 50L170 320M170 50L-100 320M-80 50L190 320M190 50L-80 320M-60 50L210 320M210 50L-60 320M-40 50L230 320M230 50L-40 320M-20 50L250 320M250 50L-20 320M0 50L270 320M270 50L0 320M20 50L290 320M290 50L20 320M40 50L310 320M310 50L40 320M60 50L330 320M330 50L60 320M80 50L350 320M350 50L80 320M100 50L370 320M370 50L100 320M120 50L390 320M390 50L120 320M140 50L410 320M410 50L140 320M160 50L430 320M430 50L160 320M180 50L450 320M450 50L180 320M200 50L470 320M470 50L200 320M220 50L490 320M490 50L220 320M240 50L510 320M510 50L240 320M260 50L530 320M530 50L260 320M280 50L550 320M550 50L280 320"/>
+                <path class="egg-outline" pathLength="100" d="M85 205C85 160 115 60 180 60C245 60 275 160 275 205Z"/>
+                <path class="egg-band" d="M88 198H272"/>
+                <circle class="egg-finial" cx="180" cy="52" r="6"/>
+                <path class="egg-finial-line" d="M180 46V36M175 40H185"/>
+              </g>
+            </svg>
+          </div>
+
           <div class="art greet">
             <svg viewBox="0 0 360 360" focusable="false">
               <circle cx="180" cy="180" r="166" class="orbit"/>
@@ -249,6 +283,17 @@
                 <text x="56" y="110" class="say" lang="de">Frohe Weihnachten!</text>
                 <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
                 <text x="86" y="250" class="say say--ru" lang="ru">С Рождеством!</text>
+              </g>
+              <!-- Ostern (hero-art.js): westlich „Светлой Пасхи!“, orthodox „Христос воскресе!“ -->
+              <g class="pair pair--easter">
+                <text x="56" y="110" class="say" lang="de">Frohe Ostern!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Светлой Пасхи!</text>
+              </g>
+              <g class="pair pair--easterru">
+                <text x="56" y="110" class="say" lang="de">Frohe Ostern!</text>
+                <g class="dots"><circle cx="180" cy="241" r="3.5"/><circle cx="194" cy="241" r="3.5"/><circle cx="208" cy="241" r="3.5"/></g>
+                <text x="86" y="250" class="say say--ru" lang="ru">Христос воскресе!</text>
               </g>
             </svg>
           </div>

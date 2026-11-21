@@ -2,20 +2,116 @@
    - Winter (Dezember, Januar): fünf feine Eiskristalle schweben über die Seite.   Test: ?winter
    - Halloween (25. Oktober – 1. November): Spinnennetz oben rechts, mit Fäden an der schwebenden
      Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab.   Test: ?halloween
+   - Ostern (Palmsonntag bis Ostermontag, westliches UND orthodoxes Datum): Gold-Ei am Monogramm und
+     Eiersuche – drei winzige goldene Eier sind auf der Seite versteckt; wer alle findet, bekommt einen
+     Gruß. (Zarenei und Ostergruß in der Hero-Grafik steuert hero-art.js.)   Test: ?ostern
    Bei „Bewegung reduzieren“ bleibt alles aus. */
 (function () {
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }
+
+  /* Osterdaten (gleiche Formeln wie in hero-art.js) */
+  function easterWest(y) {
+    var a = y % 19, b = Math.floor(y / 100), c = y % 100, dd = Math.floor(b / 4), e = b % 4,
+        f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - dd - g + 15) % 30,
+        i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, mm = Math.floor((a + 11 * h + 22 * l) / 451),
+        n = h + l - 7 * mm + 114;
+    return new Date(y, Math.floor(n / 31) - 1, (n % 31) + 1);
+  }
+  function easterOrthodox(y) {
+    var a = y % 4, b = y % 7, c = y % 19, dd = (19 * c + 15) % 30, e = (2 * a + 4 * b - dd + 34) % 7, n = dd + e + 114;
+    var dt = new Date(y, Math.floor(n / 31) - 1, (n % 31) + 1);
+    dt.setDate(dt.getDate() + 13);
+    return dt;
+  }
+  function isEaster(dt) {
+    var t = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()).getTime(), DAY = 86400000;
+    var list = [easterWest(dt.getFullYear()), easterOrthodox(dt.getFullYear())];
+    for (var j = 0; j < list.length; j++) {
+      var e = list[j].getTime();
+      if (t >= e - 7 * DAY && t <= e + DAY) { return true; }
+    }
+    return false;
+  }
 
   var now = new Date(), m = now.getMonth(), d = now.getDate();
   var q = location.search;
   var season = null;
   if (/[?&]halloween\b/.test(q)) { season = "halloween"; }
   else if (/[?&]winter\b/.test(q)) { season = "winter"; }
+  else if (/[?&]ostern\b/.test(q)) { season = "easter"; }
   else if (m === 11 || m === 0) { season = "winter"; }
   else if ((m === 9 && d >= 25) || (m === 10 && d === 1)) { season = "halloween"; }
+  else if (isEaster(now)) { season = "easter"; }
   if (!season) { return; }
 
   document.documentElement.setAttribute("data-season", season);
+
+  /* Eiersuche: drei winzige goldene Linien-Eier an wechselnden Stellen der jeweiligen Seite */
+  function easter() {
+    var ru = document.documentElement.lang === "ru";
+    /* Orthodoxe Osterzeit (oder Test ?fest=easterru): traditioneller Gruß „Христос воскресе!“ */
+    var oe = easterOrthodox(now.getFullYear()).getTime(), today = new Date(now.getFullYear(), m, d).getTime();
+    var orthodox = /[?&]fest=easterru\b/.test(q) || (today >= oe - 7 * 86400000 && today <= oe + 86400000);
+    var rusGreet = orthodox ? "Христос воскресе!" : "Светлой Пасхи!";
+    var EGG = '<svg viewBox="0 0 24 28" aria-hidden="true" focusable="false">' +
+              '<path class="egg-hunt-shell" d="M12 2C17 2 20 10 20 16 20 22 16.4 26 12 26S4 22 4 16C4 10 7 2 12 2Z"/>' +
+              '<path class="egg-hunt-deco" d="M4.6 14.5H19.4M5.4 18.5H18.6M8 14.5l2 4 2-4 2 4 2-4"/></svg>';
+    /* Mögliche Verstecke (Startbereich und Kopfleiste bewusst nicht). Bei jedem Aufruf werden drei
+       zufällig gezogen – aus verschiedenen Bereichen, jeweils in eine zufällige Ecke. */
+    var SPOTS = ".fact, .card, .portrait, .principles li, .steps li, .contact-cards li, .facts-list > div, " +
+                ".page-hero-inner, .offer li, .for-whom, .check-list li, .cta, .legal h2, .site-footer p";
+    var all = Array.prototype.slice.call(document.querySelectorAll(SPOTS)), i, j, tmp;
+    for (i = all.length - 1; i > 0; i--) {                    /* mischen (Fisher-Yates) */
+      j = Math.floor(Math.random() * (i + 1));
+      tmp = all[i]; all[i] = all[j]; all[j] = tmp;
+    }
+    function area(el) { return el.closest(".facts, .facts-list, .contact-cards, section, footer") || el.parentNode; }
+    var hosts = [], areas = [];
+    for (i = 0; i < all.length && hosts.length < 3; i++) {    /* nie zwei Eier im selben Bereich */
+      var a = area(all[i]);
+      if (areas.indexOf(a) === -1) { areas.push(a); hosts.push(all[i]); }
+    }
+    for (i = 0; i < all.length && hosts.length < 3; i++) {    /* zu wenige Bereiche (kurze Seite): auffüllen */
+      if (hosts.indexOf(all[i]) === -1) { hosts.push(all[i]); }
+    }
+    var CORNERS = ["egg-hunt--tl", "egg-hunt--tr", "egg-hunt--bl", "egg-hunt--br"];
+    var found = 0;
+
+    function toast() {
+      var t = document.createElement("div");
+      t.className = "egg-toast";
+      t.setAttribute("role", "status");
+      t.innerHTML = ru
+        ? '<strong>Все пасхальные яйца найдены!</strong><span>' + rusGreet + ' · <span lang="de">Frohe Ostern!</span></span>'
+        : '<strong>Alle Ostereier gefunden!</strong><span>Frohe Ostern! · <span lang="ru">' + rusGreet + '</span></span>';
+      document.body.appendChild(t);
+      setTimeout(function () { t.classList.add("is-out"); }, 6500);
+      setTimeout(function () { if (t.parentNode) { t.parentNode.removeChild(t); } }, 7500);
+    }
+
+    for (i = 0; i < hosts.length; i++) {
+      (function (host) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "egg-hunt";
+        btn.setAttribute("aria-label", ru ? "Пасхальное яйцо" : "Osterei");
+        btn.innerHTML = EGG;
+        if (host.closest(".site-footer")) {
+          btn.classList.add("egg-hunt--inline");               /* im Fuß: im Textfluss */
+        } else {
+          if (window.getComputedStyle(host).position === "static") { host.style.position = "relative"; }
+          btn.classList.add("egg-hunt--corner", CORNERS[Math.floor(Math.random() * CORNERS.length)]);
+        }
+        btn.addEventListener("click", function () {
+          if (btn.classList.contains("is-found")) { return; }
+          btn.classList.add("is-found");
+          found++;
+          if (found === hosts.length) { toast(); }
+        });
+        host.appendChild(btn);
+      })(hosts[i]);
+    }
+  }
 
   function winter() {
     var snow = document.createElement("div");
@@ -265,5 +361,5 @@
     requestAnimationFrame(step);
   }
 
-  document.addEventListener("DOMContentLoaded", season === "winter" ? winter : halloween);
+  document.addEventListener("DOMContentLoaded", { winter: winter, halloween: halloween, easter: easter }[season]);
 })();
