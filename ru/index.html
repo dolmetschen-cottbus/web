@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-mw+FNGWEpYS6HkQqmqmHuHqu3SYa3wNl6nJAaC48BzU='; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#111518">
 
@@ -24,10 +24,100 @@
   <meta property="og:title" content="Переводчик немецкого языка в Германии – Котбус, Берлин, Дрезден | Елена Мик">
   <meta property="og:description" content="Елена Мик – устный и письменный переводчик немецкого и русского языков в Котбусе (Германия), более 20 лет опыта. Визиты делегаций, переговоры, обучение, официальные встречи. Последовательный перевод и «нашёптывание», специализированные переводы.">
   <meta property="og:url" content="https://dolmetschen-cottbus.github.io/web/ru/">
-  <meta property="og:image" content="https://dolmetschen-cottbus.github.io/web/img/elena-mieck.jpg">
-  <meta property="og:image:width" content="401">
-  <meta property="og:image:height" content="602">
-  <meta property="og:image:alt" content="Портрет Елены Мик">
+  <meta property="og:image" content="https://dolmetschen-cottbus.github.io/web/img/og-ru.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Елена Мик – переводчик немецкого и русского языков">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Strukturierte Daten für Suchmaschinen -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Елена Мик – переводчик немецкого и русского языков",
+    "alternateName": "Elena Mieck – Dolmetscherin Deutsch–Russisch",
+    "description": "Устный и письменный перевод (немецкий – русский) для компаний, научных организаций, государственных органов и учебных центров – в Котбусе, Берлине, Дрездене и по видеосвязи.",
+    "url": "https://dolmetschen-cottbus.github.io/web/ru/",
+    "image": "https://dolmetschen-cottbus.github.io/web/img/elena-mieck.jpg",
+    "telephone": "+49 176 32295300",
+    "email": "dolmetschen.cottbus@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sachsendorfer Straße 11",
+      "postalCode": "03046",
+      "addressLocality": "Cottbus",
+      "addressCountry": "DE"
+    },
+    "areaServed": [
+      "Котбус",
+      "Лаузиц",
+      "Бранденбург",
+      "Берлин",
+      "Дрезден",
+      "Германия"
+    ],
+    "knowsLanguage": [
+      "de",
+      "ru"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Елена Мик",
+      "alternateName": "Elena Mieck",
+      "jobTitle": "Устный и письменный переводчик (немецкий – русский)",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Европейский университет Виадрина"
+      },
+      "knowsLanguage": [
+        "de",
+        "ru"
+      ]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Услуги",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Перевод для бизнеса и науки",
+            "description": "Визиты делегаций, экскурсии по предприятиям, переговоры, конференции, телефонные и видеоконференции",
+            "url": "https://dolmetschen-cottbus.github.io/web/ru/wirtschaft-forschung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Перевод для органов власти, полиции и юстиции",
+            "description": "Допросы, собеседования, судебные заседания, следственные действия, перевод аудиозаписей и письменных материалов",
+            "url": "https://dolmetschen-cottbus.github.io/web/ru/behoerden-justiz.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Перевод для техники и обучения",
+            "description": "Курсы, тренинги, инструктажи, обучение работе с машинами и установками",
+            "url": "https://dolmetschen-cottbus.github.io/web/ru/technik-ausbildung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Письменный перевод (немецкий – русский)",
+            "description": "Техническая документация, инструкции по эксплуатации, договоры, проектная документация, учебные материалы"
+          }
+        }
+      ]
+    }
+  }
+  </script>
 
   <link rel="preload" href="../fonts/Jost-sub.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/SourceSans3-sub-Upright.woff2" as="font" type="font/woff2" crossorigin>
@@ -37,6 +127,7 @@
   <script src="../hero-art.js" defer></script>
   <script src="../site.js" defer></script>
   <script src="../season.js" defer></script>
+  <script src="../reveal.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#inhalt">Перейти к содержанию</a>
@@ -277,7 +368,7 @@
           </li>
           <li>
             <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s7-6.2 7-11.5a7 7 0 0 0-14 0c0 5.3 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <strong>Офис</strong>
+            <strong>Адрес</strong>
             <span class="big">Sachsendorfer Straße 11<br>03046 Cottbus, Германия</span>
           </li>
         </ul>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-/pds1N6nTkNo6YWMcxV6iwtc9VRZakTbvL0s37kfgjg='; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-PjDXj1aPmls49VFElEDFHGg/iEfSXP9vKB1jyq27Fdw='; style-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#111518">
 
@@ -24,10 +24,11 @@
   <meta property="og:title" content="Dolmetscherin Russisch in Cottbus – Wirtschaft, Behörden, Technik | Elena Mieck">
   <meta property="og:description" content="Elena Mieck, Dolmetscherin Deutsch–Russisch in Cottbus und der Lausitz, über 20 Jahre Erfahrung. Delegationen, Verhandlungen, Vernehmungen, Gericht, Schulungen. Konsekutiv- und Flüsterdolmetschen, Fachübersetzungen.">
   <meta property="og:url" content="https://dolmetschen-cottbus.github.io/web/de/">
-  <meta property="og:image" content="https://dolmetschen-cottbus.github.io/web/img/elena-mieck.jpg">
-  <meta property="og:image:width" content="401">
-  <meta property="og:image:height" content="602">
-  <meta property="og:image:alt" content="Porträt Elena Mieck">
+  <meta property="og:image" content="https://dolmetschen-cottbus.github.io/web/img/og-de.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Elena Mieck – Dolmetscherin Deutsch–Russisch in Cottbus">
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Strukturierte Daten für Suchmaschinen -->
   <script type="application/ld+json">
@@ -35,6 +36,7 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Elena Mieck – Dolmetscherin Deutsch–Russisch",
+    "description": "Dolmetschen und Übersetzen Deutsch–Russisch für Unternehmen, Forschung, Behörden und technische Ausbildung – in Cottbus, der Lausitz, Berlin und Dresden sowie per Telefon und Video.",
     "url": "https://dolmetschen-cottbus.github.io/web/de/",
     "image": "https://dolmetschen-cottbus.github.io/web/img/elena-mieck.jpg",
     "telephone": "+49 176 32295300",
@@ -51,12 +53,67 @@
       "Lausitz",
       "Brandenburg",
       "Berlin",
-      "Dresden"
+      "Dresden",
+      "Deutschland"
     ],
     "knowsLanguage": [
       "de",
       "ru"
-    ]
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Elena Mieck",
+      "jobTitle": "Dolmetscherin und Übersetzerin (Deutsch–Russisch)",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Europa-Universität Viadrina"
+      },
+      "knowsLanguage": [
+        "de",
+        "ru"
+      ]
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Leistungen",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Dolmetschen für Wirtschaft und Forschung",
+            "description": "Delegationsbesuche, Werks- und Anlagenführungen, Verhandlungen, Fachtagungen, Telefon- und Videokonferenzen",
+            "url": "https://dolmetschen-cottbus.github.io/web/de/wirtschaft-forschung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Dolmetschen für Behörden, Polizei und Justiz",
+            "description": "Vernehmungen, Anhörungen, Gerichtstermine, Ermittlungsverfahren, Übersetzung von Audioaufnahmen und Schriftmaterial",
+            "url": "https://dolmetschen-cottbus.github.io/web/de/behoerden-justiz.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Dolmetschen für Technik und Ausbildung",
+            "description": "Lehrgänge, Schulungen, Unterweisungen, Maschinen- und Anlageneinweisungen",
+            "url": "https://dolmetschen-cottbus.github.io/web/de/technik-ausbildung.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fachübersetzungen Deutsch–Russisch",
+            "description": "Technische Dokumentation, Bedienungsanleitungen, Verträge, Projektunterlagen, Schulungsunterlagen"
+          }
+        }
+      ]
+    }
   }
   </script>
 
@@ -68,6 +125,7 @@
   <script src="../hero-art.js" defer></script>
   <script src="../site.js" defer></script>
   <script src="../season.js" defer></script>
+  <script src="../reveal.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -308,7 +366,7 @@
           </li>
           <li>
             <span class="card-icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s7-6.2 7-11.5a7 7 0 0 0-14 0c0 5.3 7 11.5 7 11.5z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <strong>Büro</strong>
+            <strong>Anschrift</strong>
             <span class="big">Sachsendorfer Straße 11<br>03046 Cottbus</span>
           </li>
         </ul>

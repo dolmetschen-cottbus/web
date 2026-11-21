@@ -1196,3 +1196,93 @@ html:not([data-pair]) .pair--1,
 @media print {
     .snow, [data-season="winter"] .monogram::after { display: none !important; }
 }
+
+/* ==========================================================================
+   Feinschliff (Polishing)
+   ========================================================================== */
+
+/* ---------- Handy/Tablet: weniger Abstand zwischen Kopfleiste und Animation ---------- */
+@media (max-width: 63.99em) {
+    .hero.screen { padding-top: 1.25rem; }
+}
+
+/* ---------- Weiche Seitenübergänge: die ganze Seite blendet über ----------
+   Bewusst KEIN view-transition-name an der Kopfleiste: Das würde sie zu einer eigenen Ebene
+   machen, und der Glas-Effekt (backdrop-filter) hätte nichts mehr zum Weichzeichnen. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 0.35s; }
+
+/* ---------- Dezentes Einblenden beim Scrollen (reveal.js, alle Browser) ----------
+   „translate“ statt „transform“, damit die Hover-Effekte erhalten bleiben. Die Übergänge der
+   Kontakt-Säulen (Rahmen, Hintergrund) werden hier mitgeführt, sonst würden sie überschrieben. */
+.reveal-on .reveal {
+    transition: opacity .7s ease, translate .7s ease, border-color .4s ease, background-color .4s ease;
+}
+
+.reveal-on .reveal:not(.is-in) { opacity: 0; translate: 0 24px; }
+
+@media print {
+    .reveal-on .reveal { opacity: 1 !important; translate: none !important; }
+}
+
+/* ---------- Mikro-Interaktionen ---------- */
+
+/* Leistungskarten: weicher Goldschimmer von oben, Stichworte leicht getönt */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -1.5rem -1rem auto;
+    height: 70%;
+    background: radial-gradient(closest-side, rgba(216, 197, 156, 0.09), transparent);
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
+}
+
+.card:hover::before { opacity: 1; }
+.card:hover .tags li { background: rgba(216, 197, 156, 0.06); }
+.tags li { transition: border-color .3s, background-color .3s; }
+
+/* Goldene Buttons: feiner Lichtstreif beim Überfahren */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+
+.btn:not(.btn-line)::after {
+    content: "";
+    position: absolute; inset: 0;
+    z-index: -1;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform .8s ease;
+    pointer-events: none;
+}
+
+.btn:not(.btn-line):hover::after { transform: translateX(120%); }
+
+/* Porträt: Ring weitet sich, Licht wird heller, Bild zoomt minimal */
+.portrait-orbit { transition: inset .6s ease, border-color .6s ease; }
+.portrait-frame img { transition: transform .8s ease, filter .8s ease; }
+
+.portrait:hover .portrait-orbit { inset: -1.5rem; border-color: rgba(216, 197, 156, 0.6); }
+.portrait:hover .portrait-frame img { transform: scale(1.1); filter: saturate(1) contrast(1.03); }
+
+/* Kontakt-Säulen: Icon füllt sich gold, Rahmen hellt auf */
+.contact-cards li { transition: border-color .4s ease, background-color .4s ease; }
+.contact-cards .card-icon { transition: background-color .4s, color .4s; }
+.contact-cards li:hover { border-color: rgba(216, 197, 156, 0.4); }
+.contact-cards li:hover .card-icon { background: var(--gold); color: var(--on-gold); }
+
+/* Leistungsliste der Unterseiten: Titel wird beim Überfahren gold */
+.offer strong { transition: color .3s ease; }
+.offer li:hover strong { color: var(--gold); }
+
+/* ---------- Bewegung reduzieren: keine Übergänge, keine Mikro-Animationen ---------- */
+@media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+    .btn::after { display: none; }
+}
+
+@media print {
+    .card::before, .btn::after { display: none !important; }
+}
