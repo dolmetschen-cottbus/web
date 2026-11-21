@@ -1286,3 +1286,119 @@ html:not([data-pair]) .pair--1,
 @media print {
     .card::before, .btn::after { display: none !important; }
 }
+
+/* ==========================================================================
+   Halloween-Easter-Egg (25.10.–1.11., season.js): Spinnennetz oben rechts,
+   mit Fäden an der schwebenden Kopfleiste; kleine, freundliche Spinne am Faden
+   ========================================================================== */
+.hw-web {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 48;                      /* hinter der Kopfleiste: das Netz schimmert durch ihre Glasfläche */
+    pointer-events: none;
+    overflow: visible;
+}
+
+.hw-silk {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 0.8;
+    stroke-opacity: 0.4;
+    stroke-linecap: round;
+}
+
+.hw-thread { stroke-opacity: 0.32; }
+
+/* Netz wiegt sich sanft im Luftzug (Drehpunkt = Netzmitte, setzt season.js) */
+.hw-sway {
+    transform-box: view-box;
+    animation: hw-sway 7s ease-in-out infinite alternate;
+}
+
+@keyframes hw-sway {
+    from { transform: rotate(-1.5deg); }
+    to   { transform: rotate(1.5deg); }
+}
+
+/* Rahmen für die Spinne: beginnt an der Unterkante der Kopfleiste, schneidet den Faden dort ab */
+.hw-drop {
+    position: fixed;
+    width: 30px;
+    z-index: 49;                      /* unter der Kopfleiste: die Spinne kommt unter ihr hervor */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hw-spider {
+    position: absolute; top: 0; left: 0;
+    width: 30px; height: 34px;
+    transform: translateY(-40px);
+    animation: hw-drop 14s ease-in-out infinite;
+}
+
+/* Faden nach oben */
+.hw-spider::before {
+    content: "";
+    position: absolute;
+    bottom: 100%; left: 50%;
+    width: 1px; height: 100vh;
+    margin-left: -0.5px;
+    background: rgba(216, 197, 156, 0.55);
+}
+
+.hw-spider svg {
+    display: block;
+    width: 30px; height: 34px;
+    overflow: visible;
+    transform-origin: 50% 0;
+    animation: hw-swing 3.2s ease-in-out infinite alternate;
+}
+
+.hw-legs  { fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; }
+.hw-body  { fill: #20262b; stroke: var(--gold); stroke-width: 1.2; }
+.hw-eye   { fill: #ffffff; }
+.hw-pupil { fill: #111518; }
+.hw-smile { fill: none; stroke: var(--gold); stroke-width: 0.9; stroke-linecap: round; }
+
+/* Abseilen, kurz wippen, ein Stück hochklettern, noch einmal fallen lassen, ganz zurück */
+@keyframes hw-drop {
+    0%, 8%   { transform: translateY(-40px); }
+    30%      { transform: translateY(var(--drop)); }
+    36%      { transform: translateY(calc(var(--drop) - 8px)); }
+    42%      { transform: translateY(var(--drop)); }
+    58%      { transform: translateY(calc(var(--drop) * 0.55)); }
+    66%      { transform: translateY(calc(var(--drop) * 0.75)); }
+    84%, 100% { transform: translateY(-40px); }
+}
+
+@keyframes hw-swing {
+    from { transform: rotate(-5deg); }
+    to   { transform: rotate(5deg); }
+}
+
+/* Krabbelspinne (Draufsicht), Position/Drehung setzt season.js */
+.hw-crawler {
+    position: fixed; left: 0; top: 0;
+    width: 30px; height: 30px;
+    margin: -15px 0 0 -15px;
+    z-index: 56;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.hw-crawler svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.hw-crawler path { fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Beine im Wechselschritt, nur beim Laufen; beim Flitzen schneller */
+.hw-crawler.is-moving .hw-legs-a { animation: hw-step 0.28s ease-in-out infinite alternate; }
+.hw-crawler.is-moving .hw-legs-b { animation: hw-step 0.28s ease-in-out infinite alternate-reverse; }
+.hw-crawler.is-running .hw-legs-a, .hw-crawler.is-running .hw-legs-b { animation-duration: 0.1s; }
+
+@keyframes hw-step {
+    from { transform: rotate(-7deg); }
+    to   { transform: rotate(7deg); }
+}
+
+@media print {
+    .hw-web, .hw-drop, .hw-crawler { display: none !important; }
+}
