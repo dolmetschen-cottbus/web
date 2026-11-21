@@ -1309,16 +1309,7 @@ html:not([data-pair]) .pair--1,
 
 .hw-thread { stroke-opacity: 0.32; }
 
-/* Netz wiegt sich sanft im Luftzug (Drehpunkt = Netzmitte, setzt season.js) */
-.hw-sway {
-    transform-box: view-box;
-    animation: hw-sway 7s ease-in-out infinite alternate;
-}
-
-@keyframes hw-sway {
-    from { transform: rotate(-1.5deg); }
-    to   { transform: rotate(1.5deg); }
-}
+/* Netz: kein Dauer-Wippen mehr – es flattert nur bei Maus-Berührung (season.js) */
 
 /* Rahmen für die Spinne: beginnt an der Unterkante der Kopfleiste, schneidet den Faden dort ab */
 .hw-drop {
