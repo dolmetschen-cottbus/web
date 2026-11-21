@@ -4,12 +4,13 @@
    kommt zuerst ein Festtagsgruß, danach die normalen Paare.
    Ostern (Palmsonntag bis Ostermontag, westliches UND orthodoxes Datum): zuerst das Zarenei,
    danach die Begrüßung mit „Frohe Ostern!“ – „Светлой Пасхи!“, dann wie gewohnt.
+   Übersetzertag (30. September): zuerst die Schreibfeder, dann „Frohen Übersetzertag!“ – „С Днём переводчика!“.
    Klick auf die Grafik springt sofort zur nächsten (Easter Egg).
    Bei „Bewegung reduzieren“ bleibt die erste Grafik stehen.
-   Zum Testen: ?art=greet|globe|glyph|egg, ?fest=xmas|ny|xmasru|easter|easterru, ?ostern */
+   Zum Testen: ?art=greet|globe|glyph|egg|quill, ?fest=xmas|ny|xmasru|easter|easterru|transl, ?ostern */
 (function () {
   var order = ["greet", "globe", "glyph"];
-  var duration = { egg: 10000, greet: 10000, globe: 10000, glyph: 10000 };
+  var duration = { egg: 10000, quill: 10000, greet: 10000, globe: 10000, glyph: 10000 };
   var root = document.documentElement;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -42,25 +43,29 @@
      1.–26.12.   „Frohe Weihnachten!“ – „С наступающим!“ (das russische Fest kommt noch)
      27.12.–5.1. „Frohes neues Jahr!“ – „С Новым годом!“
      6.–8.1.     „Frohe Weihnachten!“ – „С Рождеством!“ (russisches Weihnachten am 7. Januar)
+     30.9.       „Frohen Übersetzertag!“ – „С Днём переводчика!“ (Internationaler Übersetzertag)
      Osterzeit   „Frohe Ostern!“ – „Светлой Пасхи!“ (westlich) bzw. „Христос воскресе!“ (orthodox) */
   function festive(d) {
     var mo = d.getMonth(), day = d.getDate();
     if (mo === 11 && day <= 26) { return "xmas"; }
     if ((mo === 11 && day >= 27) || (mo === 0 && day <= 5)) { return "ny"; }
     if (mo === 0 && day >= 6 && day <= 8) { return "xmasru"; }
+    if (mo === 8 && day === 30) { return "transl"; }
     return easterKind(d);
   }
 
   var q = location.search;
-  var f = /[?&]fest=(xmas|ny|xmasru|easter|easterru)\b/.exec(q);
+  var f = /[?&]fest=(xmas|ny|xmasru|easter|easterru|transl)\b/.exec(q);
   var fest = f ? f[1] : (/[?&]ostern\b/.test(q) ? "easter" : festive(new Date()));
   var pairs = fest ? [fest, "1", "2", "3"] : ["1", "2", "3"];
   if (fest === "easter" || fest === "easterru") { order = ["egg", "greet", "globe", "glyph"]; }   /* Zarenei zuerst */
+  if (fest === "transl") { order = ["quill", "greet", "globe", "glyph"]; }                          /* Feder zuerst */
 
   var i = 0, p = 0, timer = null;
-  var m = /[?&]art=(greet|globe|glyph|egg)\b/.exec(q);
+  var m = /[?&]art=(greet|globe|glyph|egg|quill)\b/.exec(q);
   if (m) {
     if (m[1] === "egg" && order[0] !== "egg") { order = ["egg", "greet", "globe", "glyph"]; }
+    if (m[1] === "quill" && order[0] !== "quill") { order = ["quill", "greet", "globe", "glyph"]; }
     i = order.indexOf(m[1]);
   }
 

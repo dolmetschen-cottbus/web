@@ -1829,3 +1829,167 @@ html { scrollbar-color: #3a434b var(--bg); }
 @media print {
     .witch-hat, .vamp-bat { display: none !important; }
 }
+
+/* ==========================================================================
+   Internationaler Übersetzertag (30. September, hero-art.js): Schreibfeder
+   schreibt „EM“ in Schreibschrift (Great Vibes, OFL – nur die Umrisse, keine Schriftdatei), danach Begrüßung „Frohen Übersetzertag!“ – „С Днём переводчика!“
+   Umrisse, Pinselweg (Maske) und Federbewegung erzeugt _planung/tmp/gv_apply.py
+   ========================================================================== */
+[data-art="quill"] .quill { display: block; }
+[data-pair="transl"] .pair--transl { display: inline; }
+
+.q-rule    { stroke: var(--gold); stroke-opacity: 0.25; stroke-width: 1; stroke-dasharray: 2 5; opacity: 0; animation: fade 1s ease .3s forwards; }
+.q-script      { fill: var(--gold); }
+.q-script-full { fill: var(--gold); opacity: 0; animation: fade .5s ease 6.96s forwards; }   /* letzte Pinsel-Lücken schließen */
+.q-brush       { fill: none; stroke: #fff; stroke-width: 15; stroke-linecap: round; stroke-linejoin: round;
+                 stroke-dasharray: 100; stroke-dashoffset: 100; }
+.q-brush--e    { animation: write 1.77s linear 1.20s forwards; }
+.q-brush--m    { animation: write 3.64s linear 3.32s forwards; }
+.q-vane    { fill: rgba(245, 245, 242, 0.05); stroke: var(--heading); stroke-opacity: 0.85; stroke-width: 1.2; stroke-linejoin: round; }
+.q-shaft   { fill: none; stroke: var(--heading); stroke-width: 1.3; stroke-linecap: round; }
+.q-barbs   { fill: none; stroke: var(--heading); stroke-opacity: 0.55; stroke-width: 1; stroke-linecap: round; }
+
+/* Feder folgt der Linienspitze; am Ende hebt sie ab */
+.q-pen     { transform: translate(124.0px, 192.0px); animation: quill-write 5.76s linear 1.20s forwards; }
+.q-feather { transform-box: fill-box; transform-origin: 0% 100%; opacity: 0; animation: fade .8s ease .2s forwards, quill-lift 1s cubic-bezier(.3, .7, .3, 1) 7.16s forwards; }
+
+@keyframes quill-write {
+    0.00% { transform: translate(124.0px, 192.0px); }
+    0.38% { transform: translate(127.6px, 190.8px); }
+    1.15% { transform: translate(134.6px, 187.6px); }
+    1.92% { transform: translate(140.9px, 183.3px); }
+    2.68% { transform: translate(146.1px, 177.7px); }
+    3.45% { transform: translate(143.9px, 170.8px); }
+    4.22% { transform: translate(136.9px, 167.7px); }
+    4.98% { transform: translate(129.3px, 166.9px); }
+    5.75% { transform: translate(121.7px, 167.6px); }
+    6.51% { transform: translate(114.2px, 169.3px); }
+    7.28% { transform: translate(107.0px, 172.0px); }
+    8.05% { transform: translate(100.3px, 175.8px); }
+    8.81% { transform: translate(94.3px, 180.5px); }
+    9.58% { transform: translate(89.5px, 186.4px); }
+    10.35% { transform: translate(88.4px, 193.8px); }
+    11.11% { transform: translate(93.0px, 199.8px); }
+    11.88% { transform: translate(100.0px, 203.0px); }
+    12.65% { transform: translate(107.5px, 204.5px); }
+    13.41% { transform: translate(114.8px, 206.6px); }
+    14.18% { transform: translate(107.8px, 207.0px); }
+    14.95% { transform: translate(100.2px, 206.7px); }
+    15.71% { transform: translate(92.6px, 207.6px); }
+    16.48% { transform: translate(85.4px, 210.3px); }
+    17.24% { transform: translate(78.6px, 213.8px); }
+    18.01% { transform: translate(72.1px, 217.9px); }
+    18.78% { transform: translate(66.7px, 223.4px); }
+    19.54% { transform: translate(63.0px, 230.1px); }
+    20.31% { transform: translate(62.4px, 237.6px); }
+    21.08% { transform: translate(66.2px, 244.2px); }
+    21.84% { transform: translate(72.8px, 247.9px); }
+    22.61% { transform: translate(80.1px, 250.2px); }
+    23.38% { transform: translate(87.7px, 251.7px); }
+    24.14% { transform: translate(95.3px, 252.0px); }
+    24.91% { transform: translate(103.0px, 251.4px); }
+    25.68% { transform: translate(110.6px, 250.3px); }
+    26.44% { transform: translate(118.1px, 248.5px); }
+    27.21% { transform: translate(125.3px, 245.8px); }
+    27.97% { transform: translate(131.9px, 242.1px); }
+    28.74% { transform: translate(137.8px, 237.2px); }
+    29.51% { transform: translate(141.6px, 230.6px); }
+    30.27% { transform: translate(138.8px, 224.5px); }
+    33.70% { transform: translate(157.5px, 200.5px); }
+    37.26% { transform: translate(184.9px, 203.0px); }
+    38.32% { transform: translate(189.7px, 210.7px); }
+    39.37% { transform: translate(185.2px, 220.2px); }
+    40.43% { transform: translate(178.5px, 228.4px); }
+    41.48% { transform: translate(169.7px, 234.1px); }
+    42.53% { transform: translate(159.5px, 236.1px); }
+    43.59% { transform: translate(151.1px, 230.2px); }
+    44.64% { transform: translate(148.9px, 220.0px); }
+    45.70% { transform: translate(151.1px, 209.7px); }
+    46.75% { transform: translate(155.5px, 200.1px); }
+    47.81% { transform: translate(161.1px, 191.1px); }
+    48.86% { transform: translate(167.8px, 183.0px); }
+    49.92% { transform: translate(175.7px, 176.1px); }
+    50.97% { transform: translate(184.6px, 170.3px); }
+    52.02% { transform: translate(194.3px, 166.2px); }
+    53.08% { transform: translate(204.7px, 164.9px); }
+    54.13% { transform: translate(210.1px, 173.4px); }
+    55.19% { transform: translate(210.8px, 183.8px); }
+    56.24% { transform: translate(209.3px, 194.3px); }
+    57.30% { transform: translate(207.5px, 204.7px); }
+    58.35% { transform: translate(205.3px, 215.0px); }
+    59.41% { transform: translate(202.1px, 225.1px); }
+    60.46% { transform: translate(198.4px, 235.0px); }
+    61.51% { transform: translate(194.2px, 244.7px); }
+    62.57% { transform: translate(190.3px, 251.8px); }
+    63.62% { transform: translate(194.0px, 241.9px); }
+    64.68% { transform: translate(197.7px, 232.0px); }
+    65.73% { transform: translate(201.4px, 222.1px); }
+    66.79% { transform: translate(205.7px, 212.4px); }
+    67.84% { transform: translate(211.0px, 203.3px); }
+    68.89% { transform: translate(218.0px, 195.4px); }
+    69.95% { transform: translate(225.7px, 188.2px); }
+    71.00% { transform: translate(233.7px, 181.3px); }
+    72.06% { transform: translate(242.8px, 176.4px); }
+    73.11% { transform: translate(249.6px, 183.2px); }
+    74.17% { transform: translate(249.9px, 193.7px); }
+    75.22% { transform: translate(249.2px, 204.3px); }
+    76.28% { transform: translate(247.4px, 214.7px); }
+    77.33% { transform: translate(244.1px, 224.7px); }
+    78.38% { transform: translate(239.9px, 234.4px); }
+    79.44% { transform: translate(235.0px, 243.7px); }
+    80.49% { transform: translate(230.1px, 251.1px); }
+    81.55% { transform: translate(233.8px, 241.2px); }
+    82.60% { transform: translate(237.9px, 231.5px); }
+    83.66% { transform: translate(242.7px, 222.1px); }
+    84.71% { transform: translate(249.0px, 213.6px); }
+    85.77% { transform: translate(256.1px, 205.9px); }
+    86.82% { transform: translate(263.8px, 198.6px); }
+    87.87% { transform: translate(271.8px, 191.7px); }
+    88.93% { transform: translate(280.2px, 185.3px); }
+    89.98% { transform: translate(289.0px, 179.4px); }
+    91.04% { transform: translate(292.7px, 186.0px); }
+    92.09% { transform: translate(290.1px, 196.2px); }
+    93.15% { transform: translate(287.1px, 206.4px); }
+    94.20% { transform: translate(284.1px, 216.5px); }
+    95.26% { transform: translate(280.9px, 226.6px); }
+    96.31% { transform: translate(277.8px, 236.6px); }
+    97.36% { transform: translate(276.1px, 247.1px); }
+    98.42% { transform: translate(279.9px, 256.4px); }
+    99.47% { transform: translate(289.7px, 259.8px); }
+    100.00% { transform: translate(295.0px, 260.0px); }
+}
+@keyframes quill-lift { to { transform: translate(14px, -22px) rotate(8deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .q-script-full, .q-rule, .q-feather { opacity: 1; }
+    .q-pen { transform: translate(295.0px, 260.0px); }
+}
+
+/* ==========================================================================
+   Internationaler Frauentag (8. März, season.js): Mimosenzweig wächst am Monogramm
+   ========================================================================== */
+[data-season="womensday"] .monogram { position: relative; }
+
+[data-season="womensday"] .monogram::after {
+    content: "";
+    position: absolute; top: -12px; right: -14px;
+    width: 24px; height: 24px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23a9b38a' stroke-linecap='round'%3E%3Cpath stroke-width='1.4' d='M3 30C10 24 15 18 25 9'/%3E%3Cpath stroke-width='1.1' d='M8 25 5 24M8 25l1-3M12 21l-3-1M12 21l1-3M16 17.5l-3-1M16 17.5l1-3M20 14l-2.5-1M20 14l1-2.5'/%3E%3C/g%3E%3Cg fill='%23f2cf4f'%3E%3Ccircle cx='22' cy='8' r='2.6'/%3E%3Ccircle cx='26.5' cy='5' r='2.2'/%3E%3Ccircle cx='27' cy='10.5' r='2.3'/%3E%3Ccircle cx='18.5' cy='10.5' r='2'/%3E%3Ccircle cx='23' cy='13' r='1.9'/%3E%3Ccircle cx='16.5' cy='7' r='1.8'/%3E%3Ccircle cx='29.5' cy='7.5' r='1.6'/%3E%3Ccircle cx='21' cy='3.6' r='1.7'/%3E%3C/g%3E%3C/svg%3E") no-repeat center / contain;
+    filter: drop-shadow(0 0 4px rgba(242, 207, 79, 0.55));
+    transform-origin: 0% 100%;
+    animation: mimosa-grow 1.6s cubic-bezier(.3, 1.4, .5, 1) .6s both, mimosa-sway 6s ease-in-out 2.4s infinite;
+    pointer-events: none;
+}
+
+@keyframes mimosa-grow {
+    from { transform: scale(0) rotate(-30deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes mimosa-sway {
+    0%, 100% { transform: rotate(0deg); }
+    50%      { transform: rotate(-7deg); }
+}
+
+@media print {
+    [data-season="womensday"] .monogram::after { display: none !important; }
+}

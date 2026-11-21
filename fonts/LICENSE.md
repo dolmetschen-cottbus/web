@@ -2,6 +2,8 @@ Copyright 2020 The Jost Project Authors (https://github.com/indestructible-type/
 
 Copyright 2010-2024 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'. All Rights Reserved. Source is a trademark of Adobe in the United States and/or other countries.
 
+Copyright 2015 The Great Vibes Pro Project Authors (https://github.com/googlefonts/great-vibes) – nur die Umrisse der Buchstaben „E“ und „M“ als SVG-Pfad im Schriftzug der Übersetzertag-Grafik (de/index.html, ru/index.html), keine Schriftdatei.
+
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 
 This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL

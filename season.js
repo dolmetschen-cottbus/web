@@ -8,6 +8,7 @@
    - Ostern (Palmsonntag bis Ostermontag, westliches UND orthodoxes Datum): Gold-Ei am Monogramm und
      Eiersuche – drei winzige goldene Eier sind auf der Seite versteckt; wer alle findet, bekommt einen
      Gruß. (Zarenei und Ostergruß in der Hero-Grafik steuert hero-art.js.)   Test: ?ostern
+   - Internationaler Frauentag (8. März): ein Mimosenzweig wächst am Monogramm (nur CSS).   Test: ?frauentag
    Bei „Bewegung reduzieren“ bleibt alles aus. */
 (function () {
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }
@@ -42,6 +43,8 @@
   if (/[?&]halloween\b/.test(q)) { season = "halloween"; }
   else if (/[?&](winter|silvester)\b/.test(q)) { season = "winter"; }
   else if (/[?&]ostern\b/.test(q)) { season = "easter"; }
+  else if (/[?&]frauentag\b/.test(q)) { season = "womensday"; }
+  else if (m === 2 && d === 8) { season = "womensday"; }
   else if (m === 11 || m === 0) { season = "winter"; }
   else if ((m === 9 && d >= 25) || (m === 10 && d === 1)) { season = "halloween"; }
   else if (isEaster(now)) { season = "easter"; }
