@@ -3,7 +3,8 @@
      hängen an der Kopfleiste. Am 24.–26.12., 31.12. und 1.1. setzt Hover dem Porträt eine Weihnachtsmütze auf;
      an Silvester/Neujahr steigt Goldfeuerwerk im Startbereich.   Test: ?winter, ?silvester
    - Halloween (25. Oktober – 1. November): Spinnennetz oben rechts, mit Fäden an der schwebenden
-     Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab.   Test: ?halloween
+     Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab; Hover über Lenas Foto
+     macht daraus „Grusel-Lena“ (Mondlicht, Hexenhut, Fledermäuse); Fledermäuse auch am Monogramm.   Test: ?halloween
    - Ostern (Palmsonntag bis Ostermontag, westliches UND orthodoxes Datum): Gold-Ei am Monogramm und
      Eiersuche – drei winzige goldene Eier sind auf der Seite versteckt; wer alle findet, bekommt einen
      Gruß. (Zarenei und Ostergruß in der Hero-Grafik steuert hero-art.js.)   Test: ?ostern
@@ -307,7 +308,50 @@
     setTimeout(loop, 1200);
   }
 
+  /* ---------- Grusel-Lena: beim Hover (Handy: Antippen) Mondlicht, Hexenhut und drei
+     Fledermäuse, die hinter dem Rahmen hervorflattern. Hut im Koordinatensystem 200x170
+     (Vorschau: _planung/tmp/witch_preview.py). Fledermäuse auch beim Hover übers Monogramm. ---------- */
+  var BAT = '<svg viewBox="0 0 40 20" aria-hidden="true" focusable="false"><g class="bat-wings">' +
+            '<path d="M20 8C17 3 10 1 2 4C5 6 6 9 5 12C8 10 11 11 12 13C14 10 17 10 20 12Z"/>' +
+            '<path transform="matrix(-1 0 0 1 40 0)" d="M20 8C17 3 10 1 2 4C5 6 6 9 5 12C8 10 11 11 12 13C14 10 17 10 20 12Z"/>' +
+            '</g><path d="M18.2 6.2 18.6 3.4 19.6 5.4H20.4L21.4 3.4 21.8 6.2"/><ellipse cx="20" cy="9.5" rx="2.4" ry="4"/></svg>';
+
+  function addBats(host, cls) {
+    for (var k = 1; k <= 3; k++) {
+      var bat = document.createElement("span");
+      bat.className = "vamp-bat " + cls + k;
+      bat.setAttribute("aria-hidden", "true");
+      bat.innerHTML = BAT;
+      host.appendChild(bat);
+    }
+  }
+
+  function spookyLena() {
+    var mono = document.querySelector(".site-header .monogram");
+    if (mono) { addBats(mono, "mono-bat--"); }
+
+    var p = document.querySelector(".portrait");
+    if (!p) { return; }
+    var NS = "http://www.w3.org/2000/svg", hat = document.createElementNS(NS, "svg");
+    hat.setAttribute("class", "witch-hat");
+    hat.setAttribute("viewBox", "0 0 200 170");
+    hat.setAttribute("aria-hidden", "true");
+    hat.setAttribute("focusable", "false");
+    hat.innerHTML =
+      '<path class="wh-brim" d="M6 142C44 124 156 120 194 134C204 140 182 154 150 154C110 157 60 158 22 154C6 152 0 147 6 142Z"/>' +
+      '<path class="wh-cone" d="M54 136C70 98 88 62 106 36C118 18 138 6 160 10C142 18 130 34 126 56C121 82 132 110 146 134Z"/>' +
+      '<path class="wh-shine" d="M72 112C82 86 94 62 110 40"/>' +
+      '<path class="wh-band" d="M58 124C88 114 118 113 141 120C143 125 145 129 147 135C118 128 86 129 53 138Z"/>' +
+      '<rect class="wh-buckle" x="89" y="115" width="20" height="16" rx="1.5"/>';
+    p.appendChild(hat);
+    addBats(p, "vamp-bat--");
+    if (!(window.matchMedia && window.matchMedia("(hover: hover)").matches)) {
+      p.addEventListener("click", function () { p.classList.toggle("is-spooky"); });
+    }
+  }
+
   function halloween() {
+    spookyLena();
     var NS = "http://www.w3.org/2000/svg";
     var bar = document.querySelector(".header-bar");
     if (!bar) { return; }
@@ -486,8 +530,48 @@
       var u = G.W - x, v = y - G.top;
       return u >= 0 && v >= 0 && (u + v) < 470 * G.s;
     }
-    window.addEventListener("pointermove", function (e) { if (overWeb(e.clientX, e.clientY)) { flutter(5); } }, { passive: true });
-    window.addEventListener("pointerdown", function (e) { if (overWeb(e.clientX, e.clientY)) { flutter(11); } }, { passive: true });
+    window.addEventListener("pointermove", function (e) { if (overWeb(e.clientX, e.clientY)) { flutter(5); curious(); } }, { passive: true });
+    window.addEventListener("pointerdown", function (e) { if (overWeb(e.clientX, e.clientY)) { flutter(11); curious(); } }, { passive: true });
+
+    /* Neugierige Spinne: Wackelt jemand am Netz, kommt kurz darauf eine Spinne aus der Ecke ins
+       Netz, schaut sich um, dreht und verschwindet wieder (höchstens alle 10 Sekunden). */
+    var peekClip = document.createElement("div"), peek = document.createElement("div");
+    peekClip.className = "hw-peek-clip";
+    peekClip.setAttribute("aria-hidden", "true");
+    peek.className = "hw-peek";
+    peek.innerHTML =
+      '<svg viewBox="-16 -16 32 32" focusable="false">' +
+      '<g class="hw-legs-a"><path d="M-3-3-9-9-12-8M3 1 10 4 12 9M-3 4-9 8-10 13M3-6 8-11 9-14"/></g>' +
+      '<g class="hw-legs-b"><path d="M3-3 9-9 12-8M-3 1-10 4-12 9M3 4 9 8 10 13M-3-6-8-11-9-14"/></g>' +
+      '<ellipse class="hw-body" cx="0" cy="4" rx="4.6" ry="6"/>' +
+      '<circle class="hw-body" cx="0" cy="-4.5" r="3.4"/>' +
+      '<circle class="hw-eye" cx="-1.3" cy="-6" r="1.1"/><circle class="hw-eye" cx="1.3" cy="-6" r="1.1"/>' +
+      '</svg>';
+    peekClip.appendChild(peek);
+    document.body.appendChild(peekClip);
+    var peekBusy = false, peekNext = 0;
+    function curious() {
+      var now = Date.now();
+      if (peekBusy || now < peekNext || !G) { return; }
+      peekBusy = true;
+      setTimeout(function () {
+        var hx = G.W - (G.W - G.hub[0]) * 2.3, hy = (G.hub[1] - G.top) * 2.3;   /* etwas jenseits der Netzmitte, ganz sichtbar */
+        var cx = G.W - hx, cy = -hy, len = Math.sqrt(cx * cx + cy * cy) || 1, far = len + 40;
+        peekClip.style.top = f(G.top) + "px";
+        peek.style.left = f(hx - 15) + "px";
+        peek.style.top = f(hy - 15) + "px";
+        /* Kopf (im SVG oben) zeigt von der Ecke ins Netz */
+        peek.style.setProperty("--ang", f(Math.atan2(-cx, -hy) * 180 / Math.PI) + "deg");
+        peek.style.setProperty("--fx", f(cx / len * far) + "px");
+        peek.style.setProperty("--fy", f(cy / len * far) + "px");
+        peek.classList.add("is-peek");
+      }, 700);
+    }
+    peek.addEventListener("animationend", function () {
+      peek.classList.remove("is-peek");
+      peekBusy = false;
+      peekNext = Date.now() + 10000;
+    });
 
     function draw() {
       build();
