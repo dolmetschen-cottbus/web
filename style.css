@@ -369,10 +369,7 @@ html:not([data-art]) .greet,
 html:not([data-pair]) .pair--1,
 [data-pair="1"] .pair--1,
 [data-pair="2"] .pair--2,
-[data-pair="3"] .pair--3,
-[data-pair="xmas"] .pair--xmas,
-[data-pair="ny"] .pair--ny,
-[data-pair="xmasru"] .pair--xmasru { display: inline; }
+[data-pair="3"] .pair--3 { display: inline; }
 
 /* Deutsch tippt, drei Punkte, Russisch antwortet – dann bleibt das Paar stehen */
 .pair .say { clip-path: inset(0 100% 0 0); animation: type-de 5s steps(14, end) forwards; }
@@ -1428,14 +1425,12 @@ html:not([data-pair]) .pair--1,
 }
 
 /* ==========================================================================
-   Oster-Easter-Egg (Palmsonntag bis Ostermontag, westlich und orthodox)
+   Oster-Easter-Egg (Palmsonntag bis Ostermontag)
    Zarenei + Ostergruß: hero-art.js · Gold-Ei am Monogramm + Eiersuche: season.js
    ========================================================================== */
 
 /* ---------- Zarenei als vierte Hero-Grafik ---------- */
 [data-art="egg"] .egg { display: block; }
-[data-pair="easter"] .pair--easter,
-[data-pair="easterru"] .pair--easterru { display: inline; }
 
 .egg-fill    { fill: var(--bg); }
 .egg-outline { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 100; stroke-dashoffset: 100;
@@ -1449,7 +1444,7 @@ html:not([data-pair]) .pair--1,
 .egg-stand path { fill: none; stroke: var(--gold); stroke-width: 1.2; stroke-linecap: round; }
 .egg-stand   { opacity: 0; animation: fade 1s ease .4s forwards; }
 
-/* Deckel klappt um das rechte Scharnier auf, innen leuchtet das Monogramm */
+/* Deckel klappt um das rechte Scharnier auf, innen leuchtet der Ostergruß */
 .egg-lid {
     transform-box: view-box;
     transform-origin: 275px 205px;
@@ -1459,7 +1454,12 @@ html:not([data-pair]) .pair--1,
 @keyframes egg-open { to { transform: rotate(34deg); } }
 
 .egg-inner { opacity: 0; animation: fade 1.4s ease 4.6s forwards; }
-.egg-mono  { font-family: var(--font-display); font-size: 40px; font-weight: 300; letter-spacing: 0.14em; fill: var(--gold); }
+/* im geöffneten Ei nacheinander: „Frohe Ostern!“ → „Светлой Пасхи!“ (bleibt bis zum Neustart) */
+.egg-say   { font-family: var(--font-display); font-size: 20px; font-weight: 300; letter-spacing: 0.04em; fill: var(--gold); opacity: 0; }
+.egg-say--de { animation: egg-word 3.2s ease 5s forwards; }
+.egg-say--ru { animation: fade 1s ease 8.2s forwards; }
+
+@keyframes egg-word { 0% { opacity: 0; } 30%, 75% { opacity: 1; } 100% { opacity: 0; } }
 
 /* ---------- Gold-Ei am Monogramm, funkelt sacht ---------- */
 [data-season="easter"] .monogram { position: relative; }
@@ -1536,6 +1536,7 @@ html:not([data-pair]) .pair--1,
 @media (prefers-reduced-motion: reduce) {
     .egg-outline { stroke-dashoffset: 0; }
     .egg-lattice, .egg-band, .egg-pearl, .egg-finial, .egg-finial-line, .egg-stand { opacity: 1; }
+    .egg-say--de { opacity: 1; }
 }
 
 @media print {
@@ -1612,7 +1613,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 }
 
 /* ==========================================================================
-   Winter-Zugaben (season.js): Eiszapfen aus Glas, Weihnachtsmütze, Silvester-Feuerwerk
+   Winter-Zugaben (season.js): Eiszapfen aus Glas, Silvester-Feuerwerk
    ========================================================================== */
 
 /* ---------- Eiszapfen an der Unterkante der Kopfleiste ---------- */
@@ -1654,28 +1655,6 @@ html { scrollbar-color: #3a434b var(--bg); }
     100% { transform: translateY(160px) scale(0.8, 1.3); opacity: 0; }
 }
 
-/* ---------- Weihnachtsmütze: rutscht beim Hover mit leichtem Wippen auf den Kopf ---------- */
-.xmas-hat {
-    position: absolute; left: 17%; top: -19%; z-index: 2;
-    width: 64%; height: auto;
-    overflow: visible;
-    pointer-events: none;
-    transform-origin: 50% 80%;
-    opacity: 0;
-    transform: translateY(-55%) rotate(-28deg);
-    transition: opacity .3s ease, transform .75s cubic-bezier(.34, 1.56, .64, 1);
-    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
-}
-
-.portrait:hover .xmas-hat,
-.portrait.is-hat .xmas-hat { opacity: 1; transform: rotate(-10deg); }
-
-.xh-body  { fill: #b2222c; }
-.xh-shade { fill: #861a23; }
-.xh-shine { fill: none; stroke: rgba(255, 255, 255, 0.18); stroke-width: 5; stroke-linecap: round; }
-.xh-brim, .xh-bob { fill: #f3f0ea; }
-.xh-fluff { fill: none; stroke: rgba(0, 0, 0, 0.1); stroke-width: 2; stroke-linecap: round; }
-
 /* ---------- Silvester-Feuerwerk im Startbereich ---------- */
 .fireworks { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
 .fireworks--click { position: fixed; z-index: 45; }                  /* Klick-Raketen: über dem Inhalt, unter der Kopfleiste */
@@ -1710,7 +1689,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 }
 
 @media print {
-    .icicles, .xmas-hat, .fireworks { display: none !important; }
+    .icicles, .fireworks { display: none !important; }
 }
 
 /* ==========================================================================
@@ -1833,12 +1812,12 @@ html { scrollbar-color: #3a434b var(--bg); }
 
 /* ==========================================================================
    Internationaler Übersetzertag (30. September, hero-art.js): Schreibfeder
-   schreibt „EM“ in Schreibschrift (Great Vibes, OFL – nur die Umrisse, keine Schriftdatei), danach Begrüßung „Frohen Übersetzertag!“ – „С Днём переводчика!“
+   schreibt „EM“ in Schreibschrift (Great Vibes, OFL – nur die Umrisse, keine Schriftdatei), beschriftet „Internationaler Übersetzertag“, läuft in Schleife
    Umrisse, Pinselweg (Maske) und Federbewegung erzeugt _planung/tmp/gv_apply.py
    ========================================================================== */
 [data-art="quill"] .quill { display: block; }
-[data-pair="transl"] .pair--transl { display: inline; }
 
+.q-cap     { font-size: 12.5px; letter-spacing: 0.16em; fill: var(--gold); opacity: 0; animation: fade 1s ease .4s forwards; }
 .q-rule    { stroke: var(--gold); stroke-opacity: 0.25; stroke-width: 1; stroke-dasharray: 2 5; opacity: 0; animation: fade 1s ease .3s forwards; }
 .q-script      { fill: var(--gold); }
 .q-script-full { fill: var(--gold); opacity: 0; animation: fade .5s ease 6.96s forwards; }   /* letzte Pinsel-Lücken schließen */
@@ -1962,37 +1941,8 @@ html { scrollbar-color: #3a434b var(--bg); }
 @keyframes quill-lift { to { transform: translate(14px, -22px) rotate(8deg); } }
 
 @media (prefers-reduced-motion: reduce) {
-    .q-script-full, .q-rule, .q-feather { opacity: 1; }
+    .q-script-full, .q-rule, .q-feather, .q-cap { opacity: 1; }
     .q-pen { transform: translate(295.0px, 260.0px); }
-}
-
-/* ==========================================================================
-   Internationaler Frauentag (8. März, season.js): Mimosenzweig wächst am Monogramm
-   ========================================================================== */
-[data-season="womensday"] .monogram { position: relative; }
-
-[data-season="womensday"] .monogram::after {
-    content: "";
-    position: absolute; top: -12px; right: -14px;
-    width: 24px; height: 24px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23a9b38a' stroke-linecap='round'%3E%3Cpath stroke-width='1.4' d='M3 30C10 24 15 18 25 9'/%3E%3Cpath stroke-width='1.1' d='M8 25 5 24M8 25l1-3M12 21l-3-1M12 21l1-3M16 17.5l-3-1M16 17.5l1-3M20 14l-2.5-1M20 14l1-2.5'/%3E%3C/g%3E%3Cg fill='%23f2cf4f'%3E%3Ccircle cx='22' cy='8' r='2.6'/%3E%3Ccircle cx='26.5' cy='5' r='2.2'/%3E%3Ccircle cx='27' cy='10.5' r='2.3'/%3E%3Ccircle cx='18.5' cy='10.5' r='2'/%3E%3Ccircle cx='23' cy='13' r='1.9'/%3E%3Ccircle cx='16.5' cy='7' r='1.8'/%3E%3Ccircle cx='29.5' cy='7.5' r='1.6'/%3E%3Ccircle cx='21' cy='3.6' r='1.7'/%3E%3C/g%3E%3C/svg%3E") no-repeat center / contain;
-    filter: drop-shadow(0 0 4px rgba(242, 207, 79, 0.55));
-    transform-origin: 0% 100%;
-    animation: mimosa-grow 1.6s cubic-bezier(.3, 1.4, .5, 1) .6s both, mimosa-sway 6s ease-in-out 2.4s infinite;
-    pointer-events: none;
-}
-
-@keyframes mimosa-grow {
-    from { transform: scale(0) rotate(-30deg); opacity: 0; }
-    to   { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-@keyframes mimosa-sway {
-    0%, 100% { transform: rotate(0deg); }
-    50%      { transform: rotate(-7deg); }
-}
-
-@media print {
-    [data-season="womensday"] .monogram::after { display: none !important; }
 }
 
 /* ==========================================================================
@@ -2005,4 +1955,144 @@ html { scrollbar-color: #3a434b var(--bg); }
     49%  { transform: perspective(600px) rotateX(90deg); }
     51%  { transform: perspective(600px) rotateX(-90deg); }
     100% { transform: perspective(600px) rotateX(0deg); }
+}
+
+/* ==========================================================================
+   Feiertags-Grafiken im Startbereich (hero-art.js, nur an diesen Tagen):
+   Halloween 31.10. – Kürbis · Advent bis 26.12. – Adventskranz · 31.12./1.1. – Sektgläser + Feuerwerk
+   Markup erzeugt _planung/tmp/feier_arts.py
+   ========================================================================== */
+[data-art="pumpkin"] .pumpkin,
+[data-art="wreath"] .wreath { display: block; }
+
+/* ---------- Kürbis: zeichnen, Rippen, Stiel, dann wird das Gesicht „geschnitzt“ und flackert ---------- */
+.pk-title { font-family: var(--font-display); font-size: 26px; font-weight: 300; letter-spacing: 0.04em; fill: var(--gold);
+            opacity: 0; animation: fade 1.2s ease 3.4s forwards; }
+.pk-body  { fill: var(--bg); stroke: var(--gold); stroke-width: 1.6; stroke-dasharray: 100; stroke-dashoffset: 100;
+            animation: write 2s ease-out forwards; }
+.pk-ribs  { fill: none; stroke: var(--gold); stroke-opacity: 0.55; stroke-width: 1; stroke-dasharray: 100; stroke-dashoffset: 100;
+            animation: write 1.4s ease-out 1.2s forwards; }
+.pk-stem, .pk-vine { fill: none; stroke: var(--gold); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+            opacity: 0; animation: fade .8s ease 1.8s forwards; }
+.pk-face  { fill: #f6b44a; transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(0.6);
+            filter: drop-shadow(0 0 6px rgba(246, 180, 74, 0.8));
+            animation: pk-carve .7s cubic-bezier(.3, 1.5, .5, 1) 2.6s forwards, pk-flicker 2.4s linear 3.4s infinite; }
+.pk-halo  { opacity: 0; animation: pk-halo 2.4s linear 3.4s infinite; }
+
+@keyframes pk-carve   { to { opacity: 1; transform: none; } }
+@keyframes pk-flicker { 0%, 100% { opacity: 1; } 12% { opacity: .78; } 20% { opacity: .95; } 47% { opacity: .82; } 55% { opacity: 1; } 78% { opacity: .88; } }
+@keyframes pk-halo    { 0%, 100% { opacity: .9; } 12% { opacity: .6; } 47% { opacity: .7; } 78% { opacity: .8; } }
+
+/* ---------- Adventskranz (3D-Eindruck): Zweige und Kerzen von hinten nach vorn gezeichnet, jeder Zweig
+   verdeckt mit seiner dunklen Fläche, was hinter ihm liegt; die passenden Flammen gehen nacheinander an ---------- */
+.wr-shadow { fill: rgba(0, 0, 0, 0.45); filter: blur(8px); opacity: 0; animation: fade 1.2s ease forwards; }
+.wr-fir    { opacity: 0; animation: fade 1.1s ease .2s forwards; }
+.wr-fir-fill    { fill: var(--bg); }
+.wr-fir-needles { fill: none; stroke: #8fae7a; stroke-opacity: 0.9; stroke-width: 0.9; stroke-linecap: round; stroke-linejoin: round; }
+.wr-berries { fill: #b8433f; stroke: var(--bg); stroke-width: 1.2; opacity: 0; animation: fade .8s ease 1.9s forwards; }
+.wr-candle { opacity: 0; animation: fade .7s ease forwards; }
+.wr-candle--1 { animation-delay: 1s; }
+.wr-candle--2 { animation-delay: 1.2s; }
+.wr-candle--3 { animation-delay: 1.4s; }
+.wr-candle--4 { animation-delay: 1.6s; }
+.wr-wax    { fill: var(--bg); stroke: var(--gold); stroke-width: 1.4; stroke-linejoin: round; }
+.wr-top    { fill: #1a2024; stroke: var(--gold); stroke-width: 1.4; }
+.wr-shine  { fill: none; stroke: var(--gold); stroke-opacity: 0.25; stroke-width: 2.5; stroke-linecap: round; }
+.wr-wick   { fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; }
+.wr-flame  { display: none; fill: #f6b44a; transform-box: fill-box; transform-origin: 50% 100%; transform: scale(0);
+             filter: drop-shadow(0 0 6px rgba(246, 180, 74, 0.85));
+             animation: wr-light .6s cubic-bezier(.3, 1.6, .5, 1) forwards, wr-flicker 1.8s ease-in-out infinite; }
+.wr-candle--1 .wr-flame { animation-delay: 2.4s, 3s; }
+.wr-candle--2 .wr-flame { animation-delay: 2.9s, 3.5s; }
+.wr-candle--3 .wr-flame { animation-delay: 3.4s, 4s; }
+.wr-candle--4 .wr-flame { animation-delay: 3.9s, 4.5s; }
+[data-advent="1"] .wr-candle--1 .wr-flame,
+[data-advent="2"] .wr-candle--1 .wr-flame, [data-advent="2"] .wr-candle--2 .wr-flame,
+[data-advent="3"] .wr-candle--1 .wr-flame, [data-advent="3"] .wr-candle--2 .wr-flame, [data-advent="3"] .wr-candle--3 .wr-flame,
+[data-advent="4"] .wr-flame { display: inline; }
+.wr-cap    { fill: var(--gold); opacity: 0; animation: fade 1s ease 2.6s forwards; }
+
+/* Weihnachtsstern (nur 24.–26.12.): erscheint nach der vierten Flamme, dreht sich ein und funkelt */
+.wr-star { display: none; }
+[data-xmas] .wr-star { display: inline; }
+.wr-star-body { fill: #f3d58a; stroke: var(--gold); stroke-width: 1; stroke-linejoin: round;
+                filter: drop-shadow(0 0 8px rgba(243, 213, 138, 0.9)); }
+.wr-star-rays { fill: none; stroke: #f3d58a; stroke-width: 1.4; stroke-linecap: round; }
+.wr-star-glow { fill: rgba(243, 213, 138, 0.16); }
+.wr-star-body, .wr-star-rays, .wr-star-glow { transform-box: view-box; transform-origin: 180px 92px; }
+.wr-star-body { transform: scale(0) rotate(-140deg); animation: wr-star-in 1.1s cubic-bezier(.3, 1.4, .5, 1) 4.6s forwards; }
+.wr-star-rays { opacity: 0; animation: fade .6s ease 5.4s forwards, wr-rays 2.6s ease-in-out 6s infinite; }
+.wr-star-glow { opacity: 0; animation: fade .8s ease 5.2s forwards, wr-glow 2.6s ease-in-out 6s infinite; }
+
+@keyframes wr-star-in { to { transform: scale(1) rotate(0deg); } }
+@keyframes wr-rays    { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.88) rotate(12deg); } }
+@keyframes wr-glow    { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(1.15); } }
+
+@keyframes wr-light   { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes wr-flicker { 0%, 100% { transform: scale(1) rotate(0deg); } 30% { transform: scale(.94, 1.04) rotate(-3deg); }
+                        60% { transform: scale(1.03, .96) rotate(2deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .pk-body, .pk-ribs { stroke-dashoffset: 0; }
+    .pk-title, .pk-stem, .pk-vine, .pk-face, .pk-halo, .wr-shadow, .wr-fir, .wr-berries, .wr-candle, .wr-cap,
+    .wr-star-rays, .wr-star-glow, .wr-star-body { opacity: 1; transform: none; }
+    .wr-flame { transform: none; }
+}
+
+/* ---------- Silvester: Sektgläser (Teil der Grafik „toast“) ---------- */
+
+.gl-bowl, .gl-stem, .gl-rim, .gl-foot { fill: none; stroke: var(--heading); stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round; }
+.gl-rim    { stroke-opacity: 0.8; }
+.gl-liquid { fill: rgba(216, 197, 156, 0.3); opacity: 0; animation: fade .6s ease .3s forwards; }
+.gl-foam   { fill: rgba(245, 245, 242, 0.25); opacity: 0; animation: fade .6s ease .3s forwards; }
+.gl-tilt--l { animation: gl-left 2s cubic-bezier(.3, .8, .4, 1) both; }
+.gl-tilt--r { animation: gl-right 2s cubic-bezier(.3, .8, .4, 1) both; }
+.gl-spark  { fill: none; stroke: #f3d58a; stroke-width: 1.6; stroke-linecap: round; opacity: 0;
+              transform-box: fill-box; transform-origin: center; animation: gl-spark .9s ease-out 1.1s forwards; }
+.gl-bubble { fill: none; stroke: var(--gold); stroke-width: 0.8; opacity: 0; animation: gl-rise 1.8s linear infinite; }
+.gl-bubble--1 { --rise: -50px; animation-delay: 1.30s; }
+.gl-bubble--2 { --rise: -38px; animation-delay: 1.57s; }
+.gl-bubble--3 { --rise: -26px; animation-delay: 1.84s; }
+.gl-bubble--4 { --rise: -42px; animation-delay: 2.11s; }
+.gl-bubble--5 { --rise: -16px; animation-delay: 2.38s; }
+.gl-bubble--6 { --rise: -12px; animation-delay: 2.65s; }
+
+@keyframes gl-left  { 0% { transform: translate(-50px, 12px) rotate(0deg); opacity: 0; } 18% { opacity: 1; }
+                      55% { transform: translate(0, 0) rotate(17deg); } 66% { transform: rotate(12.5deg); }
+                      78%, 100% { transform: rotate(15deg); opacity: 1; } }
+@keyframes gl-right { 0% { transform: translate(50px, 12px) rotate(0deg); opacity: 0; } 18% { opacity: 1; }
+                      55% { transform: translate(0, 0) rotate(-17deg); } 66% { transform: rotate(-12.5deg); }
+                      78%, 100% { transform: rotate(-15deg); opacity: 1; } }
+@keyframes gl-spark { 0% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.25); } }
+@keyframes gl-rise  { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: 1; } 85% { opacity: .8; }
+                      100% { opacity: 0; transform: translateY(var(--rise)); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .gl-tilt--l { transform: rotate(15deg); }
+    .gl-tilt--r { transform: rotate(-15deg); }
+    .gl-liquid, .gl-foam { opacity: 1; }
+}
+
+/* ---------- Silvester-Kombi „toast“: Gläser stoßen an, Raketen schreiben die Jahreszahl (Test ?art=toast) ---------- */
+[data-art="toast"] .toast { display: block; }
+.toast .gl-spark { animation-delay: 1.1s; }
+.tw-rocket { fill: #f3d58a; opacity: 0; filter: drop-shadow(0 0 3px rgba(243, 213, 138, 0.9));
+             animation: tw-launch .75s cubic-bezier(.2, .6, .4, 1) forwards; }
+.tw-burst  { fill: none; stroke: #f3d58a; stroke-width: 1.2; stroke-linecap: round; opacity: 0;
+             transform-box: fill-box; transform-origin: center; animation: tw-burst .9s ease-out forwards; }
+.tw-digit  { fill: none; stroke: #f3d58a; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0 3.7;
+             filter: drop-shadow(0 0 3px rgba(243, 213, 138, 0.85));
+             transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(.25);
+             animation: tw-pop .7s cubic-bezier(.2, 1.4, .4, 1) forwards, tw-shimmer 1.4s linear infinite; }
+.tw-cap    { fill: var(--gold); opacity: 0; animation: fade 1s ease 3.1s forwards; }
+
+@keyframes tw-launch  { 0% { opacity: 1; transform: translate(0, 0); } 90% { opacity: 1; transform: translate(var(--tx), var(--ty)); }
+                        100% { opacity: 0; transform: translate(var(--tx), var(--ty)); } }
+@keyframes tw-burst   { 0% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.3); } }
+@keyframes tw-pop     { to { opacity: 1; transform: none; } }
+@keyframes tw-shimmer { to { stroke-dashoffset: -3.7; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .tw-digit { opacity: 1; transform: none; }
+    .tw-cap { opacity: 1; }
 }

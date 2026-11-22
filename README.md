@@ -68,21 +68,19 @@ Dann `http://localhost:8000/web/de/` aufrufen. Nach Änderungen immer **Strg+F5*
 
 ## Easter Eggs
 
-Die saisonalen Easter Eggs schalten sich nach Datum von selbst ein. Mit einem Parameter an der Adresse lassen sie sich jederzeit ansehen. Die Parameter funktionieren auf jeder Seite, die Beispiele nutzen die deutsche Startseite. Bei „Bewegung reduzieren“ (Betriebssystem-Einstellung) sind alle aus.
+Die saisonalen Easter Eggs richten sich nach dem deutschen Kalender und schalten sich nach Datum von selbst ein. An normalen Tagen wechseln im Startbereich die drei Grafiken Begrüßung, Globus und Buchstaben. An besonderen Tagen laufen dort **nur** die Sonder-Animationen dieses Tages. Mit einem Parameter an der Adresse lassen sie sich jederzeit ansehen. Die Parameter funktionieren auf jeder Seite, die Beispiele nutzen die deutsche Startseite. Bei „Bewegung reduzieren“ (Betriebssystem-Einstellung) sind alle aus.
 
 ### Saisonal
 
 | Easter Egg | Zeitraum | Ansehen |
 |---|---|---|
-| **Winter:** 7 Eiskristalle schweben über die Seite, gläserne Eiszapfen hängen an der Kopfleiste (jedes Mal anders gewachsen, ab und zu tropft einer), Goldkristall am Monogramm | 1. Dezember – 31. Januar | [`de/?winter`](https://dolmetschen-cottbus.github.io/web/de/?winter) |
-| **Weihnachtsmütze:** Hover auf Elenas Foto (bei „Über mich“), am Handy antippen | 24.–26.12., 31.12., 1.1. | [`de/?winter`](https://dolmetschen-cottbus.github.io/web/de/?winter#ueber-mich) |
-| **Festtagsgruß** in der Begrüßungsgrafik: „Frohe Weihnachten!“ / „Frohes neues Jahr!“ / russisches Weihnachten „С Рождеством!“ | 1.–26.12. / 27.12.–5.1. / 6.–8.1. | [`?fest=xmas`](https://dolmetschen-cottbus.github.io/web/de/?fest=xmas) · [`?fest=ny`](https://dolmetschen-cottbus.github.io/web/de/?fest=ny) · [`?fest=xmasru`](https://dolmetschen-cottbus.github.io/web/de/?fest=xmasru) |
-| **Silvester:** Goldfeuerwerk links und rechts im Startbereich, eine Rakete bei jedem Klick auf freie Fläche, Eiszapfen ja, Schnee nein | 31.12. und 1.1. | [`de/?silvester`](https://dolmetschen-cottbus.github.io/web/de/?silvester) |
-| **Frauentag:** Ein Mimosenzweig wächst am Monogramm | 8. März | [`de/?frauentag`](https://dolmetschen-cottbus.github.io/web/de/?frauentag) |
-| **Ostern:** Zarenei als erste Grafik (der Deckel öffnet sich, innen leuchtet „EM“), Gruß „Frohe Ostern!“ – „Светлой Пасхи!“, Gold-Ei am Monogramm, **Eiersuche** mit drei versteckten Eiern an zufälligen Stellen (alle gefunden → Gruß) | Palmsonntag – Ostermontag, westlich **und** orthodox | [`de/?ostern`](https://dolmetschen-cottbus.github.io/web/de/?ostern) |
-| **Orthodoxes Ostern:** wie oben, mit dem Gruß „Христос воскресе!“ | orthodoxe Osterzeit | [`de/?ostern&fest=easterru`](https://dolmetschen-cottbus.github.io/web/de/?ostern&fest=easterru) |
-| **Übersetzertag:** Eine Feder schreibt „EM“ in Schreibschrift, danach „Frohen Übersetzertag!“ – „С Днём переводчика!“ | 30. September | [`de/?fest=transl`](https://dolmetschen-cottbus.github.io/web/de/?fest=transl) |
-| **Halloween:** Spinnennetz oben rechts (flattert bei Berührung), Abseil-Spinne an der Kopfleiste, Krabbelspinne, die vor der Maus flieht, neugierige Spinne nach dem Wackeln am Netz; **„Grusel-Lena“** beim Hover aufs Foto (Mondlicht, Hexenhut, Fledermäuse); Fledermäuse auch beim Hover übers Monogramm | 25. Oktober – 1. November | [`de/?halloween`](https://dolmetschen-cottbus.github.io/web/de/?halloween) |
+| **Winter (normaler Wintertag):** 7 Eiskristalle schweben über die Seite, gläserne Eiszapfen hängen an der Kopfleiste (jedes Mal anders gewachsen, ab und zu tropft einer), Goldkristall am Monogramm | 1. Dezember – 31. Januar | [`de/?winter`](https://dolmetschen-cottbus.github.io/web/de/?winter) |
+| **Advent:** Winter-Effekte, dazu im Startbereich nur der Adventskranz aus Tannenzweigen mit roten Beeren, je nach Adventssonntag brennen 1–4 Kerzen, beschriftet „1. Advent“ … „4. Advent“ | 1. Advent – 23.12. | [`?fest=advent`](https://dolmetschen-cottbus.github.io/web/de/?fest=advent) · [`&advent=3`](https://dolmetschen-cottbus.github.io/web/de/?fest=advent&advent=3) |
+| **Weihnachten:** Winter-Effekte, Adventskranz mit allen vier Kerzen und funkelndem Weihnachtsstern, „Frohe Weihnachten“ | 24.–26.12. | [`?fest=xmas`](https://dolmetschen-cottbus.github.io/web/de/?fest=xmas) |
+| **Silvester:** im Startbereich stoßen zwei Sektgläser an, Raketen steigen auf und schreiben die neue Jahreszahl aus Funkenpunkten in den Himmel, „Frohes neues Jahr“ (RU: „С Новым годом!“) – in Endlosschleife; dazu Goldfeuerwerk links und rechts, eine Rakete bei jedem Klick auf freie Fläche, Eiszapfen ja, Schnee nein | 31.12. und 1.1. | [`de/?silvester`](https://dolmetschen-cottbus.github.io/web/de/?silvester) |
+| **Ostern:** im Startbereich nur das Zarenei: Der Deckel öffnet sich, innen leuchtet „Frohe Ostern!“, dann „Светлой Пасхи!“ – in Endlosschleife; Gold-Ei am Monogramm, **Eiersuche** mit drei versteckten Eiern an zufälligen Stellen (alle gefunden → Gruß) | Palmsonntag – Ostermontag | [`de/?ostern`](https://dolmetschen-cottbus.github.io/web/de/?ostern) |
+| **Internationaler Übersetzertag:** im Startbereich nur die Feder, die „EM“ in Schreibschrift schreibt, beschriftet „Internationaler Übersetzertag“ – in Endlosschleife | 30. September | [`de/?fest=transl`](https://dolmetschen-cottbus.github.io/web/de/?fest=transl) |
+| **Halloween:** im Startbereich nur der Kürbis (wird gezeichnet und geschnitzt, innen flackert Licht, „Happy Halloween“); Spinnennetz oben rechts (flattert bei Berührung), Abseil-Spinne an der Kopfleiste, Krabbelspinne, die vor der Maus flieht, neugierige Spinne nach dem Wackeln am Netz; **„Grusel-Lena“** beim Hover aufs Foto (Mondlicht, Hexenhut, Fledermäuse); Fledermäuse auch beim Hover übers Monogramm | 31. Oktober | [`de/?halloween`](https://dolmetschen-cottbus.github.io/web/de/?halloween) |
 
 ### Immer da
 
@@ -97,7 +95,7 @@ Die saisonalen Easter Eggs schalten sich nach Datum von selbst ein. Mit einem Pa
 | Adresse | Wirkung |
 |---|---|
 | [`de/?art=greet`](https://dolmetschen-cottbus.github.io/web/de/?art=greet) · [`?art=globe`](https://dolmetschen-cottbus.github.io/web/de/?art=globe) · [`?art=glyph`](https://dolmetschen-cottbus.github.io/web/de/?art=glyph) | Startgrafik direkt wählen |
-| [`de/?art=egg`](https://dolmetschen-cottbus.github.io/web/de/?art=egg) · [`?art=quill`](https://dolmetschen-cottbus.github.io/web/de/?art=quill) | Zarenei bzw. schreibende Feder direkt zeigen |
+| [`de/?art=egg`](https://dolmetschen-cottbus.github.io/web/de/?art=egg) · [`?art=quill`](https://dolmetschen-cottbus.github.io/web/de/?art=quill) · [`?art=pumpkin`](https://dolmetschen-cottbus.github.io/web/de/?art=pumpkin) · [`?art=wreath`](https://dolmetschen-cottbus.github.io/web/de/?art=wreath) · [`?art=toast`](https://dolmetschen-cottbus.github.io/web/de/?art=toast) | Feiertags-Grafik direkt zeigen (Zarenei, Feder, Kürbis, Adventskranz, Silvester) |
 | [`de/?sprachhinweis`](https://dolmetschen-cottbus.github.io/web/de/?sprachhinweis) | Sprachhinweis auf die russische Fassung erzwingen |
 | [`gibtsnicht`](https://dolmetschen-cottbus.github.io/web/gibtsnicht) | eigene 404-Seite |
 

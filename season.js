@@ -1,15 +1,13 @@
 /* Saisonale Easter Eggs. Setzt data-season am <html>-Element; Aussehen und Bewegung kommen aus style.css.
    - Winter (Dezember, Januar): sieben feine Eiskristalle schweben über die Seite, gläserne Eiszapfen
-     hängen an der Kopfleiste. Am 24.–26.12., 31.12. und 1.1. setzt Hover dem Porträt eine Weihnachtsmütze auf;
-     an Silvester/Neujahr Goldfeuerwerk statt Schnee: von selbst im Startbereich, dazu eine Rakete bei jedem
-     Klick in den Hintergrund.   Test: ?winter, ?silvester
-   - Halloween (25. Oktober – 1. November): Spinnennetz oben rechts, mit Fäden an der schwebenden
+     hängen an der Kopfleiste; an Silvester/Neujahr Goldfeuerwerk statt Schnee: von selbst im Startbereich, dazu eine Rakete bei jedem
+     Klick in den Hintergrund.   Test: ?winter (normaler Wintertag), ?fest=advent, ?fest=xmas, ?silvester
+   - Halloween (31. Oktober): Spinnennetz oben rechts, mit Fäden an der schwebenden
      Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab; Hover über Lenas Foto
      macht daraus „Grusel-Lena“ (Mondlicht, Hexenhut, Fledermäuse); Fledermäuse auch am Monogramm.   Test: ?halloween
-   - Ostern (Palmsonntag bis Ostermontag, westliches UND orthodoxes Datum): Gold-Ei am Monogramm und
+   - Ostern (Palmsonntag bis Ostermontag): Gold-Ei am Monogramm und
      Eiersuche – drei winzige goldene Eier sind auf der Seite versteckt; wer alle findet, bekommt einen
      Gruß. (Zarenei und Ostergruß in der Hero-Grafik steuert hero-art.js.)   Test: ?ostern
-   - Internationaler Frauentag (8. März): ein Mimosenzweig wächst am Monogramm (nur CSS).   Test: ?frauentag
    Bei „Bewegung reduzieren“ bleibt alles aus. */
 (function () {
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { return; }
@@ -22,32 +20,20 @@
         n = h + l - 7 * mm + 114;
     return new Date(y, Math.floor(n / 31) - 1, (n % 31) + 1);
   }
-  function easterOrthodox(y) {
-    var a = y % 4, b = y % 7, c = y % 19, dd = (19 * c + 15) % 30, e = (2 * a + 4 * b - dd + 34) % 7, n = dd + e + 114;
-    var dt = new Date(y, Math.floor(n / 31) - 1, (n % 31) + 1);
-    dt.setDate(dt.getDate() + 13);
-    return dt;
-  }
   function isEaster(dt) {
     var t = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()).getTime(), DAY = 86400000;
-    var list = [easterWest(dt.getFullYear()), easterOrthodox(dt.getFullYear())];
-    for (var j = 0; j < list.length; j++) {
-      var e = list[j].getTime();
-      if (t >= e - 7 * DAY && t <= e + DAY) { return true; }
-    }
-    return false;
+    var e = easterWest(dt.getFullYear()).getTime();
+    return t >= e - 7 * DAY && t <= e + DAY;
   }
 
   var now = new Date(), m = now.getMonth(), d = now.getDate();
   var q = location.search;
   var season = null;
   if (/[?&]halloween\b/.test(q)) { season = "halloween"; }
-  else if (/[?&](winter|silvester)\b/.test(q)) { season = "winter"; }
+  else if (/[?&](winter|silvester|fest=(advent|xmas|newyear))\b/.test(q)) { season = "winter"; }
   else if (/[?&]ostern\b/.test(q)) { season = "easter"; }
-  else if (/[?&]frauentag\b/.test(q)) { season = "womensday"; }
-  else if (m === 2 && d === 8) { season = "womensday"; }
   else if (m === 11 || m === 0) { season = "winter"; }
-  else if ((m === 9 && d >= 25) || (m === 10 && d === 1)) { season = "halloween"; }
+  else if (m === 9 && d === 31) { season = "halloween"; }
   else if (isEaster(now)) { season = "easter"; }
   if (!season) { return; }
 
@@ -56,10 +42,7 @@
   /* Eiersuche: drei winzige goldene Linien-Eier an wechselnden Stellen der jeweiligen Seite */
   function easter() {
     var ru = document.documentElement.lang === "ru";
-    /* Orthodoxe Osterzeit (oder Test ?fest=easterru): traditioneller Gruß „Христос воскресе!“ */
-    var oe = easterOrthodox(now.getFullYear()).getTime(), today = new Date(now.getFullYear(), m, d).getTime();
-    var orthodox = /[?&]fest=easterru\b/.test(q) || (today >= oe - 7 * 86400000 && today <= oe + 86400000);
-    var rusGreet = orthodox ? "Христос воскресе!" : "Светлой Пасхи!";
+    var rusGreet = "Светлой Пасхи!";
     var EGG = '<svg viewBox="0 0 24 28" aria-hidden="true" focusable="false">' +
               '<path class="egg-hunt-shell" d="M12 2C17 2 20 10 20 16 20 22 16.4 26 12 26S4 22 4 16C4 10 7 2 12 2Z"/>' +
               '<path class="egg-hunt-deco" d="M4.6 14.5H19.4M5.4 18.5H18.6M8 14.5l2 4 2-4 2 4 2-4"/></svg>';
@@ -122,7 +105,7 @@
 
   function winter() {
     /* Silvester und Neujahr (31.12., 1.1.): Feuerwerk statt Schnee */
-    var newYear = (m === 11 && d === 31) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q);
+    var newYear = (m === 11 && d === 31) || (m === 0 && d === 1) || /[?&](silvester|fest=newyear)\b/.test(q);
     if (!newYear) {
       var snow = document.createElement("div");
       snow.className = "snow";
@@ -132,8 +115,6 @@
     }
 
     icicles();
-    /* Weihnachtsfeiertage (24.–26.12.) sowie Silvester und Neujahr: Mütze beim Hover über dem Porträt */
-    if ((m === 11 && ((d >= 24 && d <= 26) || d === 31)) || (m === 0 && d === 1) || /[?&]silvester\b/.test(q) || /[?&]winter\b/.test(q)) { xmasHat(); }
     /* Silvester und Neujahr: Goldfeuerwerk im Startbereich */
     if (newYear) { fireworks(); }
   }
@@ -241,28 +222,6 @@
       box.appendChild(drop);
     }
     setTimeout(drip, 2500 + Math.random() * 3000);
-  }
-
-  /* ---------- Weihnachtsmütze: rutscht beim Hover (Handy: Antippen) aufs Porträt ---------- */
-  function xmasHat() {
-    var p = document.querySelector(".portrait");
-    if (!p) { return; }
-    var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg");
-    svg.setAttribute("class", "xmas-hat");
-    svg.setAttribute("viewBox", "0 0 200 140");
-    svg.setAttribute("aria-hidden", "true");
-    svg.setAttribute("focusable", "false");
-    svg.innerHTML =
-      '<path class="xh-body" d="M28 106C40 58 78 22 128 16C160 12 186 30 192 64C178 48 162 42 150 48C158 66 166 86 172 106Z"/>' +
-      '<path class="xh-shine" d="M52 92C62 62 86 38 118 30"/>' +
-      '<path class="xh-shade" d="M150 48C162 42 178 48 192 64C180 58 164 56 153 62Z"/>' +
-      '<path class="xh-brim" d="M22 104C70 92 130 92 178 104C190 107 190 128 176 129C130 118 70 118 24 129C10 128 10 107 22 104Z"/>' +
-      '<path class="xh-fluff" d="M34 112c4-3 9-3 13 0M66 107c4-3 9-3 13 0M100 106c4-3 9-3 13 0M134 108c4-3 9-3 13 0M160 113c3-2 7-2 10 0"/>' +
-      '<circle class="xh-bob" cx="192" cy="70" r="14"/>';
-    p.appendChild(svg);
-    if (!(window.matchMedia && window.matchMedia("(hover: hover)").matches)) {
-      p.addEventListener("click", function () { p.classList.toggle("is-hat"); });
-    }
   }
 
   /* ---------- Silvester: Goldraketen links und rechts im Startbereich (nicht hinter dem Text) ---------- */
