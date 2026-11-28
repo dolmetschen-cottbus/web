@@ -3,10 +3,10 @@
    bei jeder Begrüßung erscheint das nächste Wortpaar (data-pair).
    Besondere Tage (deutscher Kalender) zeigen NUR ihre eigenen Animationen:
      Übersetzertag 30.9.                  Feder schreibt „EM“, „Internationaler Übersetzertag“ (Schleife)
-     Halloween 31.10.                     Kürbis mit „Happy Halloween“
+     Halloween 31.10.–2.11.               Kürbis mit „Happy Halloween“
      1. Advent bis 23.12.                 Adventskranz, 1–4 Kerzen brennen, „1. Advent“ … „4. Advent“
      24.–26.12.                           Adventskranz, alle Kerzen, Weihnachtsstern, „Frohe Weihnachten“
-     31.12. und 1.1.                      Sektgläser stoßen an, Raketen schreiben die neue Jahreszahl (Schleife)
+     31.12.–5.1.                          Sektgläser stoßen an, Raketen schreiben die neue Jahreszahl (Schleife)
      Ostern (Palmsonntag bis Ostermontag) Zarenei, darin „Frohe Ostern!“ → „Светлой Пасхи!“ (Schleife)
    Klick auf die Grafik springt zur nächsten bzw. spielt eine einzelne Feiertags-Grafik neu ab;
    Grafiken mit „loop“ starten nach Ablauf von selbst neu.
@@ -47,8 +47,8 @@
   function festive(d) {
     var mo = d.getMonth(), day = d.getDate(), t = day0(d);
     if (mo === 8 && day === 30) { return "transl"; }
-    if (mo === 9 && day === 31) { return "halloween"; }
-    if ((mo === 11 && day === 31) || (mo === 0 && day === 1)) { return "newyear"; }
+    if ((mo === 9 && day === 31) || (mo === 10 && day <= 2)) { return "halloween"; }
+    if ((mo === 11 && day === 31) || (mo === 0 && day <= 5)) { return "newyear"; }
     if (mo === 11 && day >= 24 && day <= 26) { return "xmas"; }
     if (t >= firstAdvent(d.getFullYear()).getTime() && (mo === 10 || (mo === 11 && day <= 23))) { return "advent"; }
     var e = easterSunday(d.getFullYear()).getTime();

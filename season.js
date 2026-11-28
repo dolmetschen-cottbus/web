@@ -2,9 +2,8 @@
    - Winter (Dezember, Januar): sieben feine Eiskristalle schweben über die Seite, gläserne Eiszapfen
      hängen an der Kopfleiste; an Silvester/Neujahr Goldfeuerwerk statt Schnee: von selbst im Startbereich, dazu eine Rakete bei jedem
      Klick in den Hintergrund.   Test: ?winter (normaler Wintertag), ?fest=advent, ?fest=xmas, ?silvester
-   - Halloween (31. Oktober): Spinnennetz oben rechts, mit Fäden an der schwebenden
-     Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab; Hover über Lenas Foto
-     macht daraus „Grusel-Lena“ (Mondlicht, Hexenhut, Fledermäuse); Fledermäuse auch am Monogramm.   Test: ?halloween
+   - Halloween (31. Oktober bis 2. November): Spinnennetz oben rechts, mit Fäden an der schwebenden
+     Kopfleiste befestigt; eine kleine, freundliche Spinne seilt sich ab und zu ab; Fledermäuse beim Hover übers Monogramm.   Test: ?halloween
    - Ostern (Palmsonntag bis Ostermontag): Gold-Ei am Monogramm und
      Eiersuche – drei winzige goldene Eier sind auf der Seite versteckt; wer alle findet, bekommt einen
      Gruß. (Zarenei und Ostergruß in der Hero-Grafik steuert hero-art.js.)   Test: ?ostern
@@ -33,7 +32,7 @@
   else if (/[?&](winter|silvester|fest=(advent|xmas|newyear))\b/.test(q)) { season = "winter"; }
   else if (/[?&]ostern\b/.test(q)) { season = "easter"; }
   else if (m === 11 || m === 0) { season = "winter"; }
-  else if (m === 9 && d === 31) { season = "halloween"; }
+  else if ((m === 9 && d === 31) || (m === 10 && d <= 2)) { season = "halloween"; }
   else if (isEaster(now)) { season = "easter"; }
   if (!season) { return; }
 
@@ -104,8 +103,8 @@
   }
 
   function winter() {
-    /* Silvester und Neujahr (31.12., 1.1.): Feuerwerk statt Schnee */
-    var newYear = (m === 11 && d === 31) || (m === 0 && d === 1) || /[?&](silvester|fest=newyear)\b/.test(q);
+    /* Silvester bis 5. Januar: Feuerwerk statt Schnee */
+    var newYear = (m === 11 && d === 31) || (m === 0 && d <= 5) || /[?&](silvester|fest=newyear)\b/.test(q);
     if (!newYear) {
       var snow = document.createElement("div");
       snow.className = "snow";
@@ -292,9 +291,7 @@
     setTimeout(loop, 1200);
   }
 
-  /* ---------- Grusel-Lena: beim Hover (Handy: Antippen) Mondlicht, Hexenhut und drei
-     Fledermäuse, die hinter dem Rahmen hervorflattern. Hut im Koordinatensystem 200x170
-     (Vorschau: _planung/tmp/witch_preview.py). Fledermäuse auch beim Hover übers Monogramm. ---------- */
+  /* ---------- Fledermäuse beim Hover übers Monogramm ---------- */
   var BAT = '<svg viewBox="0 0 40 20" aria-hidden="true" focusable="false"><g class="bat-wings">' +
             '<path d="M20 8C17 3 10 1 2 4C5 6 6 9 5 12C8 10 11 11 12 13C14 10 17 10 20 12Z"/>' +
             '<path transform="matrix(-1 0 0 1 40 0)" d="M20 8C17 3 10 1 2 4C5 6 6 9 5 12C8 10 11 11 12 13C14 10 17 10 20 12Z"/>' +
@@ -310,32 +307,13 @@
     }
   }
 
-  function spookyLena() {
+  function monoBats() {
     var mono = document.querySelector(".site-header .monogram");
     if (mono) { addBats(mono, "mono-bat--"); }
-
-    var p = document.querySelector(".portrait");
-    if (!p) { return; }
-    var NS = "http://www.w3.org/2000/svg", hat = document.createElementNS(NS, "svg");
-    hat.setAttribute("class", "witch-hat");
-    hat.setAttribute("viewBox", "0 0 200 170");
-    hat.setAttribute("aria-hidden", "true");
-    hat.setAttribute("focusable", "false");
-    hat.innerHTML =
-      '<path class="wh-brim" d="M6 142C44 124 156 120 194 134C204 140 182 154 150 154C110 157 60 158 22 154C6 152 0 147 6 142Z"/>' +
-      '<path class="wh-cone" d="M54 136C70 98 88 62 106 36C118 18 138 6 160 10C142 18 130 34 126 56C121 82 132 110 146 134Z"/>' +
-      '<path class="wh-shine" d="M72 112C82 86 94 62 110 40"/>' +
-      '<path class="wh-band" d="M58 124C88 114 118 113 141 120C143 125 145 129 147 135C118 128 86 129 53 138Z"/>' +
-      '<rect class="wh-buckle" x="89" y="115" width="20" height="16" rx="1.5"/>';
-    p.appendChild(hat);
-    addBats(p, "vamp-bat--");
-    if (!(window.matchMedia && window.matchMedia("(hover: hover)").matches)) {
-      p.addEventListener("click", function () { p.classList.toggle("is-spooky"); });
-    }
   }
 
   function halloween() {
-    spookyLena();
+    monoBats();
     var NS = "http://www.w3.org/2000/svg";
     var bar = document.querySelector(".header-bar");
     if (!bar) { return; }
@@ -573,7 +551,6 @@
       zones = [[b.left + edge, b.left + b.width * 0.25], [b.right - b.width * 0.25, rightMax]];
       drop.style.top = Math.round(b.bottom - 2) + "px";
       drop.style.height = (dropPx + 50) + "px";
-      drop.style.setProperty("--drop", dropPx + "px");
       placeSpider();
     }
 

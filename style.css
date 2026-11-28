@@ -1287,7 +1287,7 @@ html:not([data-pair]) .pair--1,
 }
 
 /* ==========================================================================
-   Halloween-Easter-Egg (25.10.–1.11., season.js): Spinnennetz oben rechts,
+   Halloween-Easter-Egg (31.10.–2.11., season.js): Spinnennetz oben rechts,
    mit Fäden an der schwebenden Kopfleiste; kleine, freundliche Spinne am Faden
    ========================================================================== */
 .hw-web {
@@ -1320,9 +1320,9 @@ html:not([data-pair]) .pair--1,
 }
 
 .hw-spider {
-    position: absolute; top: 0; left: 0;
+    position: absolute; left: 0;
     width: 30px; height: 34px;
-    transform: translateY(-40px);
+    top: -40px;
     animation: hw-drop 14s ease-in-out infinite;
 }
 
@@ -1333,7 +1333,10 @@ html:not([data-pair]) .pair--1,
     bottom: 100%; left: 50%;
     width: 1px; height: 100vh;
     margin-left: -0.5px;
-    background: rgba(216, 197, 156, 0.55);
+    background: rgba(216, 197, 156, 0.36);   /* dezenter Faden: 1 px, blasser (scaleX ließ ihn in Firefox verschwinden) */
+}
+@media (min-resolution: 2dppx) {
+    .hw-spider::before { width: 0.5px; margin-left: -0.25px; background: rgba(216, 197, 156, 0.5); }   /* genau ein Gerätepixel */
 }
 
 .hw-spider svg {
@@ -1344,21 +1347,21 @@ html:not([data-pair]) .pair--1,
     animation: hw-swing 3.2s ease-in-out infinite alternate;
 }
 
-.hw-legs  { fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; }
-.hw-body  { fill: #20262b; stroke: var(--gold); stroke-width: 1.2; }
+.hw-legs  { fill: none; stroke: var(--gold); stroke-width: 1; stroke-linecap: round; }
+.hw-body  { fill: #20262b; stroke: var(--gold); stroke-width: 0.9; }
 .hw-eye   { fill: #ffffff; }
 .hw-pupil { fill: #111518; }
-.hw-smile { fill: none; stroke: var(--gold); stroke-width: 0.9; stroke-linecap: round; }
+.hw-smile { fill: none; stroke: var(--gold); stroke-width: 0.7; stroke-linecap: round; }
 
 /* Abseilen, kurz wippen, ein Stück hochklettern, noch einmal fallen lassen, ganz zurück */
 @keyframes hw-drop {
-    0%, 8%   { transform: translateY(-40px); }
-    30%      { transform: translateY(var(--drop)); }
-    36%      { transform: translateY(calc(var(--drop) - 8px)); }
-    42%      { transform: translateY(var(--drop)); }
-    58%      { transform: translateY(calc(var(--drop) * 0.55)); }
-    66%      { transform: translateY(calc(var(--drop) * 0.75)); }
-    84%, 100% { transform: translateY(-40px); }
+    0%, 8%   { top: -40px; }
+    30%      { top: calc(100% - 50px); }
+    36%      { top: calc(100% - 58px); }
+    42%      { top: calc(100% - 50px); }
+    58%      { top: calc((100% - 50px) * 0.55); }
+    66%      { top: calc((100% - 50px) * 0.75); }
+    84%, 100% { top: -40px; }
 }
 
 @keyframes hw-swing {
@@ -1382,7 +1385,7 @@ html:not([data-pair]) .pair--1,
     translate: var(--fx) var(--fy);      /* eigene Eigenschaft: die Drehung (rotate) verbiegt den Weg nicht */
 }
 .hw-peek svg { display: block; width: 100%; height: 100%; overflow: visible; transform: rotate(var(--ang)); }
-.hw-peek path { fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.hw-peek path { fill: none; stroke: var(--gold); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
 .hw-peek.is-peek { animation: hw-peek 4.4s ease-in-out forwards; }
 .hw-peek.is-peek .hw-legs-a { animation: hw-step 0.22s ease-in-out infinite alternate; }
 .hw-peek.is-peek .hw-legs-b { animation: hw-step 0.22s ease-in-out infinite alternate-reverse; }
@@ -1408,7 +1411,7 @@ html:not([data-pair]) .pair--1,
 }
 
 .hw-crawler svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.hw-crawler path { fill: none; stroke: var(--gold); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.hw-crawler path { fill: none; stroke: var(--gold); stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Beine im Wechselschritt, nur beim Laufen; beim Flitzen schneller */
 .hw-crawler.is-moving .hw-legs-a { animation: hw-step 0.28s ease-in-out infinite alternate; }
@@ -1693,50 +1696,10 @@ html { scrollbar-color: #3a434b var(--bg); }
 }
 
 /* ==========================================================================
-   Grusel-Lena (Halloween, season.js): Hover bzw. Antippen aufs Porträt
-   Mondlicht · Hexenhut · drei Fledermäuse hinter dem Rahmen hervor (auch am Monogramm)
+   Fledermäuse am Monogramm (Halloween, season.js): drei kleine Fledermäuse
+   flattern beim Hover hinter dem Monogramm hervor
    ========================================================================== */
-[data-season="halloween"] .portrait { isolation: isolate; }
-
-/* Mondlicht: kühles Blau über dem entsättigten Bild */
-[data-season="halloween"] .portrait-frame::after {
-    content: "";
-    position: absolute; inset: 0; z-index: 1;
-    background: radial-gradient(circle at 50% 35%, rgba(90, 125, 185, 0.12), rgba(40, 60, 110, 0.42));
-    opacity: 0;
-    transition: opacity .8s ease;
-    pointer-events: none;
-}
-[data-season="halloween"] .portrait:hover .portrait-frame::after,
-[data-season="halloween"] .portrait.is-spooky .portrait-frame::after { opacity: 1; }
-
-[data-season="halloween"] .portrait:hover .portrait-frame img,
-[data-season="halloween"] .portrait.is-spooky .portrait-frame img {
-    transform: scale(1.1);
-    filter: grayscale(0.7) brightness(0.82) contrast(1.05);
-}
-
-/* Hexenhut: fällt beim Hover mit leichtem Wippen auf den Kopf */
-.witch-hat {
-    position: absolute; left: 9%; top: -44%; z-index: 2;
-    width: 82%; height: auto;
-    overflow: visible;
-    pointer-events: none;
-    transform-origin: 50% 82%;
-    opacity: 0;
-    transform: translateY(-50%) rotate(-24deg);
-    transition: opacity .3s ease, transform .75s cubic-bezier(.34, 1.56, .64, 1);
-    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
-}
-.portrait:hover .witch-hat, .portrait.is-spooky .witch-hat { opacity: 1; transform: rotate(-7deg); }
-.wh-brim, .wh-cone { stroke: rgba(216, 197, 156, 0.45); stroke-width: 1; stroke-linejoin: round; }
-.wh-brim   { fill: #18141e; }
-.wh-cone   { fill: #1f1a28; }
-.wh-shine  { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 5; stroke-linecap: round; }
-.wh-band   { fill: #563478; }
-.wh-buckle { fill: none; stroke: var(--gold); stroke-width: 2.4; }
-
-/* Fledermäuse: starten verdeckt hinter dem Rahmen und flattern hinaus */
+/* Fledermäuse: starten verdeckt hinter dem Monogramm und flattern hinaus */
 .vamp-bat {
     position: absolute; left: 50%; top: 45%; z-index: -1;
     width: 44px; margin-left: -22px;
@@ -1747,34 +1710,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 .vamp-bat path, .vamp-bat ellipse { fill: #0b0d10; stroke: var(--gold); stroke-width: 0.8; stroke-linejoin: round; }
 .bat-wings { transform-origin: 20px 9px; }
 
-.portrait:hover .vamp-bat--1, .portrait.is-spooky .vamp-bat--1 { animation: bat-1 2.6s cubic-bezier(.3, .1, .5, 1) .2s forwards; }
-.portrait:hover .vamp-bat--2, .portrait.is-spooky .vamp-bat--2 { animation: bat-2 2.4s cubic-bezier(.3, .1, .5, 1) .45s forwards; }
-.portrait:hover .vamp-bat--3, .portrait.is-spooky .vamp-bat--3 { animation: bat-3 2.8s cubic-bezier(.3, .1, .5, 1) .75s forwards; width: 34px; margin-left: -17px; }
-.portrait:hover .bat-wings, .portrait.is-spooky .bat-wings { animation: bat-flap .16s ease-in-out infinite alternate; }
-
 @keyframes bat-flap { to { transform: scaleY(0.3); } }
-
-@keyframes bat-1 {
-    0%   { transform: translate(0, 0) scale(0.3); opacity: 0; }
-    12%  { transform: translate(-50px, -10px) scale(0.6); opacity: 1; }
-    45%  { transform: translate(-150px, -70px) scale(0.9) rotate(-8deg); }
-    70%  { transform: translate(-190px, -140px) scale(1) rotate(6deg); opacity: 1; }
-    100% { transform: translate(-260px, -230px) scale(0.8) rotate(-4deg); opacity: 0; }
-}
-@keyframes bat-2 {
-    0%   { transform: translate(0, 0) scale(0.3); opacity: 0; }
-    12%  { transform: translate(50px, -30px) scale(0.6); opacity: 1; }
-    40%  { transform: translate(130px, -140px) scale(0.9) rotate(8deg); }
-    70%  { transform: translate(210px, -180px) scale(1) rotate(-6deg); opacity: 1; }
-    100% { transform: translate(300px, -260px) scale(0.8); opacity: 0; }
-}
-@keyframes bat-3 {
-    0%   { transform: translate(0, 0) scale(0.3); opacity: 0; }
-    12%  { transform: translate(60px, 10px) scale(0.6); opacity: 1; }
-    50%  { transform: translate(190px, -20px) scale(0.85) rotate(10deg); }
-    75%  { transform: translate(250px, -90px) scale(0.9) rotate(-8deg); opacity: 1; }
-    100% { transform: translate(340px, -150px) scale(0.7); opacity: 0; }
-}
 
 /* Fledermäuse am Monogramm in der Kopfleiste: kleiner, fliegen nach rechts unten aus */
 [data-season="halloween"] .monogram { position: relative; isolation: isolate; }
@@ -1807,7 +1743,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 }
 
 @media print {
-    .witch-hat, .vamp-bat { display: none !important; }
+    .vamp-bat { display: none !important; }
 }
 
 /* ==========================================================================
@@ -1959,7 +1895,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 
 /* ==========================================================================
    Feiertags-Grafiken im Startbereich (hero-art.js, nur an diesen Tagen):
-   Halloween 31.10. – Kürbis · Advent bis 26.12. – Adventskranz · 31.12./1.1. – Sektgläser + Feuerwerk
+   Halloween 31.10.–2.11. – Kürbis · Advent bis 26.12. – Adventskranz · 31.12.–5.1. – Sektgläser + Feuerwerk
    Markup erzeugt _planung/tmp/feier_arts.py
    ========================================================================== */
 [data-art="pumpkin"] .pumpkin,
@@ -1977,6 +1913,8 @@ html { scrollbar-color: #3a434b var(--bg); }
 .pk-face  { fill: #f6b44a; transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(0.6);
             filter: drop-shadow(0 0 6px rgba(246, 180, 74, 0.8));
             animation: pk-carve .7s cubic-bezier(.3, 1.5, .5, 1) 2.6s forwards, pk-flicker 2.4s linear 3.4s infinite; }
+.pk-face-bg { fill: var(--bg); transform-box: fill-box; transform-origin: center; opacity: 0; transform: scale(0.6);
+              animation: pk-carve .7s cubic-bezier(.3, 1.5, .5, 1) 2.6s forwards; }   /* verdeckt die Rippen im Ausschnitt */
 .pk-halo  { opacity: 0; animation: pk-halo 2.4s linear 3.4s infinite; }
 
 @keyframes pk-carve   { to { opacity: 1; transform: none; } }
@@ -2034,7 +1972,7 @@ html { scrollbar-color: #3a434b var(--bg); }
 
 @media (prefers-reduced-motion: reduce) {
     .pk-body, .pk-ribs { stroke-dashoffset: 0; }
-    .pk-title, .pk-stem, .pk-vine, .pk-face, .pk-halo, .wr-shadow, .wr-fir, .wr-berries, .wr-candle, .wr-cap,
+    .pk-title, .pk-stem, .pk-vine, .pk-face, .pk-face-bg, .pk-halo, .wr-shadow, .wr-fir, .wr-berries, .wr-candle, .wr-cap,
     .wr-star-rays, .wr-star-glow, .wr-star-body { opacity: 1; transform: none; }
     .wr-flame { transform: none; }
 }
