@@ -5,3 +5,6 @@ _planung/
 .idea/
 __pycache__/
 .DS_Store
+
+# Claude Code (Memories, lokale Einstellungen) – nicht veröffentlichen
+.claude/
